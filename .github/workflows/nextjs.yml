@@ -1,0 +1,38 @@
+name: Deploy Firebrand Veneration site to DreamHost
+
+on:
+    # Runs on pushes targeting the default branch
+    push:
+        branches: [ "main" ]
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+jobs:
+    # Build and Deploy job
+    build_and_deploy:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v3
+
+            -   name: Setup Node
+                uses: actions/setup-node@v4
+                with:
+                    node-version: "latest"
+
+            -   name: Install dependencies
+                run: npm install
+
+            -   name: Build with Next.js
+                run: npm run build
+
+            -   name: Deploy to DreamHost server
+                uses: appleboy/scp-action@master
+                with:
+                    host: ${{ secrets.SSH_HOST }}
+                    username: ${{ secrets.SSH_USERNAME }}
+                    password: ${{ secrets.SSH_PASSWORD }}
+                    port: "22"
+                    source: "out/*"
+                    target: "~/firebrandveneration.com"
