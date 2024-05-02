@@ -45,5 +45,5 @@ jobs:
                     password: ${{ secrets.SSH_PASSWORD }}
                     port: "22"
                     script: |
-                        cp -r out/* ~/firebrandveneration.com
-                        rm -rf out
+                        cp -r ~/firebrandveneration.com/out/* ~/firebrandveneration.com
+                        rm -rf ~/firebrandveneration.com/out
