@@ -36,3 +36,14 @@ jobs:
                     port: "22"
                     source: "out/*"
                     target: "~/firebrandveneration.com"
+
+            -   name: Executing remote ssh commands
+                uses: appleboy/ssh-action@v0.1.7
+                with:
+                    host: ${{ secrets.SSH_HOST }}
+                    username: ${{ secrets.SSH_USERNAME }}
+                    password: ${{ secrets.SSH_PASSWORD }}
+                    port: "22"
+                    script: |
+                        cp -r out/* ~/firebrandveneration.com
+                        rm -rf out
