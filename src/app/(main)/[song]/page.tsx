@@ -51,11 +51,11 @@ const YoutubeEmbed: React.FC<{ youtubeId: string }> = ({youtubeId}) => {
 };
 
 const Lyrics: React.FC<{ song: SingleSong }> = ({song}) => (
-	<div className="leading-3">
+	<div className="leading-7">
 		{song.lyrics?.map((section, index) => (
 			<div key={index}>
 				<h3 className="font-black">{section.section}</h3>
-				{section.notes && <p className="font-bold">{section.notes}</p>}
+				{section.notes && <p className="-my-2 font-bold">{section.notes}</p>}
 				<p className="leading-7 font-medium">
 					{section.text && section.text.split('\n').flatMap((line, lineIndex, arr) => (
 						lineIndex === arr.length - 1 ? line : [line, <br key={lineIndex}/>]
@@ -76,7 +76,7 @@ const SongHeader: React.FC<{ song: Song, size: 'medium' | 'large' }> = ({song, s
 		},
 		large: {
 			div: "flex items-center gap-6",
-			header: "mt-2 text-4xl font-bold text-slate-900",
+			header: "mt-1 text-4xl font-bold text-slate-900",
 			paragraph: "order-first font-mono text-sm leading-7 text-slate-500",
 			link: "hover:text-slate-900"
 		}
@@ -129,7 +129,7 @@ export default async function Page({params}: { params: { song: string } }) {
 			<Container>
 				<header className="flex flex-col">
 					<SongHeader song={song} size="large"/>
-					<div className="ml-24 mt-3 text-lg font-medium leading-8 text-slate-700">
+					<div className="mt-3 text-lg font-medium leading-8 text-slate-700">
 						{isMedley(song) ? <MedleyMetaData song={song}/> :
 							<SingleSongMetaData song={song} className="mt-3 space-y-2"/>}
 					</div>
