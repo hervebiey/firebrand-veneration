@@ -3,7 +3,7 @@ export const BigGodInMedley = {
 	title: "Big God",
 	artist: "The Epoch House",
 	original: "Tim Godfrey - Big God",
-	lead: "To Be Determined",
+	lead: "Pollet",
 	language: "English",
 	key: "A♭",
 	melody: "Unison",
@@ -29,7 +29,7 @@ export const BigGodInMedley = {
 	lyrics: [
 		{
 			section: "Chorus",
-			notes: "4x Unison",
+			notes: "1x Solo, 3x Unison",
 			text: `I have a very big God
 						A very big God oh
 						He no dey fall my hand

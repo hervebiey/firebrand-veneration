@@ -3,7 +3,7 @@ export const WorthyOfItAllInMedley = {
 	title: "Worthy of It All",
 	artist: "CeCe Winans",
 	original: "David Brymer - Worthy of It All",
-	lead: "To Be Determined",
+	lead: "Yvonne",
 	language: "English",
 	key: "E♭",
 	melody: "Alto",

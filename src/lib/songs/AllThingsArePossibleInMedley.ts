@@ -3,7 +3,7 @@ export const AllThingsArePossibleInMedley = {
 	title: "All Things Are Possible",
 	artist: "The Epoch House",
 	original: "Hillsong Worship - All Things Are Possible",
-	lead: "To Be Determined",
+	lead: "Pollet",
 	language: "English",
 	key: "B > C > B > C > D♭",
 	melody: "Alto",

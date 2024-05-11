@@ -2,7 +2,7 @@ export const AlleluiaHosanaInMedley = {
 	id: "alleluia-hosana",
 	title: "Alléluia Hosana",
 	artist: "Emmanuel Encounter",
-	lead: "To Be Determined",
+	lead: "Hervé",
 	language: "French",
 	key: "C",
 	melody: "Alto",

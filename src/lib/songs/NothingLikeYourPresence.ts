@@ -2,7 +2,7 @@ export const NothingLikeYourPresence = {
 	id: "nothing-like-your-presence",
 	title: "Nothing Like Your Presence",
 	artist: "William McDowell",
-	lead: "To Be Determined",
+	lead: "Hervé",
 	language: "English",
 	key: "G / E♭",
 	melody: "Tenor",

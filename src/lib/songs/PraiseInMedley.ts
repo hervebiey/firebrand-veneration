@@ -3,7 +3,7 @@ export const PraiseInMedley = {
 	title: "Praise",
 	artist: "The Epoch House",
 	original: "Elevation Worship - Praise",
-	lead: "To Be Determined",
+	lead: "Margaret",
 	language: "English",
 	key: "A♭",
 	melody: "Alto",

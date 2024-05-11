@@ -4,7 +4,7 @@ export const Yahweh = {
 	order: 4,
 	title: "Yahweh",
 	artist: "E-Daniels",
-	lead: "Hervé",
+	lead: "Raissa",
 	language: "English",
 	key: "F#",
 	melody: "Alto",
