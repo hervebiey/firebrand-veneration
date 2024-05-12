@@ -3,7 +3,7 @@
 import {useEffect, useRef, useState} from 'react';
 import Link from 'next/link';
 
-import {useAudioPlayer} from '@/components/AudioProvider';
+import {type PlayerAPI, useAudioPlayer} from '@/components/AudioProvider';
 import {ForwardButton} from '@/components/player/ForwardButton';
 import {MuteButton} from '@/components/player/MuteButton';
 import {PlaybackRateButton} from '@/components/player/PlaybackRateButton';
@@ -25,6 +25,15 @@ function formatHumanTime(seconds: number) {
 	}, ${s} second${s === 1 ? '' : 's'}`
 }
 
+function AudioPlayerButton({player}: { player: PlayerAPI }) {
+	return (
+		<PlayButton player={player}
+		            className="group relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-700 focus:ring-offset-2 md:h-14 md:w-14"
+		            divClassName="absolute -inset-3 md:hidden"
+		            iconClassName="h-5 w-5 fill-white group-active:fill-white/80 md:h-7 md:w-7"/>
+	)
+}
+
 export function AudioPlayer() {
 	let player = useAudioPlayer();
 	let wasPlayingRef = useRef(false);
@@ -44,7 +53,7 @@ export function AudioPlayer() {
 		<div
 			className="flex items-center gap-6 bg-white/90 px-4 py-4 shadow shadow-slate-200/80 ring-1 ring-slate-900/5 backdrop-blur-sm md:px-6">
 			<div className="hidden md:block">
-				<PlayButton player={player}/>
+				<AudioPlayerButton player={player}/>
 			</div>
 			<div className="mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1">
 				<Link
@@ -61,7 +70,7 @@ export function AudioPlayer() {
 					<div className="flex flex-none items-center gap-4">
 						<RewindButton player={player}/>
 						<div className="md:hidden">
-							<PlayButton player={player}/>
+							<AudioPlayerButton player={player}/>
 						</div>
 						<ForwardButton player={player}/>
 					</div>

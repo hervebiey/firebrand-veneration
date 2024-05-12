@@ -92,8 +92,8 @@ export function AudioProvider({children}: { children: React.ReactNode }) {
 			play(song?: Song, trackType: TrackType = TrackType.AUDIO) {
 				if (song) {
 					const src = song[trackType]?.src;
-					dispatch({type: ActionKind.SET_META, payload: song});
 					if (src) {
+						dispatch({type: ActionKind.SET_META, payload: song});
 						dispatch({type: ActionKind.SET_TRACK_TYPE, payload: trackType});
 						
 						if (playerRef.current && playerRef.current.currentSrc !== src) {
