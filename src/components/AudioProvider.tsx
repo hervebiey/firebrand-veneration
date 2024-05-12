@@ -107,7 +107,9 @@ export function AudioProvider({children}: { children: React.ReactNode }) {
 					}
 				}
 				
-				playerRef.current?.play()
+				playerRef.current?.play().catch((error) => {
+					console.error("Failed to start playing: ", error);
+				});
 			},
 			pause() {
 				playerRef.current?.pause();
@@ -174,7 +176,8 @@ export function AudioProvider({children}: { children: React.ReactNode }) {
 }
 
 export function useAudioPlayer(song?: Song, trackType?: TrackType) {
-	let player = useContext(AudioPlayerContext)
+	let player = useContext(AudioPlayerContext);
+	if (!player) throw new Error("useAudioPlayer must be used within a AudioProvider");
 	
 	return useMemo<PlayerAPI>(
 		() => ({
@@ -186,7 +189,9 @@ export function useAudioPlayer(song?: Song, trackType?: TrackType) {
 				player!.toggle(song, trackType)
 			},
 			get playing() {
-				return player!.isPlaying(song, trackType)
+				return song && trackType
+					? player.isPlaying(song, trackType)
+					: player.playing;
 			},
 		}),
 		[player, song, trackType],
