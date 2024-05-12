@@ -34,7 +34,7 @@ export const MedleyMetaData: React.FC<{ song: Medley }> = ({song}) => {
 };
 
 export const SingleSongMetaData: React.FC<{ song: SingleSong, className?: string }> = ({song, className}) => {
-	const TrackTypes: Array<TrackType> = [TrackType.SOPRANO, TrackType.ALTO, TrackType.TENOR];
+	const availableTrackTypes: Array<TrackType> = [TrackType.SOPRANO, TrackType.ALTO, TrackType.TENOR].filter(trackType => song[trackType]?.src);
 	
 	return (
 		<>
@@ -45,7 +45,7 @@ export const SingleSongMetaData: React.FC<{ song: SingleSong, className?: string
 			{song.notes && <p>Notes: {song.notes}</p>}
 			<div className={className}>
 				{
-					TrackTypes.map(trackType =>
+					availableTrackTypes.map(trackType =>
 						<SongPlayButton key={trackType} song={song} trackType={trackType} size="medium"/>
 					)
 				}
