@@ -52,7 +52,10 @@ type Action =
 	| { type: ActionKind.SET_CURRENT_TIME; payload: number }
 	| { type: ActionKind.SET_DURATION; payload: number }
 
-const AudioPlayerContext = createContext<PlayerAPI | null>(null)
+export const AudioContext = createContext<PlayerAPI | null>(null);
+export const SopranoContext = createContext<PlayerAPI | null>(null);
+export const AltoContext = createContext<PlayerAPI | null>(null);
+export const TenorContext = createContext<PlayerAPI | null>(null);
 
 function audioReducer(state: PlayerState, action: Action): PlayerState {
 	switch (action.type) {
@@ -150,9 +153,15 @@ export function AudioProvider({children}: { children: React.ReactNode }) {
 	
 	return (
 		<>
-			<AudioPlayerContext.Provider value={api}>
-				{children}
-			</AudioPlayerContext.Provider>
+			<AudioContext.Provider value={api}>
+				<SopranoContext.Provider value={api}>
+					<AltoContext.Provider value={api}>
+						<TenorContext.Provider value={api}>
+							{children}
+						</TenorContext.Provider>
+					</AltoContext.Provider>
+				</SopranoContext.Provider>
+			</AudioContext.Provider>
 			<audio
 				ref={playerRef}
 				onPlay={() => dispatch({type: ActionKind.PLAY})}
@@ -175,8 +184,23 @@ export function AudioProvider({children}: { children: React.ReactNode }) {
 	)
 }
 
-export function useAudioPlayer(song?: Song, trackType?: TrackType) {
-	let player = useContext(AudioPlayerContext);
+export function useAudioPlayer(song?: Song, trackType: TrackType = TrackType.AUDIO) {
+	let player;
+	switch (trackType) {
+		case TrackType.AUDIO:
+			player = useContext(AudioContext);
+			break;
+		case TrackType.SOPRANO:
+			player = useContext(SopranoContext);
+			break;
+		case TrackType.ALTO:
+			player = useContext(AltoContext);
+			break;
+		case TrackType.TENOR:
+			player = useContext(TenorContext);
+			break;
+	}
+	
 	if (!player) throw new Error("useAudioPlayer must be used within a AudioProvider");
 	
 	console.log(`useAudioPlayer called with song: ${song} and trackType: ${trackType}`);
