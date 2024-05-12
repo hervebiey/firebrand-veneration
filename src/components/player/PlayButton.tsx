@@ -4,30 +4,24 @@ import {PlayIcon} from '@/components/PlayIcon';
 import {type Song} from '@/lib/songs';
 import React from "react";
 
-export function SongPlayerButton({player, song, trackType, className, divClassName, iconClassName, spanClassName, spanText}: {
-	player?: PlayerAPI,
+export function SongPlayerButton({song, trackType, buttonClassName, iconClassName, spanClassName, spanText}: {
 	song?: Song,
 	trackType?: TrackType,
-	className?: string,
-	divClassName?: string,
+	buttonClassName?: string,
 	iconClassName?: string,
 	spanClassName?: string,
 	spanText?: string
 }) {
-	let currentPlayer = player || useAudioPlayer(song, trackType);
-	let currentTrackType = trackType || player?.trackType;
-	let currentSong = song || player?.song;
-	
-	let Icon = currentPlayer.playing ? PauseIcon : PlayIcon
+	let player = useAudioPlayer(song, trackType);
+	let Icon = player.playing ? PauseIcon : PlayIcon;
 	
 	return (
 		<button
 			type="button"
-			className={className}
-			onClick={() => currentPlayer.toggle()}
-			aria-label={`${currentPlayer.playing ? 'Pause' : 'Play'} ${currentSong} ${currentTrackType}`}
+			className={buttonClassName}
+			onClick={() => player.toggle()}
+			aria-label={`${player.playing ? 'Pause' : 'Play'} ${trackType} of ${song}`}
 		>
-			<div className={divClassName}/>
 			<Icon className={iconClassName}/>
 			<span className={spanClassName}
 			      aria-hidden="true">{spanText}</span>
@@ -35,8 +29,8 @@ export function SongPlayerButton({player, song, trackType, className, divClassNa
 	)
 }
 
-export function AudioPlayerButton({ player }: { player: PlayerAPI }) {
-	let Icon = player.playing ? PauseIcon : PlayIcon
+export function AudioPlayerButton({player}: { player: PlayerAPI }) {
+	let Icon = player.playing ? PauseIcon : PlayIcon;
 	let song = player?.song;
 	let trackType = player?.trackType;
 	
