@@ -3,11 +3,11 @@
 import {useEffect, useRef, useState} from 'react';
 import Link from 'next/link';
 
-import {type PlayerAPI, useAudioPlayer} from '@/components/AudioProvider';
+import {useAudioPlayer} from '@/components/AudioProvider';
 import {ForwardButton} from '@/components/player/ForwardButton';
 import {MuteButton} from '@/components/player/MuteButton';
 import {PlaybackRateButton} from '@/components/player/PlaybackRateButton';
-import {PlayButton} from '@/components/player/PlayButton';
+import {AudioPlayerButton} from '@/components/player/PlayButton';
 import {RewindButton} from '@/components/player/RewindButton';
 import {Slider} from '@/components/player/Slider';
 
@@ -23,15 +23,6 @@ function formatHumanTime(seconds: number) {
 	return `${h} hour${h === 1 ? '' : 's'}, ${m} minute${
 		m === 1 ? '' : 's'
 	}, ${s} second${s === 1 ? '' : 's'}`
-}
-
-function AudioPlayerButton({player}: { player: PlayerAPI }) {
-	return (
-		<PlayButton player={player}
-		            className="group relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-700 focus:ring-offset-2 md:h-14 md:w-14"
-		            divClassName="absolute -inset-3 md:hidden"
-		            iconClassName="h-5 w-5 fill-white group-active:fill-white/80 md:h-7 md:w-7"/>
-	)
 }
 
 export function AudioPlayer() {

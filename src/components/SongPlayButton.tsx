@@ -3,7 +3,7 @@
 import React from 'react';
 
 import {TrackType} from '@/components/AudioProvider';
-import {PlayButton} from "@/components/player/PlayButton";
+import {SongPlayerButton} from "@/components/player/PlayButton";
 import {type Song} from '@/lib/songs';
 
 interface SongPlayButtonProps {
@@ -13,7 +13,10 @@ interface SongPlayButtonProps {
 }
 
 export const SongPlayButton: React.FC<SongPlayButtonProps> = ({song, trackType = TrackType.AUDIO, size}) => {
+	if(song === null) return null;
 	if (!song[trackType]?.src) return null;
+	
+	//const currentPlayer = useAudioPlayer(song || undefined, trackType);
 	
 	const sizeToClasses = {
 		small: {
@@ -34,7 +37,7 @@ export const SongPlayButton: React.FC<SongPlayButtonProps> = ({song, trackType =
 	const sizeIconClassName = sizeToClasses[size].icon;
 	
 	const button = (
-		<PlayButton
+		<SongPlayerButton
 			song={song}
 			trackType={trackType}
 			className={sizeClassName}
@@ -57,7 +60,7 @@ export const SongPlayButton: React.FC<SongPlayButtonProps> = ({song, trackType =
 	if (size === "small") {
 		return (
 			<>
-				<PlayButton
+				<SongPlayerButton
 					song={song}
 					trackType={trackType}
 					className={sizeClassName}
