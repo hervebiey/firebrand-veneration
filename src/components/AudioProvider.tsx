@@ -1,6 +1,6 @@
 'use client';
 
-import React, {createContext, useContext, useMemo, useReducer, useRef} from 'react';
+import React, {createContext, useContext, useMemo, useReducer, useRef, useState} from 'react';
 
 import {type Song} from '@/lib/songs';
 
@@ -110,9 +110,13 @@ export function AudioProvider({children}: { children: React.ReactNode }) {
 					}
 				}
 				
-				playerRef.current?.play().catch((error) => {
-					console.error("Failed to start playing: ", error);
-				});
+				if (playerRef.current) {
+					playerRef.current.play().then(() => {
+						dispatch({type: ActionKind.PLAY});
+					}).catch((error) => {
+						console.error("Failed to start playing: ", error);
+					});
+				}
 			},
 			pause() {
 				playerRef.current?.pause();
@@ -204,6 +208,8 @@ export function useAudioPlayer(song?: Song, trackType: TrackType = TrackType.AUD
 	if (!player) throw new Error("useAudioPlayer must be used within a AudioProvider");
 	
 	console.log(`useAudioPlayer called with song: ${song} and trackType: ${trackType}`);
+	
+	const [playing, setPlaying] = useState(false);
 	
 	return useMemo<PlayerAPI>(
 		() => ({
