@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import {TrackType} from '@/components/AudioProvider';
+import {TrackType, useAudioPlayer} from '@/components/AudioProvider';
 import {SongPlayerButton} from "@/components/player/PlayButton";
 import {type Song} from '@/lib/songs';
 
@@ -36,10 +36,11 @@ export const SongPlayButton: React.FC<SongPlayButtonProps> = ({song, trackType =
 	const sizeClassName = sizeToClasses[size].container;
 	const sizeIconClassName = sizeToClasses[size].icon;
 	
+	let player = useAudioPlayer(song, trackType);
+	
 	const button = (
 		<SongPlayerButton
-			song={song}
-			trackType={trackType}
+			player={player}
 			buttonClassName={sizeClassName}
 			iconClassName={sizeIconClassName}
 			spanClassName={size === "small" ? "flex items-center text-sm font-bold leading-6 text-pink-500" : undefined}

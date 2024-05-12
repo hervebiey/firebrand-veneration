@@ -179,14 +179,18 @@ export function useAudioPlayer(song?: Song, trackType?: TrackType) {
 	let player = useContext(AudioPlayerContext);
 	if (!player) throw new Error("useAudioPlayer must be used within a AudioProvider");
 	
+	console.log(`useAudioPlayer called with song: ${song} and trackType: ${trackType}`);
+	
 	return useMemo<PlayerAPI>(
 		() => ({
 			...player!,
 			play() {
-				player!.play(song, trackType)
+				console.log(`play action called with song: ${song} and trackType: ${trackType}`);
+				player!.play(song, trackType);
 			},
 			toggle() {
-				player!.toggle(song, trackType)
+				console.log(`toggle action called with song: ${song} and trackType: ${trackType}`);
+				player!.toggle(song, trackType);
 			},
 			get playing() {
 				return song && trackType

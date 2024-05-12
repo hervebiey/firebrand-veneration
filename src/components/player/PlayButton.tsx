@@ -1,18 +1,15 @@
-import {type PlayerAPI, TrackType, useAudioPlayer} from '@/components/AudioProvider';
+import {type PlayerAPI} from '@/components/AudioProvider';
 import {PauseIcon} from '@/components/PauseIcon';
 import {PlayIcon} from '@/components/PlayIcon';
-import {type Song} from '@/lib/songs';
 import React from "react";
 
-export function SongPlayerButton({song, trackType, buttonClassName, iconClassName, spanClassName, spanText}: {
-	song?: Song,
-	trackType?: TrackType,
+export function SongPlayerButton({player, buttonClassName, iconClassName, spanClassName, spanText}: {
+	player: PlayerAPI,
 	buttonClassName?: string,
 	iconClassName?: string,
 	spanClassName?: string,
 	spanText?: string
 }) {
-	let player = useAudioPlayer(song, trackType);
 	let Icon = player.playing ? PauseIcon : PlayIcon;
 	
 	return (
@@ -20,7 +17,7 @@ export function SongPlayerButton({song, trackType, buttonClassName, iconClassNam
 			type="button"
 			className={buttonClassName}
 			onClick={() => player.toggle()}
-			aria-label={`${player.playing ? 'Pause' : 'Play'} ${trackType} of ${song}`}
+			aria-label={`${player.playing ? 'Pause' : 'Play'} ${player.trackType} of ${player.song}`}
 		>
 			<Icon className={iconClassName}/>
 			<span className={spanClassName}
