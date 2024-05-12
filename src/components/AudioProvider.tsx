@@ -114,8 +114,8 @@ export function AudioProvider({children}: { children: React.ReactNode }) {
 			pause() {
 				playerRef.current?.pause();
 			},
-			toggle(song?: Song, trackType?: TrackType) {
-				this.isPlaying(song, trackType) ? actions.pause() : actions.play(song, trackType);
+			toggle(song?: Song, trackType: TrackType = TrackType.AUDIO) {
+				actions.isPlaying(song, trackType) ? actions.pause() : actions.play(song, trackType);
 			},
 			seekBy(amount) {
 				if (playerRef.current) {
