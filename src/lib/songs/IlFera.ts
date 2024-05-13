@@ -5,7 +5,7 @@ export const IlFera = {
 	title: "Il fera",
 	artist: "Dena Mwana",
 	original: "Deitrick Haddon - He\'s Able",
-	lead: "Ordelie",
+	lead: "Lynn",
 	language: "French",
 	key: "D",
 	melody: "Alto",

@@ -3,10 +3,10 @@ export const BigGodInMedley = {
 	title: "Big God",
 	artist: "The Epoch House",
 	original: "Tim Godfrey - Big God",
-	lead: "Pollet",
+	lead: "Raissa",
 	language: "English",
 	key: "A♭",
-	melody: "Unison",
+	melody: "Alto",
 	length: {minutes: 2, seconds: 20},
 	chordify: "https://chordify.net/chords/praise-medley-live-at-sound-from-zion-24-god-in-this-music",
 	notes: "From 1\'40\" Until 4\'00\"",
@@ -29,7 +29,7 @@ export const BigGodInMedley = {
 	lyrics: [
 		{
 			section: "Chorus",
-			notes: "1x Solo, 3x Unison",
+			notes: "4x Unison",
 			text: `I have a very big God
 						A very big God oh
 						He no dey fall my hand

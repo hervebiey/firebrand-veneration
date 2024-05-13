@@ -3,7 +3,7 @@ export const OpenTheEyesOfMyHeartInMedley = {
 	title: "Open the Eyes of My Heart",
 	artist: "Todd Galberth",
 	original: "Michael W. Smith - Open the Eyes of My Heart",
-	lead: "Onesmus",
+	lead: "Raissa",
 	language: "English",
 	key: "A♭",
 	melody: "Alto",

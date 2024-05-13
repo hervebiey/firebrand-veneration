@@ -2,7 +2,7 @@ export const PowerAndMightInMedley = {
 	id: "power-and-might",
 	title: "Power & Might (Amen, Blessings & Glory)",
 	artist: "Seth Boakye",
-	lead: "Elodie",
+	lead: "Sheilah",
 	language: "English",
 	key: "G / E♭",
 	melody: "Alto",
