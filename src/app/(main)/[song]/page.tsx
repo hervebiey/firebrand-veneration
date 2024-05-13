@@ -1,4 +1,4 @@
-import React, {cache} from 'react';
+import React from 'react';
 import {notFound} from 'next/navigation';
 import Link from 'next/link';
 
@@ -22,7 +22,7 @@ export async function generateMetadata({params}: { params: { song: string } }) {
 	}
 }
 
-const getSongDetails = cache(async (id: string) => {
+const getSongDetails = async (id: string) => {
 	let allSongs = await getAllSongDetails()
 	let song = allSongs.find((song) => song.id === id)
 	
@@ -31,7 +31,7 @@ const getSongDetails = cache(async (id: string) => {
 	}
 	
 	return song
-});
+};
 
 const YoutubeEmbed: React.FC<{ youtubeId: string }> = ({youtubeId}) => {
 	if (!youtubeId) return null;
