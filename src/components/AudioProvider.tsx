@@ -189,19 +189,24 @@ export function AudioProvider({children}: { children: React.ReactNode }) {
 }
 
 export function useAudioPlayer(song?: Song, trackType: TrackType = TrackType.AUDIO) {
+	const audioPlayer = useContext(AudioContext);
+	const sopranoPlayer = useContext(SopranoContext);
+	const altoPlayer = useContext(AltoContext);
+	const tenorPlayer = useContext(TenorContext);
+	
 	let player;
 	switch (trackType) {
 		case TrackType.AUDIO:
-			player = useContext(AudioContext);
+			player = audioPlayer;
 			break;
 		case TrackType.SOPRANO:
-			player = useContext(SopranoContext);
+			player = sopranoPlayer;
 			break;
 		case TrackType.ALTO:
-			player = useContext(AltoContext);
+			player = altoPlayer;
 			break;
 		case TrackType.TENOR:
-			player = useContext(TenorContext);
+			player = tenorPlayer;
 			break;
 	}
 	

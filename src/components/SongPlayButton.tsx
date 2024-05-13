@@ -13,6 +13,8 @@ interface SongPlayButtonProps {
 }
 
 export const SongPlayButton: React.FC<SongPlayButtonProps> = ({song, trackType = TrackType.AUDIO, size}) => {
+	let player = useAudioPlayer(song, trackType);
+	
 	if(song === null) return null;
 	if (!song[trackType]?.src) return null;
 	
@@ -35,8 +37,6 @@ export const SongPlayButton: React.FC<SongPlayButtonProps> = ({song, trackType =
 	
 	const sizeClassName = sizeToClasses[size].container;
 	const sizeIconClassName = sizeToClasses[size].icon;
-	
-	let player = useAudioPlayer(song, trackType);
 	
 	const button = (
 		<SongPlayerButton
