@@ -2,7 +2,7 @@ export const SaintEspritInMedley = {
 	id: "saint-esprit",
 	title: "Saint-Esprit",
 	artist: "Dena Mwana",
-	lead: "Sharon",
+	lead: "Lynn",
 	language: "French",
 	key: "G / E♭",
 	melody: "Tenor",

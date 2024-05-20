@@ -3,7 +3,7 @@ export const BigGodInMedley = {
 	title: "Big God",
 	artist: "The Epoch House",
 	original: "Tim Godfrey - Big God",
-	lead: "Raissa",
+	lead: "Pollet",
 	language: "English",
 	key: "A♭",
 	melody: "Alto",
