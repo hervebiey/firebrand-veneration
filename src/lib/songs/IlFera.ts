@@ -12,7 +12,7 @@ export const IlFera = {
 	length: {minutes: 7},
 	youtube: "fbK0EaqKmdU?si=0Aokk2zmtvAPBG77&amp;start=859",
 	chordify: "https://chordify.net/chords/dena-mwana-live-icc-paris-reveillon-2019-2020-denamwana",
-	notes: "End With Vamp and Immediately to Praise Medley",
+	notes: "End With Vamp and Immediately to Praise Medley - Sopranos Sing Alto, Altos Sing Tenor (Melody), Tenors Sing Low Soprano",
 	audio: {
 		src: "/songs/il-fera.m4a",
 		type: "audio/mpeg",

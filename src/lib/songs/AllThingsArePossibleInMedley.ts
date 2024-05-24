@@ -9,16 +9,12 @@ export const AllThingsArePossibleInMedley = {
 	melody: "Alto",
 	length: {minutes: 3},
 	chordify: "https://chordify.net/chords/praise-medley-live-at-sound-from-zion-24-god-in-this-music",
-	notes: "From 4\'00\" Until 7\'00\"",
+	notes: "From 4\'00\" Until 7\'00\" - Tenors Sing Alto, Altos Sing Soprano (Melody), Sopranos Sing High Tenor",
 	audio: {
 		src: "/songs/all-things-are-possible.mp3",
 		type: "audio/mpeg",
 	},
 	soprano: {
-		src: "/background/all-things-are-possible.m4a",
-		type: "audio/mpeg",
-	},
-	alto: {
 		src: "/background/all-things-are-possible.m4a",
 		type: "audio/mpeg",
 	},
