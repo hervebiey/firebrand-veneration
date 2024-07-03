@@ -31,7 +31,7 @@ export const PraiseInMedley = {
 			section: "Chorus",
 			notes: "2x Harmony",
 			text: `Praise the Lord, oh my soul [Unison]
-						Praise the Lord, oh my soul`
+			Praise the Lord, oh my soul`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -39,17 +39,17 @@ export const PraiseInMedley = {
 		},
 		{
 			section: "Verse",
-			notes: "1x Solo, 1x Unison, 1x Harmony (Melody: Tenor)",
+			notes: "1x Solo, 1x Unison, 1x Harmony [Tenor Melody]",
 			text: `I won\'t be quiet, my God is alive
-						How could I keep it inside
-						I won\'t be quiet, my God is alive
-						How could I keep it inside`
+			How could I keep it inside
+			I won\'t be quiet, my God is alive
+			How could I keep it inside`
 		},
 		{
 			section: "Chorus",
 			notes: "2x Harmony",
 			text: `Praise the Lord, oh my soul [Unison]
-						Praise the Lord, oh my soul`
+			Praise the Lord, oh my soul`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -59,7 +59,7 @@ export const PraiseInMedley = {
 			section: "Outro",
 			notes: "1x Unison",
 			text: `Hey, Hey
-						Hey, Hey`
+			Hey, Hey`
 		},
 	]
 }

@@ -35,17 +35,17 @@ export const OpenTheEyesOfMyHeartInMedley = {
 			section: "Verse",
 			notes: "1x Solo, 1x Harmony",
 			text: `Open the eyes of my heart, Lord
-						Open the eyes of my heart
-						I wanna see You
-						I wanna see You`
+			Open the eyes of my heart
+			I wanna see You
+			I wanna see You`
 		},
 		{
 			section: "Chorus",
 			notes: "2x Harmony",
 			text: `To see You high and lifted up
-						Shining in the light of Your glory
-						Pour out Your power and love
-						As we sing holy, holy, holy`
+			Shining in the light of Your glory
+			Pour out Your power and love
+			As we sing holy, holy, holy`
 		},
 	]
 }

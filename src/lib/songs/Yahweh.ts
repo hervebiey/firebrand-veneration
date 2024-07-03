@@ -1,7 +1,7 @@
 export const Yahweh = {
 	id: "yahweh",
 	session: 2,
-	order: 4,
+	order: 6,
 	title: "Yahweh",
 	artist: "E-Daniels",
 	lead: "Margaret",
@@ -37,9 +37,9 @@ export const Yahweh = {
 			section: "Chorus 1",
 			notes: "2x Unison",
 			text: `Your Name is Yahweh
-				Your Name is Yahweh
-				In heaven and the earth You are worthy to be praised
-				In heaven and the earth You are worthy to be praised`
+			Your Name is Yahweh
+			In heaven and the earth You are worthy to be praised
+			In heaven and the earth You are worthy to be praised`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -49,25 +49,25 @@ export const Yahweh = {
 			section: "Chorus 1",
 			notes: "2x Harmony",
 			text: `Your Name is Yahweh
-				Your Name is Yahweh
-				In heaven and the earth You are worthy to be praised [Unison]
-				In heaven and the earth You are worthy to be praised [Unison]`
+			Your Name is Yahweh
+			In heaven and the earth You are worthy to be praised [Unison]
+			In heaven and the earth You are worthy to be praised [Unison]`
 		},
 		{
 			section: "Chorus 2",
 			notes: "2x Harmony",
 			text: `Your Name is Jesus
-				Your Name is Jesus
-				In heaven and the earth You are worthy to be praised [Unison]
-				In heaven and the earth You are worthy to be praised [Unison]`
+			Your Name is Jesus
+			In heaven and the earth You are worthy to be praised [Unison]
+			In heaven and the earth You are worthy to be praised [Unison]`
 		},
 		{
 			section: "Chorus 3",
 			notes: "2x Harmony",
 			text: `We give You all the glory
-				We give You all the glory
-				In heaven and the earth You are worthy to be praised [Unison]
-				In heaven and the earth You are worthy to be praised [Unison]`
+			We give You all the glory
+			In heaven and the earth You are worthy to be praised [Unison]
+			In heaven and the earth You are worthy to be praised [Unison]`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -77,21 +77,25 @@ export const Yahweh = {
 			section: "Chorus 3",
 			notes: "2x Harmony",
 			text: `I give You all the glory
-				I give You all the glory
-				In heaven and the earth You are worthy to be praised [Unison]
-				In heaven and the earth You are worthy to be praised [Unison]`
+			I give You all the glory
+			In heaven and the earth You are worthy to be praised [Unison]
+			In heaven and the earth You are worthy to be praised [Unison]`
 		},
 		{
 			section: "Bridge 1",
-			notes: "2x Harmony",
-			text: `Yahweh (Yahweh), Yahweh (Yahweh), Yahweh (Yahweh)
-				Oh-oh-oh-oh, You are worthy to be praised [Unison]`
+			notes: "2x Solo (Harmony)",
+			text: `Yahweh (Yahweh)
+			Yahweh (Yahweh)
+			Yahweh (Yahweh)
+			Oh-oh-oh-oh, You are worthy to be praised [Unison]`
 		},
 		{
 			section: "Bridge 2",
-			notes: "2x Harmony",
-			text: `Jesus (Jesus), Jesus (Jesus), Jesus (Jesus)
-				Oh-oh-oh-oh, You are worthy to be praised [Unison]`
+			notes: "2x Solo (Harmony)",
+			text: `Jesus (Jesus)
+			Jesus (Jesus)
+			Jesus (Jesus)
+			Oh-oh-oh-oh, You are worthy to be praised [Unison]`
 		},
 		{
 			section: "Vamp",
@@ -102,9 +106,9 @@ export const Yahweh = {
 			section: "Chorus\'",
 			notes: "2x Unison",
 			text: `Oh-oh-oh-oh, oh oh oh
-				Oh-oh-oh-oh, oh oh oh
-				In heaven and the earth You are worthy to be praised [Unison]
-				In heaven and the earth You are worthy to be praised [Unison]`
+			Oh-oh-oh-oh, oh oh oh
+			In heaven and the earth You are worthy to be praised [Unison]
+			In heaven and the earth You are worthy to be praised [Unison]`
 		},
 	]
 }

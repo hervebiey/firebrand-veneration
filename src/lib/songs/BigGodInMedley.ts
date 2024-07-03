@@ -31,10 +31,10 @@ export const BigGodInMedley = {
 			section: "Chorus",
 			notes: "4x Unison",
 			text: `I have a very big God
-						A very big God oh
-						He no dey fall my hand
-						He\'s always on my side
-						A very big God`
+			A very big God oh
+			He no dey fall my hand
+			He\'s always on my side
+			A very big God`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -44,10 +44,10 @@ export const BigGodInMedley = {
 			section: "Chorus",
 			notes: "4x Unison",
 			text: `I have a very big God
-						A very big God oh
-						He no dey fall my hand
-						He\'s always on my side
-						A very big God`
+			A very big God oh
+			He no dey fall my hand
+			He\'s always on my side
+			A very big God`
 		},
 	]
 }

@@ -37,9 +37,9 @@ export const Arise = {
 			section: "Verse",
 			notes: "1x Solo",
 			text: `One thing we ask of You
-				One thing that we desire
-				That as we worship You
-				Lord, come and change our lives`
+			One thing that we desire
+			That as we worship You
+			Lord, come and change our lives`
 		},
 		{
 			section: "Pre-Chorus",
@@ -50,18 +50,23 @@ export const Arise = {
 			section: "Chorus",
 			notes: "1x Harmony",
 			text: `Arise, take Your place
-				Be enthroned on our praise
-				Arise, King of kings
-				Holy God, as we sing
-				Arise (arise), arise (arise)`
+			Be enthroned on our praise
+			Arise, King of kings
+			Holy God, as we sing`
+		},
+		{
+			section: "Vamp",
+			notes: "1x Solo (Harmony)",
+			text: `Arise (arise)
+			Arise (arise)`
 		},
 		{
 			section: "Verse",
 			notes: "1x Unison",
 			text: `One thing we ask of You
-				One thing that we desire
-				That as we worship You
-				Lord, come and change our lives`
+			One thing that we desire
+			That as we worship You
+			Lord, come and change our lives`
 		},
 		{
 			section: "Pre-Chorus",
@@ -72,11 +77,15 @@ export const Arise = {
 			section: "Chorus",
 			notes: "1x Harmony",
 			text: `Arise, take Your place
-				Be enthroned on our praise
-				Arise, King of kings
-				Holy God, as we sing
-				Arise (arise), arise (arise)
-				Arise (arise), arise (arise)`
+			Be enthroned on our praise
+			Arise, King of kings
+			Holy God, as we sing`
+		},
+		{
+			section: "Vamp",
+			notes: "2x Solo (Harmony)",
+			text: `Arise (arise)
+			Arise (arise)`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -84,26 +93,29 @@ export const Arise = {
 		},
 		{
 			section: "Bridge",
-			notes: "2x Unison, 2x Harmony, 2x Harmony: Momentary Switch Upwards",
+			notes: "2x Unison, 2x Harmony, 2x Harmony [Momentary Switch Upwards]",
 			text: `We lift You up, we lift You up
-				We lift You up on our praises`
+			We lift You up on our praises`
 		},
 		{
 			section: "Chorus",
 			notes: "2x Harmony",
 			text: `Arise, take Your place
-				Be enthroned on our praise
-				Arise, King of kings
-				Holy God, as we sing
-				Arise (arise), arise (arise)
-				Arise (arise), arise (arise)`
+			Be enthroned on our praise
+			Arise, King of kings
+			Holy God, as we sing`
+		},
+		{
+			section: "Vamp",
+			notes: "3x Solo (Harmony)",
+			text: `Arise (arise)
+			Arise (arise)`
 		},
 		{
 			section: "Outro",
 			notes: "1x Harmony",
-			text: `Arise (arise), arise (arise)
-				Arise [Momentary Switch Downwards]
-				Arise, arise [Twice As Long]`
+			text: `Arise
+			Arise, arise [Long]`
 		},
 	]
 }

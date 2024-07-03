@@ -38,24 +38,24 @@ export const HeerUBentGoed = {
 			section: "Verse",
 			notes: "2x Unison",
 			text: `Heer, U bent goed
-				En Uw liefde en trouw zijn voor eeuwig`
+			En Uw liefde en trouw zijn voor eeuwig`
 		},
 		{
 			section: "Pre-Chorus",
 			notes: "1x Unison & Harmony",
 			text: `Door heel de wereld en in elke taal [Unison]
-				Door alle eeuwen heen klinkt overal [Harmony]`
+			Door alle eeuwen heen klinkt overal [Harmony]`
 		},
 		{
 			section: "Chorus",
 			notes: "2x Harmony: End With \"U bent goed\"",
 			text: `Wij prijzen U
-				Halleluja, Halleluja
-				Wij prijzen U
-				Om wie U bent [Unison]
-				
-				...
-				U bent goed [Unison]`
+			Halleluja, Halleluja
+			Wij prijzen U
+			Om wie U bent [Unison]
+			
+			...
+			U bent goed [Unison]`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -65,24 +65,24 @@ export const HeerUBentGoed = {
 			section: "Verse",
 			notes: "2x Unison",
 			text: `Heer, U bent goed
-				En Uw liefde en trouw zijn voor eeuwig`
+			En Uw liefde en trouw zijn voor eeuwig`
 		},
 		{
 			section: "Pre-Chorus",
 			notes: "1x Unison & Harmony",
 			text: `Door heel de wereld en in elke taal [Unison]
-				Door alle eeuwen heen klinkt overal [Harmony]`
+			Door alle eeuwen heen klinkt overal [Harmony]`
 		},
 		{
 			section: "Chorus",
 			notes: "2x Harmony: End With \"U bent goed\"",
 			text: `Wij prijzen U
-				Halleluja, Halleluja
-				Wij prijzen U
-				Om wie U bent [Unison]
-				
-				...
-				U bent goed [Unison]`
+			Halleluja, Halleluja
+			Wij prijzen U
+			Om wie U bent [Unison]
+			
+			...
+			U bent goed [Unison]`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -92,7 +92,7 @@ export const HeerUBentGoed = {
 			section: "Bridge",
 			notes: "4x Harmony",
 			text: `U bent goed voor altijd
-				Voor altijd bent U goed`
+			Voor altijd bent U goed`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -102,26 +102,26 @@ export const HeerUBentGoed = {
 			section: "Verse",
 			notes: "4x Unison",
 			text: `Heer, U bent goed
-				En Uw liefde en trouw zijn voor eeuwig`
+			En Uw liefde en trouw zijn voor eeuwig`
 		},
 		{
 			section: "Pre-Chorus",
 			notes: "1x Unison & Harmony",
 			text: `Door heel de wereld en in elke taal [Unison]
-				Door alle eeuwen heen klinkt overal [Harmony]`
+			Door alle eeuwen heen klinkt overal [Harmony]`
 		},
 		{
 			section: "Chorus",
-			notes: "4x Harmony: End With \"U bent goed\"",
+			notes: "4x Harmony [End With \"U bent goed\"]",
 			text: `Wij prijzen U
-				Halleluja, Halleluja
-				Wij prijzen U
-				Om wie U bent [Unison]
-				
-				...
-				Om wie U bent [Harmony]
-				Om wie U bent [Harmony]
-				U bent goed [Unison]`
+			Halleluja, Halleluja
+			Wij prijzen U
+			Om wie U bent [Unison]
+			
+			...
+			Om wie U bent [Harmony]
+			Om wie U bent [Harmony]
+			U bent goed [Unison]`
 		},
 	]
 }

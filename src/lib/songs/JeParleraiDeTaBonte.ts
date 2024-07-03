@@ -33,62 +33,62 @@ export const JeParleraiDeTaBonte = {
 			section: "Chorus",
 			notes: "2x Solo, 2x Harmony",
 			text: `Je parlerai de Ta bonté, de Ta fidélité
-				Je dirai tout haut, tout haut, tout haut
-				Ce que Tu as fais pour moi
-				Je proclamerai la gloire de Ton Nom`
+			Je dirai tout haut, tout haut, tout haut
+			Ce que Tu as fais pour moi
+			Je proclamerai la gloire de Ton Nom`
 		},
 		{
 			section: "Verse 1",
 			notes: "2x Solo",
-			text: `Tu m’avais dit de compter sur Ton amour
-				Je n’ai pas hésité, eh-eh-eh-eh, eh-eh-eh-eh
-				Et Toi, Tu m’as prouvé Ta fidélité
-				Seigneur, vraiment Tu m’as étonné`
+			text: `Tu m\'avais dit de compter sur Ton amour
+			Je n\'ai pas hésité, eh-eh-eh-eh, eh-eh-eh-eh
+			Et quand Tu m\'as prouvé Ta fidélité
+			Seigneur, vraiment Tu m\'as étonné`
 		},
 		{
 			section: "Chorus",
 			notes: "2x Harmony",
 			text: `Je parlerai de Ta bonté, de Ta fidélité
-				Je dirai tout haut, tout haut, tout haut
-				Ce que Tu as fais pour moi
-				Je proclamerai la gloire de Ton Nom`
+			Je dirai tout haut, tout haut, tout haut
+			Ce que Tu as fais pour moi
+			Je proclamerai la gloire de Ton Nom`
 		},
 		{
 			section: "Verse 2",
 			notes: "1x Solo",
-			text: `Tu m’avais dit de compter sur Ta bonté
-				Je n’ai pas hésité, eh-eh-eh-eh, eh-eh-eh-eh
-				Et Toi, Tu m’as prouvé Ta fidélité
-				Seigneur, vraiment Tu m’as étonné`
+			text: `Tu m\'avais dit de compter sur Ta bonté
+			Je n\'ai pas hésité, eh-eh-eh-eh, eh-eh-eh-eh
+			Et quand Tu m’as prouvé Ta fidélité
+			Seigneur, vraiment Tu m\'as étonné`
 		},
 		{
 			section: "Chorus",
 			notes: "2x Harmony",
 			text: `Je parlerai de Ta bonté, de Ta fidélité
-				Je dirai tout haut, tout haut, tout haut
-				Ce que Tu as fais pour moi
-				Je proclamerai la gloire de Ton Nom`
+			Je dirai tout haut, tout haut, tout haut
+			Ce que Tu as fais pour moi
+			Je proclamerai la gloire de Ton Nom`
 		},
 		{
 			section: "Verse 3",
 			notes: "1x Solo",
 			text: `Je parlerai de Ta bonté, de Ta fidélité
-				Oui, je dirai tout haut, tout haut, tout haut
-				Les merveilles que Tu fais pour moi
-				Je proclamerai la gloire de Ton Nom
-
-				Oh, je parlerai de Ta bonté, de Ta fidélité
-				Oui, je dirai tout haut, tout haut, tout haut
-				La santé que Tu m’a donné
-				Je proclamerai la gloire de Ton Nom`
+			Oui, je dirai tout haut, tout haut, tout haut
+			Les merveilles que Tu fais pour moi
+			Je proclamerai la gloire de Ton Nom
+			
+			Oh, je parlerai de Ta bonté, de Ta fidélité
+			Oui, je dirai tout haut, tout haut, tout haut
+			La santé que Tu m\'a donné
+			Je proclamerai la gloire de Ton Nom`
 		},
 		{
 			section: "Chorus",
-			notes: "3x Harmony, 1x Harmony Without Instruments",
+			notes: "3x Harmony, 1x Harmony [Without Instruments]",
 			text: `Je parlerai de Ta bonté, de Ta fidélité
-				Je dirai tout haut, tout haut, tout haut
-				Ce que Tu as fais pour moi
-				Je proclamerai la gloire de Ton Nom`
+			Je dirai tout haut, tout haut, tout haut
+			Ce que Tu as fais pour moi
+			Je proclamerai la gloire de Ton Nom`
 		},
 	]
 }

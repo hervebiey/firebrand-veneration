@@ -47,12 +47,16 @@ export const Arise = {
 		},
 		{
 			section: "Chorus",
-			notes: "1x Harmony",
+			notes: "2x Harmony",
 			text: `Arise, take Your place
 				Be enthroned on our praise
 				Arise, King of kings
-				Holy God, as we sing
-				Arise (arise), arise (arise)`
+				Holy God, as we sing`
+		},
+		{
+			section: "Vamp",
+			notes: "1x Solo (Harmony)",
+			text: `Arise (arise), arise (arise)`
 		},
 		{
 			section: "Verse",
@@ -69,13 +73,16 @@ export const Arise = {
 		},
 		{
 			section: "Chorus",
-			notes: "1x Harmony",
+			notes: "2x Harmony",
 			text: `Arise, take Your place
 				Be enthroned on our praise
 				Arise, King of kings
-				Holy God, as we sing
-				Arise (arise), arise (arise)
-				Arise (arise), arise (arise)`
+				Holy God, as we sing`
+		},
+		{
+			section: "Vamp",
+			notes: "2x Solo (Harmony)",
+			text: `Arise (arise), arise (arise)`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -89,13 +96,16 @@ export const Arise = {
 		},
 		{
 			section: "Chorus",
-			notes: "2x Harmony: Key Change - Key F (Not Done) ",
+			notes: "2x Harmony",
 			text: `Arise, take Your place
 				Be enthroned on our praise
 				Arise, King of kings
-				Holy God, as we sing
-				Arise (arise), arise (arise)
-				Arise (arise), arise (arise)`
+				Holy God, as we sing`
+		},
+		{
+			section: "Vamp",
+			notes: "2x Solo (Harmony)",
+			text: `Arise (arise), arise (arise)`
 		},
 		{
 			section: "Outro",

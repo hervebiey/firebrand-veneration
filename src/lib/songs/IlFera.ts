@@ -12,7 +12,7 @@ export const IlFera = {
 	length: {minutes: 7},
 	youtube: "fbK0EaqKmdU?si=0Aokk2zmtvAPBG77&amp;start=859",
 	chordify: "https://chordify.net/chords/dena-mwana-live-icc-paris-reveillon-2019-2020-denamwana",
-	notes: "End With Vamp and Immediately to Praise Medley - Sopranos Sing Alto, Altos Sing Tenor (Melody), Tenors Sing Low Soprano",
+	notes: "End With Vamp and Immediately to Praise Medley \n - Sopranos Sing Alto, Altos Sing Tenor (Melody), Tenors Sing Low Soprano",
 	audio: {
 		src: "/songs/il-fera.m4a",
 		type: "audio/mpeg",
@@ -38,31 +38,31 @@ export const IlFera = {
 			section: "Intro",
 			notes: "1x Solo, 2x Harmony",
 			text: `E-ya-ya-ya-ya
-				E-ya-ya-ya-ya
-				E-ya-ya-ya-ya
-				E-ya`
+			E-ya-ya-ya-ya
+			E-ya-ya-ya-ya
+			E-ya`
 		},
 		{
 			section: "Chorus",
 			notes: "1x Solo, 2x Harmony",
-			text: `Dieu est capable de faire tout ce qu'Il dit Il fera
-				Il accomplira toutes Ses promesses envers toi
-				Garde ta foi en Dieu, Il ne t'abandonnera pas
-				Il fera, Il fera`
+			text: `Dieu est capable de faire tout ce qu\'Il dit Il fera
+			Il accomplira toutes Ses promesses envers toi
+			Garde ta foi en Dieu, Il ne t\'abandonnera pas
+			Il fera, Il fera`
 		},
 		{
 			section: "Vamp",
-			notes: "2x Unison",
+			notes: "2x Solo (Unison)",
 			text: `Oh, oh oh oh, oh oh oh, Il fera
-				(Oh, oh oh oh, oh oh oh, Il fera)`
+			(Oh, oh oh oh, oh oh oh, Il fera)`
 		},
 		{
 			section: "Vamp",
-			notes: "4x Harmony",
+			notes: "4x Solo (Harmony)",
 			text: `Il fera (Il fera)
-				Il fera (Il fera)
-				Il fera (Il fera)
-				Il fera (Il fera)`
+			Il fera (Il fera)
+			Il fera (Il fera)
+			Il fera (Il fera)`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -72,9 +72,9 @@ export const IlFera = {
 			section: "Break",
 			notes: "1x Instruments, 2x Harmony",
 			text: `Jésus est le Seigneur, eh, eh
-				Jésus est le Seigneur, eh, eh
-				Jésus est le Seigneur, eh, eh
-				Jésus est le Seigneur, eh, eh`
+			Jésus est le Seigneur, eh, eh
+			Jésus est le Seigneur, eh, eh
+			Jésus est le Seigneur, eh, eh`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -82,11 +82,11 @@ export const IlFera = {
 		},
 		{
 			section: "Vamp",
-			notes: "2x Harmony",
+			notes: "2x Solo (Harmony)",
 			text: `Il fera (Il fera)
-				Il fera (Il fera)
-				Il fera (Il fera)
-				Il fera (Il fera)`
+			Il fera (Il fera)
+			Il fera (Il fera)
+			Il fera (Il fera)`
 		}
 	]
 }
