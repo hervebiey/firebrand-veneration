@@ -79,7 +79,7 @@ export const AllThingsArePossibleInMedley = {
 		{
 			section: "Pre-Chorus",
 			notes: "1x Unison [Key D♭]",
-			text: `When I\'m weak, You make me strong
+			text: `When I am weak, You make me strong
 			When I\'m poor, I know I\'m rich
 			For in the power of Your Name`
 		},

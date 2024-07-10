@@ -93,7 +93,7 @@ export const Arise = {
 		},
 		{
 			section: "Bridge",
-			notes: "2x Unison, 2x Harmony, 2x Harmony [Momentary Switch Upwards]",
+			notes: "2x Unison, 4x Harmony",
 			text: `We lift You up, we lift You up
 			We lift You up on our praises`
 		},

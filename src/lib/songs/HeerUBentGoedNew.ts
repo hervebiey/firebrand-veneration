@@ -90,7 +90,7 @@ export const HeerUBentGoed = {
 		},
 		{
 			section: "Bridge",
-			notes: "4x Unison",
+			notes: "4x Harmony",
 			text: `U bent goed voor altijd
 			Voor altijd bent U goed`
 		},

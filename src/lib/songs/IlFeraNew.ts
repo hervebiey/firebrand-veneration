@@ -63,6 +63,30 @@ export const IlFera = {
 			Il fera (Il fera)
 			Il fera (Il fera)
 			Il fera (Il fera)`
+		},
+		{
+			section: "Instrumental Interlude",
+			notes: "10x Bars",
+		},
+		{
+			section: "Break",
+			notes: "1x Instruments, 2x Harmony",
+			text: `Jésus est le Seigneur, eh, eh
+			Jésus est le Seigneur, eh, eh
+			Jésus est le Seigneur, eh, eh
+			Jésus est le Seigneur, eh, eh`
+		},
+		{
+			section: "Instrumental Interlude",
+			notes: "4x Bars",
+		},
+		{
+			section: "Vamp",
+			notes: "2x Solo (Harmony)",
+			text: `Il fera (Il fera)
+			Il fera (Il fera)
+			Il fera (Il fera)
+			Il fera (Il fera)`
 		}
 	]
 }

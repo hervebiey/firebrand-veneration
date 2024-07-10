@@ -53,7 +53,7 @@ export const VictoryIsMyName = {
 			section: "Chorus 2",
 			notes: "1x Harmony",
 			text: `I'm gonna put on my dancing shoes
-				There's no way that I can loose
+				There's no way that I can lose
 				I'll be the last one standing
 				I'll be the last one standing`
 		},
@@ -77,7 +77,7 @@ export const VictoryIsMyName = {
 			section: "Chorus 2",
 			notes: "1x Harmony",
 			text: `I'm gonna put on my dancing shoes
-				There's no way that I can loose
+				There's no way that I can lose
 				I'll be the last one standing
 				I'll be the last one standing`
 		},
@@ -121,7 +121,7 @@ export const VictoryIsMyName = {
 			section: "Chorus 2",
 			notes: "2x Harmony",
 			text: `I'm gonna put on my dancing shoes
-				There's no way that I can loose
+				There's no way that I can lose
 				I'll be the last one standing
 				I'll be the last one standing`
 		},
@@ -177,7 +177,7 @@ export const VictoryIsMyName = {
 			section: "Chorus 2",
 			notes: "1x Harmony",
 			text: `I'm gonna put on my dancing shoes
-				There's no way that I can loose
+				There's no way that I can lose
 				I'll be the last one standing
 				I'll be the last one standing`
 		},

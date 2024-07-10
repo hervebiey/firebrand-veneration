@@ -36,10 +36,8 @@ export const Yahweh = {
 		{
 			section: "Chorus 1",
 			notes: "2x Unison",
-			text: `Your Name is Yahweh
-			Your Name is Yahweh
-			In heaven and the earth You are worthy to be praised
-			In heaven and the earth You are worthy to be praised`
+			text: `Your Name is Yahweh (x2)
+			In heaven and the earth, You are worthy to be praised (x2)`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -48,26 +46,20 @@ export const Yahweh = {
 		{
 			section: "Chorus 1",
 			notes: "2x Harmony",
-			text: `Your Name is Yahweh
-			Your Name is Yahweh
-			In heaven and the earth You are worthy to be praised [Unison]
-			In heaven and the earth You are worthy to be praised [Unison]`
+			text: `Your Name is Yahweh (x2)
+			In heaven and the earth, You are worthy to be praised (x2) [Unison]`
 		},
 		{
 			section: "Chorus 2",
 			notes: "2x Harmony",
-			text: `Your Name is Jesus
-			Your Name is Jesus
-			In heaven and the earth You are worthy to be praised [Unison]
-			In heaven and the earth You are worthy to be praised [Unison]`
+			text: `Your Name is Jesus (x2)
+			In heaven and the earth, You are worthy to be praised (x2) [Unison]`
 		},
 		{
 			section: "Chorus 3",
 			notes: "2x Harmony",
-			text: `We give You all the glory
-			We give You all the glory
-			In heaven and the earth You are worthy to be praised [Unison]
-			In heaven and the earth You are worthy to be praised [Unison]`
+			text: `We give You all the glory (x2)
+			In heaven and the earth, You are worthy to be praised (x2) [Unison]`
 		},
 		{
 			section: "Instrumental Interlude",
@@ -76,25 +68,19 @@ export const Yahweh = {
 		{
 			section: "Chorus 3",
 			notes: "2x Harmony",
-			text: `I give You all the glory
-			I give You all the glory
-			In heaven and the earth You are worthy to be praised [Unison]
-			In heaven and the earth You are worthy to be praised [Unison]`
+			text: `I give You all the glory (x2)
+			In heaven and the earth, You are worthy to be praised (x2) [Unison]`
 		},
 		{
 			section: "Bridge 1",
 			notes: "2x Solo (Harmony)",
-			text: `Yahweh (Yahweh)
-			Yahweh (Yahweh)
-			Yahweh (Yahweh)
+			text: `Yahweh (Yahweh) (x3)
 			Oh-oh-oh-oh, You are worthy to be praised [Unison]`
 		},
 		{
 			section: "Bridge 2",
 			notes: "2x Solo (Harmony)",
-			text: `Jesus (Jesus)
-			Jesus (Jesus)
-			Jesus (Jesus)
+			text: `Jesus (Jesus) (x3)
 			Oh-oh-oh-oh, You are worthy to be praised [Unison]`
 		},
 		{
@@ -105,10 +91,8 @@ export const Yahweh = {
 		{
 			section: "Chorus\'",
 			notes: "2x Unison",
-			text: `Oh-oh-oh-oh, oh oh oh
-			Oh-oh-oh-oh, oh oh oh
-			In heaven and the earth You are worthy to be praised [Unison]
-			In heaven and the earth You are worthy to be praised [Unison]`
+			text: `Oh-oh-oh-oh, oh oh oh (x2)
+			In heaven and the earth, You are worthy to be praised (x2) [Unison]`
 		},
 	]
 }
