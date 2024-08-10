@@ -27,18 +27,17 @@ function generateSession(sessionNumber: number) {
 		.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 	
 	return (
-		<React.Fragment>
+		<React.Fragment key={sessionNumber}>
 			<h2 className="flex items-center font-mono text-sm font-medium leading-7 text-slate-900">
-				<TinyWaveFormIcon colors={["fill-violet-300", "fill-pink-300"]}
-				                  className="h-2.5 w-2.5"/>
+				<TinyWaveFormIcon colors={["fill-violet-300", "fill-pink-300"]} className="h-2.5 w-2.5"/>
 				<span className="ml-2.5">{ordinalSuffix(sessionNumber)} Session</span>
 			</h2>
 			<ul className="mt-2 mb-5 text-base font-medium leading-8 text-slate-700">
-				{sessionSongs.map((song, index) =>
-					<li key={index} className="hover:text-slate-400">
-						<Link href={song.id}>{`${index + 1}. ${song.title}`}</Link>
-					</li>,
-				)}
+				{sessionSongs.map((song) => (
+					<li key={song.id} className="hover:text-slate-400">
+						<Link href={song.id}>{`${song.order}. ${song.title}`}</Link>
+					</li>
+				))}
 			</ul>
 		</React.Fragment>
 	);

@@ -56,8 +56,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 						<p className="text-xl font-bold text-slate-900">Voices</p>
 					</div>
 					<section className="mt-5 lg:mt-7 text-center lg:text-left">
-						{Object.entries(singersByParts).map(([part, singers], index) => (
-							<VocalPart key={index} part={part} singers={singers.join(", ")}/>
+						{Object.entries(singersByParts).map(([part, singers]) => (
+							<VocalPart key={part} part={part} singers={singers.join(", ")}/>
 						))}
 						<div className="h-px bg-gradient-to-r from-slate-200/0 via-slate-200 to-slate-200/0 lg:hidden"/>
 					</section>
