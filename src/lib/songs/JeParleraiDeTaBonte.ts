@@ -8,7 +8,7 @@ export const JeParleraiDeTaBonte = {
 	language: "French",
 	key: "E",
 	melody: "Alto",
-	length: {minutes: 7},
+	duration: { minutes: 7 },
 	youtube: "M1BHgTAQ1Bg",
 	chordify: "https://chordify.net/chords/je-parlerai-de-ta-bonte-ministere-de-la-parole-chorale-moise-ngofo",
 	notes: "Last Chorus: Slower and Without Instruments",
@@ -35,7 +35,7 @@ export const JeParleraiDeTaBonte = {
 			text: `Je parlerai de Ta bonté, de Ta fidélité
 			Je dirai tout haut, tout haut, tout haut
 			Ce que Tu as fais pour moi
-			Je proclamerai la gloire de Ton Nom`
+			Je proclamerai la gloire de Ton Nom`,
 		},
 		{
 			section: "Verse 1",
@@ -43,7 +43,7 @@ export const JeParleraiDeTaBonte = {
 			text: `Tu m\'avais dit de compter sur Ton amour
 			Je n\'ai pas hésité, eh-eh-eh-eh, eh-eh-eh-eh
 			Et quand Tu m\'as prouvé Ta fidélité
-			Seigneur, vraiment Tu m\'as étonné`
+			Seigneur, vraiment Tu m\'as étonné`,
 		},
 		{
 			section: "Chorus",
@@ -51,7 +51,7 @@ export const JeParleraiDeTaBonte = {
 			text: `Je parlerai de Ta bonté, de Ta fidélité
 			Je dirai tout haut, tout haut, tout haut
 			Ce que Tu as fais pour moi
-			Je proclamerai la gloire de Ton Nom`
+			Je proclamerai la gloire de Ton Nom`,
 		},
 		{
 			section: "Verse 2",
@@ -59,7 +59,7 @@ export const JeParleraiDeTaBonte = {
 			text: `Tu m\'avais dit de compter sur Ta bonté
 			Je n\'ai pas hésité, eh-eh-eh-eh, eh-eh-eh-eh
 			Et quand Tu m’as prouvé Ta fidélité
-			Seigneur, vraiment Tu m\'as étonné`
+			Seigneur, vraiment Tu m\'as étonné`,
 		},
 		{
 			section: "Chorus",
@@ -67,7 +67,7 @@ export const JeParleraiDeTaBonte = {
 			text: `Je parlerai de Ta bonté, de Ta fidélité
 			Je dirai tout haut, tout haut, tout haut
 			Ce que Tu as fais pour moi
-			Je proclamerai la gloire de Ton Nom`
+			Je proclamerai la gloire de Ton Nom`,
 		},
 		{
 			section: "Verse 3",
@@ -80,7 +80,7 @@ export const JeParleraiDeTaBonte = {
 			Oh, je parlerai de Ta bonté, de Ta fidélité
 			Oui, je dirai tout haut, tout haut, tout haut
 			La santé que Tu m\'a donné
-			Je proclamerai la gloire de Ton Nom`
+			Je proclamerai la gloire de Ton Nom`,
 		},
 		{
 			section: "Chorus",
@@ -88,7 +88,7 @@ export const JeParleraiDeTaBonte = {
 			text: `Je parlerai de Ta bonté, de Ta fidélité
 			Je dirai tout haut, tout haut, tout haut
 			Ce que Tu as fais pour moi
-			Je proclamerai la gloire de Ton Nom`
+			Je proclamerai la gloire de Ton Nom`,
 		},
-	]
-}
+	],
+};

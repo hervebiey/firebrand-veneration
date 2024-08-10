@@ -1,28 +1,28 @@
-'use client';
+"use client";
 
-import {useEffect, useRef, useState} from 'react';
-import Link from 'next/link';
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
-import {useAudioPlayer} from '@/components/AudioProvider';
-import {ForwardButton} from '@/components/player/ForwardButton';
-import {MuteButton} from '@/components/player/MuteButton';
-import {PlaybackRateButton} from '@/components/player/PlaybackRateButton';
-import {AudioPlayerButton} from '@/components/player/PlayButton';
-import {RewindButton} from '@/components/player/RewindButton';
-import {Slider} from '@/components/player/Slider';
+import { useAudioPlayer } from "@/components/AudioProvider";
+import { ForwardButton } from "@/components/player/ForwardButton";
+import { MuteButton } from "@/components/player/MuteButton";
+import { PlaybackRateButton } from "@/components/player/PlaybackRateButton";
+import { AudioPlayerButton } from "@/components/player/PlayButton";
+import { RewindButton } from "@/components/player/RewindButton";
+import { Slider } from "@/components/player/Slider";
 
 function parseTime(seconds: number) {
-	let hours = Math.floor(seconds / 3600)
-	let minutes = Math.floor((seconds - hours * 3600) / 60)
-	seconds = seconds - hours * 3600 - minutes * 60
-	return [hours, minutes, seconds]
+	let hours = Math.floor(seconds / 3600);
+	let minutes = Math.floor((seconds - hours * 3600) / 60);
+	seconds = seconds - hours * 3600 - minutes * 60;
+	return [hours, minutes, seconds];
 }
 
 function formatHumanTime(seconds: number) {
-	let [h, m, s] = parseTime(seconds)
-	return `${h} hour${h === 1 ? '' : 's'}, ${m} minute${
-		m === 1 ? '' : 's'
-	}, ${s} second${s === 1 ? '' : 's'}`
+	let [h, m, s] = parseTime(seconds);
+	return `${h} hour${h === 1 ? "" : "s"}, ${m} minute${
+		m === 1 ? "" : "s"
+	}, ${s} second${s === 1 ? "" : "s"}`;
 }
 
 export function AudioPlayer() {
@@ -33,11 +33,11 @@ export function AudioPlayer() {
 	);
 	
 	useEffect(() => {
-		setCurrentTime(null)
+		setCurrentTime(null);
 	}, [player.currentTime]);
 	
 	if (!player.song) {
-		return null
+		return null;
 	}
 	
 	return (
@@ -77,7 +77,7 @@ export function AudioPlayer() {
 								player.play();
 							}
 						}}
-						numberFormatter={{format: formatHumanTime} as Intl.NumberFormat}
+						numberFormatter={{ format: formatHumanTime } as Intl.NumberFormat}
 						onChangeStart={() => {
 							wasPlayingRef.current = player.playing;
 							player.pause();
@@ -94,5 +94,5 @@ export function AudioPlayer() {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }

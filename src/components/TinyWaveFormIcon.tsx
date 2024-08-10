@@ -1,7 +1,7 @@
 export function TinyWaveFormIcon({
 	                                 colors,
 	                                 ...props
-                                 }: React.ComponentPropsWithoutRef<'svg'> & {
+                                 }: React.ComponentPropsWithoutRef<"svg"> & {
 	colors: Array<string>
 }) {
 	return (
@@ -15,5 +15,5 @@ export function TinyWaveFormIcon({
 				className={colors[1]}
 			/>
 		</svg>
-	)
+	);
 }

@@ -1,53 +1,58 @@
-export const BigGodInMedley = {
+import { SingleSong } from "@/lib/songs";
+
+export const BigGodInMedley: SingleSong = {
 	id: "big-god",
 	title: "Big God",
 	artist: "The Epoch House",
 	original: "Tim Godfrey - Big God",
-	lead: "Pollet",
-	language: "English",
-	key: "A♭",
-	melody: "Alto",
-	length: {minutes: 2, seconds: 20},
-	chordify: "https://chordify.net/chords/praise-medley-live-at-sound-from-zion-24-god-in-this-music",
-	notes: "From 1\'40\" Until 4\'00\"",
-	audio: {
-		src: "/songs/big-god.mp3",
-		type: "audio/mpeg",
-	},
-	/*soprano: {
-		src: "/soprano/big-god.m4a",
-		type: "audio/mpeg",
-	},
-	alto: {
-		src: "/alto/big-god.m4a",
-		type: "audio/mpeg",
-	},
-	tenor: {
-		src: "/tenor/big-god.m4a",
-		type: "audio/mpeg",
-	},*/
-	lyrics: [
+	lead: ["Pollet"],
+	language: ["English"],
+	key: [{
+		note: "A♭",
+	}],
+	melody: ["Alto"],
+	duration: { minutes: 2, seconds: 20 },
+	youtube: ["cGkKJuWB_58"],
+	chordify: ["https://chordify.net/chords/praise-medley-live-at-sound-from-zion-24-god-in-this-music"],
+	structureNotes: "From 1\'40\" Until 4\'00\"",
+	audioTracks: [
 		{
-			section: "Chorus",
-			notes: "4x Unison",
+			src: "/songs/big-god.mp3",
+			audioType: "song",
+			isPrimary: true,
+		},
+	],
+	sections: [
+		{
+			sectionName: "Chorus",
+			textures: [{
+				type: "Unison",
+				repetitions: 4,
+			}],
 			text: `I have a very big God
 			A very big God oh
 			He no dey fall my hand
 			He\'s always on my side
-			A very big God`
+			A very big God`,
 		},
 		{
-			section: "Instrumental Interlude",
-			notes: "2x Bars",
+			sectionName: "Instrumental Interlude",
+			textures: [{
+				type: "Bars",
+				repetitions: 2,
+			}],
 		},
 		{
-			section: "Chorus",
-			notes: "4x Unison",
+			sectionName: "Chorus",
+			textures: [{
+				type: "Unison",
+				repetitions: 4,
+			}],
 			text: `I have a very big God
 			A very big God oh
 			He no dey fall my hand
 			He\'s always on my side
-			A very big God`
+			A very big God`,
 		},
-	]
-}
+	],
+};

@@ -1,19 +1,19 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import {SongsSection} from '@/components/SongsSection';
-import {AudioProvider} from '@/components/AudioProvider';
-import {AudioPlayer} from '@/components/player/AudioPlayer';
-import {TinyWaveFormIcon} from '@/components/TinyWaveFormIcon';
-import {Waveform} from '@/components/Waveform';
-import posterImage from '@/images/poster.png';
+import { SongsSection } from "@/components/SongsSection";
+import { AudioProvider } from "@/components/AudioProvider";
+import { AudioPlayer } from "@/components/player/AudioPlayer";
+import { TinyWaveFormIcon } from "@/components/TinyWaveFormIcon";
+import { Waveform } from "@/components/player/Waveform";
+import posterImage from "@/images/poster.png";
 import React from "react";
-import {singersByParts} from "@/lib/singersByParts";
+import { singersByParts } from "@/lib/singersByParts";
 
-const VocalPart: React.FC<{ part: string, singers: string }> = ({part, singers}) => (
+const VocalPart: React.FC<{ part: string, singers: string }> = ({ part, singers }) => (
 	<>
 		<h2 className="sr-only flex items-center font-mono text-sm font-medium leading-7 text-slate-900 lg:not-sr-only">
-			<TinyWaveFormIcon colors={['fill-indigo-300', 'fill-blue-300']}
+			<TinyWaveFormIcon colors={["fill-indigo-300", "fill-blue-300"]}
 			                  className="h-2.5 w-2.5"/>
 			<span className="ml-2.5">{part}</span>
 		</h2>
@@ -23,7 +23,7 @@ const VocalPart: React.FC<{ part: string, singers: string }> = ({part, singers})
 	</>
 );
 
-export default function MainLayout({children,}: { children: React.ReactNode }) {
+export default function MainLayout({ children }: { children: React.ReactNode }) {
 	const year = new Date().getFullYear();
 	return (
 		<AudioProvider>
@@ -71,5 +71,5 @@ export default function MainLayout({children,}: { children: React.ReactNode }) {
 				<AudioPlayer/>
 			</div>
 		</AudioProvider>
-	)
+	);
 }
