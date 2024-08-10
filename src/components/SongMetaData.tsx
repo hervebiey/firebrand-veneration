@@ -79,7 +79,7 @@ export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium
 				</div>
 			</div>
 			{primaryTrack && (size === "mini" || size === "small") && (
-				<div className="mb-2 flex items-center gap-4">
+				<div className="mb-2 flex items-center gap-2">
 					<SongPlayButton
 						song={song}
 						trackType={primaryTrack.audioType}
@@ -87,11 +87,14 @@ export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium
 						isPrimary={true}
 					/>
 					{size === "small" && (
-						<Link href={`/${song.id}`}
-						      className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-						      aria-label={`Show notes for song ${song.title}`}>
-							Show Notes
-						</Link>
+						<>
+							<span aria-hidden="true" className="text-sm font-bold text-slate-400">/</span>
+							<Link href={`/${song.id}`}
+							      className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
+							      aria-label={`Show notes for song ${song.title}`}>
+								Show Notes
+							</Link>
+						</>
 					)}
 				</div>
 			)}

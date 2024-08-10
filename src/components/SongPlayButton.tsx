@@ -68,9 +68,6 @@ export const SongPlayButton: React.FC<SongPlayButtonProps> = ({ song, trackType,
 			{!isPrimary && size === "medium" && trackType && (
 				<p>{capitalizeTrackType(trackType.toString())}</p>
 			)}
-			{size === "small" && (
-				<span aria-hidden="true" className="text-sm font-bold text-slate-400">/</span>
-			)}
 		</div>
 	)
 };
