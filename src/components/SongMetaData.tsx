@@ -1,21 +1,14 @@
 "use client";
 
 import React from "react";
-import {
-	formatArray,
-	formatKeys,
-	formatSectionsOverview,
-	isMedley,
-	Medley,
-	SingleSong,
-	type Song,
-	TrackType,
-} from "@/lib/songs";
+import { formatArray, formatKeys, formatSectionsOverview, isMedley, Medley, SingleSong, type Song } from "@/lib/songs";
 import { SongPlayButton } from "@/components/SongPlayButton";
 import { getTime } from "@/components/Time";
 import Link from "next/link";
 
 export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium" | "large" }> = ({ song, size }) => {
+	const primaryTrack = song.audioTracks?.find(track => track.isPrimary);
+	
 	const sizeToClasses = {
 		mini: {
 			mainDiv: "my-2 flex items-start",
@@ -51,8 +44,13 @@ export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium
 	return (
 		<>
 			<div className={mainDivClassName}>
-				{(size === "medium" || size === "large") && (
-					<SongPlayButton song={song} size={size}/>
+				{primaryTrack && (size === "large" || size === "medium") && (
+					<SongPlayButton
+						song={song}
+						trackType={primaryTrack.audioType}
+						size={size}
+						isPrimary={true}
+					/>
 				)}
 				<div className="flex flex-col">
 					{size === "small" ? (
@@ -78,11 +76,25 @@ export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium
 							</span>
 						)}
 					</p>
-					{size === "mini" && (
-						<SongPlayButton song={song} size={size}/>
-					)}
 				</div>
 			</div>
+			{primaryTrack && (size === "mini" || size === "small") && (
+				<div className="mb-2 flex items-center gap-4">
+					<SongPlayButton
+						song={song}
+						trackType={primaryTrack.audioType}
+						size={size}
+						isPrimary={true}
+					/>
+					{size === "small" && (
+						<Link href={`/${song.id}`}
+						      className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
+						      aria-label={`Show notes for song ${song.title}`}>
+							Show Notes
+						</Link>
+					)}
+				</div>
+			)}
 		</>
 	);
 };
@@ -116,7 +128,7 @@ export const MedleyMetaData: React.FC<{ song: Medley }> = ({ song }) => {
 };
 
 export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => {
-	const availableTrackTypes: TrackType[] = Object.values(TrackType).filter(trackType => song.audioTracks?.some(track => track.audioType === trackType));
+	const nonPrimaryTracks = song.audioTracks?.filter(track => !track.isPrimary);
 	
 	return (
 		<div className="my-1 leading-relaxed font-medium text-slate-700">
@@ -128,12 +140,14 @@ export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => 
 			{song.performanceNotes && <p className="my-2">Notes: {song.performanceNotes}</p>}
 			{song.sections && <p className="my-1 text-base">{formatSectionsOverview(song.sections)}</p>}
 			<div className="mt-4 space-y-2">
-				{
-					availableTrackTypes.map(trackType =>
-						<SongPlayButton key={`${song.id}-${trackType}`} song={song} trackType={trackType}
-						                size="medium"/>,
-					)
-				}
+				{nonPrimaryTracks && nonPrimaryTracks.map((track, trackIndex) => (
+					<SongPlayButton
+						key={`${song.id}-${track.audioType}-${trackIndex}`}
+						song={song}
+						trackType={track.audioType}
+						size="medium"
+					/>
+				))}
 			</div>
 		</div>
 	);

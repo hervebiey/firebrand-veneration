@@ -47,15 +47,11 @@ function SongEntry({ song }: SongProps) {
 				<SongHeader song={song} size="small"/>
 				{isMedleySong ? (
 					<>
-						<SongActions song={song}/>
 						<hr className="my-5 border-gray-50"/>
 						<MedleySongsMetaData song={song}/>
 					</>
 				) : (
-					<>
-						<SongActions song={song}/>
-						<SingleSongMetaData song={song}/>
-					</>
+					<SingleSongMetaData song={song}/>
 				)}
 			</Container>
 		</article>
