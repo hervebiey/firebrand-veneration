@@ -1,4 +1,4 @@
-import { SingleSong } from "@/lib/songs";
+import { SingleSong } from "@/components/Songs";
 
 export const GoodnessOfGod: SingleSong = {
 	id: "goodness-of-god",

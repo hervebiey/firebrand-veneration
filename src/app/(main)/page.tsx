@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Container } from "@/components/Container";
-import { getAllSongDetails, isMedley, Medley, type Song } from "@/lib/songs";
-import { SingleSongMetaData, SongHeader } from "@/components/SongMetaData";
+import { getAllSongDetails, isMedley, Medley, type Song } from "@/components/Songs";
+import { SingleSongMetaData, SongHeader } from "@/components/MetaData";
 
 interface SongProps {
 	song: Song;

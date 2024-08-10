@@ -1,4 +1,4 @@
-import { type Song } from "@/lib/songs";
+import { type Song } from "@/components/Songs";
 
 export function getTime(song: Song): string {
 	if (!song.duration) {

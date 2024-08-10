@@ -2,8 +2,8 @@ import React from "react";
 import { notFound } from "next/navigation";
 
 import { Container } from "@/components/Container";
-import { formatKeys, formatTextures, getAllSongDetails, isMedley, SingleSong, type Song } from "@/lib/songs";
-import { MedleyMetaData, SingleSongMetaData, SongHeader } from "@/components/SongMetaData";
+import { formatKeys, formatTextures, getAllSongDetails, isMedley, SingleSong, type Song } from "@/components/Songs";
+import { MedleyMetaData, SingleSongMetaData, SongHeader } from "@/components/MetaData";
 
 interface StaticParam {
 	song: string;

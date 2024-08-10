@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { formatArray, formatKeys, formatSectionsOverview, isMedley, Medley, SingleSong, type Song } from "@/lib/songs";
+import { formatArray, formatKeys, formatSectionsOverview, isMedley, Medley, SingleSong, type Song } from "@/components/Songs";
 import { PlayButton } from "@/components/player/PlayButton";
 import { getTime } from "@/components/Time";
 import Link from "next/link";

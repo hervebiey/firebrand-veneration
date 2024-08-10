@@ -3,7 +3,7 @@
 import React from "react";
 
 import { useAudioPlayer } from "@/components/AudioProvider";
-import { type Song } from "@/lib/songs";
+import { type Song } from "@/components/Songs";
 import { PauseIcon } from "@/components/PauseIcon";
 import { PlayIcon } from "@/components/PlayIcon";
 

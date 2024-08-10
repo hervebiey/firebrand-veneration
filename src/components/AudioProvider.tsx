@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useMemo, useReducer, useRef } from "react";
 
-import { type Song } from "@/lib/songs";
+import { type Song } from "@/components/Songs";
 
 // PlayerState interface
 interface PlayerState {

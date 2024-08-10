@@ -1,6 +1,6 @@
 import { BigGodInMedley } from "@/lib/songs/BigGodInMedley";
 import { PraiseInMedley } from "@/lib/songs/PraiseInMedley";
-import { Medley } from "@/lib/songs";
+import { Medley } from "@/components/Songs";
 
 export const PraiseMedley: Medley = {
 	id: "praise-medley",
