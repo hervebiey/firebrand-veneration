@@ -46,6 +46,7 @@ export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium
 			<div className={mainDivClassName}>
 				{primaryTrack && (size === "large" || size === "medium") && (
 					<SongPlayButton
+						key={`${song.id}-${primaryTrack.audioType}-primary`}
 						song={song}
 						trackType={primaryTrack.audioType}
 						size={size}
@@ -149,6 +150,7 @@ export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => 
 						song={song}
 						trackType={track.audioType}
 						size="medium"
+						isPrimary={false}
 					/>
 				))}
 			</div>

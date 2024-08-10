@@ -57,7 +57,8 @@ export const SongPlayButton: React.FC<SongPlayButtonProps> = ({ song, trackType,
 	const sizeSpanClassName = sizeToClasses[size].spanClassName;
 	
 	return (
-		<div className={`${isPrimary ? "primary-audio-button" : (size === "medium" || size === "mini") ? "flex items-center" : ""}`}>
+		<div className={`${isPrimary ? "primary-audio-button" : (size === "medium" || size ===
+			"mini") ? "flex items-center" : ""}`}>
 			<SongPlayerButton
 				player={player}
 				buttonClassName={sizeClassName}
@@ -69,5 +70,5 @@ export const SongPlayButton: React.FC<SongPlayButtonProps> = ({ song, trackType,
 				<p>{capitalizeTrackType(trackType.toString())}</p>
 			)}
 		</div>
-	)
+	);
 };

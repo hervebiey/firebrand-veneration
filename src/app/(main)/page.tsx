@@ -1,26 +1,11 @@
 import React from "react";
-import Link from "next/link";
 
 import { Container } from "@/components/Container";
-import { SongPlayButton } from "@/components/SongPlayButton";
 import { getAllSongDetails, isMedley, Medley, type Song } from "@/lib/songs";
 import { SingleSongMetaData, SongHeader } from "@/components/SongMetaData";
 
 interface SongProps {
 	song: Song;
-}
-
-function SongActions({ song }: SongProps) {
-	return (
-		<div className="mb-2 flex items-center gap-4">
-			<SongPlayButton song={song} size="small"/>
-			<Link href={`/${song.id}`}
-			      className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
-			      aria-label={`Show notes for song ${song.title}`}>
-				Show Notes
-			</Link>
-		</div>
-	);
 }
 
 function MedleySongsMetaData({ song }: { song: Medley }) {
