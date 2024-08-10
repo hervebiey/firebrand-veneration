@@ -1,4 +1,4 @@
-import { SingleSong } from "@/lib/songs";
+import { SingleSong, TrackType } from "@/lib/songs";
 
 export const BigGodInMedley: SingleSong = {
 	id: "big-god",
@@ -7,7 +7,7 @@ export const BigGodInMedley: SingleSong = {
 	original: "Tim Godfrey - Big God",
 	lead: ["Pollet"],
 	language: ["English"],
-	key: [{
+	keys: [{
 		note: "A♭",
 	}],
 	melody: ["Alto"],

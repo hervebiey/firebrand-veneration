@@ -4,7 +4,7 @@ import React from "react";
 
 import { useAudioPlayer } from "@/components/AudioProvider";
 import { SongPlayerButton } from "@/components/player/PlayButton";
-import { isMedley, SingleSong, type Song, TrackType } from "@/lib/songs";
+import { type Song, TrackType } from "@/lib/songs";
 
 interface SongPlayButtonProps {
 	song: Song;
@@ -13,10 +13,7 @@ interface SongPlayButtonProps {
 }
 
 // Helper function to get the source URL of the track based on trackType
-const getTrackSrc = (song: SingleSong, trackType: TrackType): string | undefined => {
-	if (trackType === TrackType.SONG) {
-		return song.audioTracks?.find(track => track.audioType === "song")?.src;
-	}
+const getTrackSource = (song: Song, trackType: TrackType): string | undefined => {
 	return song.audioTracks?.find(track => track.audioType === trackType)?.src;
 };
 
@@ -25,16 +22,23 @@ const capitalizeTrackType = (trackType: string): string => {
 	return trackType.charAt(0).toUpperCase() + trackType.slice(1);
 };
 
-export const SongPlayButton: React.FC<SongPlayButtonProps> = ({ song, trackType = TrackType.SONG, size }) => {
-	// Check if the song is a medley
-	if (isMedley(song)) return null;
+export const SongPlayButton: React.FC<SongPlayButtonProps> = ({ song, trackType, size }) => {
+	if (!song) {
+		console.warn("SongPlayButton rendered with undefined song");
+		return null;
+	} else if (!trackType) {
+		console.warn("SongPlayButton rendered with undefined track type");
+		return null;
+	}
 	
-	const singleSong = song as SingleSong; // Explicitly cast the song to SingleSong
+	const player = useAudioPlayer(song, trackType);
 	
-	const player = useAudioPlayer(singleSong, trackType);
-	const trackSrc = getTrackSrc(singleSong, trackType);
+	const trackSource = getTrackSource(song, trackType);
 	
-	if (!trackSrc) return null;
+	if (!trackSource) {
+		console.warn("SongPlayButton rendered with undefined track source");
+		return null;
+	}
 	
 	const sizeToClasses = {
 		mini: {

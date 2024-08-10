@@ -68,7 +68,7 @@ export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium
 							<span>
 								{" | "}
 								{song.chordify?.map((url, urlIndex) => (
-									<React.Fragment key={urlIndex}>
+									<React.Fragment key={`${song.id}-chordify-${urlIndex}`}>
 										<Link className={linkClassName} href={url} target="_blank">
 											Chordify
 										</Link>
@@ -96,7 +96,7 @@ export const MedleyMetaData: React.FC<{ song: Medley }> = ({ song }) => {
 	if (isMedley(song)) {
 		const leads = new Set(song.songList.map(subSong => formatArray(subSong.lead)));
 		const languages = new Set(song.songList.map(subSong => formatArray(subSong.language)));
-		const keys = new Set(song.songList.flatMap(subSong => formatKeys(subSong.key).split(" > ")));
+		const keys = new Set(song.songList.flatMap(subSong => formatKeys(subSong.keys).split(" > ")));
 		const melodies = new Set(song.songList.flatMap(subSong => subSong.melody ? formatArray(subSong.melody).split(", ") : ["TBD"]));
 		
 		leadsArray = Array.from(leads);
@@ -116,19 +116,13 @@ export const MedleyMetaData: React.FC<{ song: Medley }> = ({ song }) => {
 };
 
 export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => {
-	const availableTrackTypes: TrackType[] = [
-		TrackType.SOPRANO,
-		TrackType.ALTO,
-		TrackType.TENOR,
-		TrackType.BASS,
-		TrackType.BACKUP,
-	].filter(trackType => song.audioTracks?.some(track => track.audioType === trackType));
+	const availableTrackTypes: TrackType[] = Object.values(TrackType).filter(trackType => song.audioTracks?.some(track => track.audioType === trackType));
 	
 	return (
 		<div className="my-1 leading-relaxed font-medium text-slate-700">
 			{song.original && <p className="text-sm">Original: {song.original}</p>}
 			<p className="my-3">Lead: {formatArray(song.lead)} • Language: {formatArray(song.language)}</p>
-			<p className="my-3">Key: {formatKeys(song.key)} •
+			<p className="my-3">Key: {formatKeys(song.keys)} •
 				Melody: {song.melody ? formatArray(song.melody) : ["TBD"]}</p>
 			{song.structureNotes && <p className="my-3">Info: {song.structureNotes}</p>}
 			{song.performanceNotes && <p className="my-2">Notes: {song.performanceNotes}</p>}
@@ -136,7 +130,8 @@ export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => 
 			<div className="mt-4 space-y-2">
 				{
 					availableTrackTypes.map(trackType =>
-						<SongPlayButton key={trackType} song={song} trackType={trackType} size="medium"/>,
+						<SongPlayButton key={`${song.id}-${trackType}`} song={song} trackType={trackType}
+						                size="medium"/>,
 					)
 				}
 			</div>

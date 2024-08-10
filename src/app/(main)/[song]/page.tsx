@@ -96,9 +96,9 @@ const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
 					</p>
 				)}
 				{section.extraNotes && <p className="-mt-4 font-semibold">{section.extraNotes}</p>}
-				{section.key && section.key.length > 0 && (
+				{section.keys && section.keys.length > 0 && (
 					<p className="-mt-4 italic font-semibold">
-						Key: {formatKeys(section.key)}
+						Key: {formatKeys(section.keys)}
 					</p>
 				)}
 				<p className="-mt-2 leading-7 font-medium">

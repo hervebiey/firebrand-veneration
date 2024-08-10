@@ -4,15 +4,17 @@ import React, { createContext, useContext, useMemo, useReducer, useRef } from "r
 
 import { type Song, TrackType } from "@/lib/songs";
 
+// PlayerState interface
 interface PlayerState {
 	playing: boolean;
 	muted: boolean;
 	duration: number;
 	currentTime: number;
 	song: Song | null;
-	trackType: TrackType,
+	trackType: TrackType;
 }
 
+// PublicPlayerActions interface
 interface PublicPlayerActions {
 	play: (song?: Song, trackType?: TrackType) => void;
 	pause: () => void;
@@ -24,8 +26,10 @@ interface PublicPlayerActions {
 	isPlaying: (song?: Song, trackType?: TrackType) => boolean;
 }
 
-export type PlayerAPI = PlayerState & PublicPlayerActions
+// Combine PlayerState and PublicPlayerActions
+export type PlayerAPI = PlayerState & PublicPlayerActions;
 
+// Actions enum
 const enum ActionKind {
 	SET_META = "SET_META",
 	SET_TRACK_TYPE = "SET_TRACK_TYPE",
@@ -36,6 +40,7 @@ const enum ActionKind {
 	SET_DURATION = "SET_DURATION",
 }
 
+// Action type
 type Action =
 	| { type: ActionKind.SET_META; payload: Song }
 	| { type: ActionKind.SET_TRACK_TYPE; payload: TrackType }
@@ -45,13 +50,10 @@ type Action =
 	| { type: ActionKind.SET_CURRENT_TIME; payload: number }
 	| { type: ActionKind.SET_DURATION; payload: number }
 
+// Create contexts
 export const AudioContext = createContext<PlayerAPI | null>(null);
-export const SopranoContext = createContext<PlayerAPI | null>(null);
-export const AltoContext = createContext<PlayerAPI | null>(null);
-export const TenorContext = createContext<PlayerAPI | null>(null);
-export const BassContext = createContext<PlayerAPI | null>(null);
-export const BackupContext = createContext<PlayerAPI | null>(null);
 
+// Reducer function
 function audioReducer(state: PlayerState, action: Action): PlayerState {
 	switch (action.type) {
 		case ActionKind.SET_META:
@@ -73,6 +75,7 @@ function audioReducer(state: PlayerState, action: Action): PlayerState {
 	}
 }
 
+// AudioProvider component
 export function AudioProvider({ children }: { children: React.ReactNode }) {
 	const [state, dispatch] = useReducer(audioReducer, {
 		playing: false,
@@ -83,12 +86,12 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		trackType: TrackType.SONG,
 	});
 	
-	const playerRef = useRef<React.ElementRef<"audio">>(null);
+	const playerRef = useRef<HTMLAudioElement>(null);
 	
 	const actions = useMemo<PublicPlayerActions>(() => ({
 		play(song, trackType = TrackType.SONG) {
 			if (song) {
-				const track = song.audioTracks?.find(t => t.audioType === trackType);
+				const track = song.audioTracks?.find((t) => t.audioType === trackType);
 				const src = track ? track.src : undefined;
 				
 				if (src) {
@@ -119,7 +122,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 			playerRef.current?.pause();
 		},
 		
-		toggle(song, trackType = TrackType.SONG) {
+		toggle(song, trackType) {
 			this.isPlaying(song, trackType) ? this.pause() : this.play(song, trackType);
 		},
 		
@@ -145,13 +148,13 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 			dispatch({ type: ActionKind.TOGGLE_MUTE });
 		},
 		
-		isPlaying(song, trackType = TrackType.SONG) {
+		isPlaying(song, trackType) {
 			return song
 				? state.playing && playerRef.current?.currentSrc ===
 				song.audioTracks?.find(t => t.audioType === trackType)?.src
 				: state.playing;
 		},
-	}), [state.playing]);
+	}), [state.playing, state.muted, state.duration, state.currentTime, state.song, state.trackType]);
 	
 	const api = useMemo<PlayerAPI>(
 		() => ({ ...state, ...actions }),
@@ -159,18 +162,10 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 	);
 	
 	return (
-		<>
-			<AudioContext.Provider value={api}>
-				<SopranoContext.Provider value={api}>
-					<AltoContext.Provider value={api}>
-						<TenorContext.Provider value={api}>
-							{children}
-						</TenorContext.Provider>
-					</AltoContext.Provider>
-				</SopranoContext.Provider>
-			</AudioContext.Provider>
+		<AudioContext.Provider value={api}>
+			{children}
 			<audio
-				ref={playerRef}
+				ref={playerRef as React.RefObject<HTMLAudioElement>}
 				onPlay={() => dispatch({ type: ActionKind.PLAY })}
 				onPause={() => dispatch({ type: ActionKind.PAUSE })}
 				onTimeUpdate={(event) => {
@@ -187,26 +182,27 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 				}}
 				muted={state.muted}
 			/>
-		</>
+		</AudioContext.Provider>
 	);
 }
 
+// Custom hook for using audio player
 export function useAudioPlayer(song?: Song, trackType: TrackType = TrackType.SONG) {
 	const audioPlayer = useContext(AudioContext);
 	
 	if (!audioPlayer) throw new Error("useAudioPlayer must be used within an AudioProvider");
 	
-	console.log(`useAudioPlayer called with song: ${song} and trackType: ${trackType}`);
+	console.log(`useAudioPlayer called with song: ${song?.title || "undefined"} and trackType: ${trackType}`);
 	
 	return useMemo<PlayerAPI>(
 		() => ({
 			...audioPlayer!,
 			play() {
-				console.log(`play action called with song: ${song} and trackType: ${trackType}`);
+				console.log(`Play action called with song: ${song?.title || "undefined"} and trackType: ${trackType}`);
 				audioPlayer.play(song, trackType);
 			},
 			toggle() {
-				console.log(`toggle action called with song: ${song} and trackType: ${trackType}`);
+				console.log(`Toggle action called with song: ${song?.title || "undefined"} and trackType: ${trackType}`);
 				audioPlayer.toggle(song, trackType);
 			},
 			get playing() {

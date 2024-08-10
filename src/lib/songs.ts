@@ -1,7 +1,7 @@
 import { songList as songListData } from "@/lib/songList";
 import { KeyMap } from "@/components/Keys";
 
-export const enum TrackType {
+export enum TrackType {
 	SONG = "song",
 	SOPRANO = "soprano",
 	ALTO = "alto",
@@ -65,7 +65,7 @@ interface SongSection {
 	textures?: Texture[];
 	extraNotes?: string;
 	text?: string;
-	key?: Key[];
+	keys?: Key[];
 }
 
 // Base interface for all songs
@@ -86,7 +86,7 @@ export interface SingleSong extends BaseSong {
 	original?: string;
 	lead: string[];
 	language: string[];
-	key: Key[];
+	keys: Key[];
 	melody: MelodyType[];
 	structureNotes?: string;
 	performanceNotes?: string;

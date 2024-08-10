@@ -1,4 +1,4 @@
-import { SingleSong } from "@/lib/songs";
+import { SingleSong, TrackType } from "@/lib/songs";
 
 export const PraiseInMedley: SingleSong = {
 	id: "praise",
@@ -7,7 +7,7 @@ export const PraiseInMedley: SingleSong = {
 	original: "Elevation Worship - Praise",
 	lead: ["Sharon"],
 	language: ["English"],
-	key: [{
+	keys: [{
 		note: "A♭",
 	}],
 	melody: ["Alto"],

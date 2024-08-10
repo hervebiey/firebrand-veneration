@@ -1,4 +1,13 @@
-import { SingleSong } from "@/lib/songs";
+import { SingleSong, TrackType } from "@/lib/songs";
+
+console.log("TrackType:", TrackType);
+
+if (TrackType) {
+	console.log("TrackType.SONG:", TrackType.SONG);
+	console.log("TrackType.BACKUP:", TrackType.BACKUP);
+} else {
+	console.error("TrackType is undefined");
+}
 
 export const GoodnessOfGod: SingleSong = {
 	id: "goodness-of-god",
@@ -9,7 +18,7 @@ export const GoodnessOfGod: SingleSong = {
 	original: "Jenn Johnson - Goodness of God",
 	lead: ["TBD"],
 	language: ["English"],
-	key: [{
+	keys: [{
 		note: "A♭",
 	}],
 	melody: ["Soprano"],
