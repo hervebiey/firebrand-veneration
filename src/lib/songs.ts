@@ -1,18 +1,11 @@
 import { songList as songListData } from "@/lib/songList";
 import { KeyMap } from "@/components/Keys";
 
-export enum TrackType {
-	SONG = "song",
-	SOPRANO = "soprano",
-	ALTO = "alto",
-	TENOR = "tenor",
-	BASS = "bass",
-	BACKUP = "backup"
-}
+type TrackType = "song" | "soprano" | "alto" | "tenor" | "bass" | "backup";
 
 type MelodyType = "Bass" | "Tenor" | "Alto" | "Soprano" | "TBD";
 
-type TextureType = "Solo" | "Unison" | "Harmony" | "Partly Harmony" | "Instrumental Interlude" | "Bars";
+type TextureType = "Solo" | "Unison" | "Harmony" | "Partly Harmony" | "Interlude" | "Bars";
 
 type KeyNote =
 	"A"

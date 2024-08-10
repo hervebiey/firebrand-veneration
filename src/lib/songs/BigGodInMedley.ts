@@ -1,4 +1,4 @@
-import { SingleSong, TrackType } from "@/lib/songs";
+import { SingleSong } from "@/lib/songs";
 
 export const BigGodInMedley: SingleSong = {
 	id: "big-god",

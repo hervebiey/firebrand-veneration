@@ -1,13 +1,4 @@
-import { SingleSong, TrackType } from "@/lib/songs";
-
-console.log("TrackType:", TrackType);
-
-if (TrackType) {
-	console.log("TrackType.SONG:", TrackType.SONG);
-	console.log("TrackType.BACKUP:", TrackType.BACKUP);
-} else {
-	console.error("TrackType is undefined");
-}
+import { SingleSong } from "@/lib/songs";
 
 export const GoodnessOfGod: SingleSong = {
 	id: "goodness-of-god",

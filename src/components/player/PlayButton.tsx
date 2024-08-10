@@ -15,8 +15,8 @@ interface SongPlayButtonProps {
 }
 
 // Helper function to capitalize track types (if needed for display purposes)
-const capitalizeTrackType = (trackType: string): string => {
-	return trackType.charAt(0).toUpperCase() + trackType.slice(1);
+const capitalizeTrackType = (trackType?: string): string => {
+	return trackType ? trackType.charAt(0).toUpperCase() + trackType.slice(1) : "";
 };
 
 export const PlayButton: React.FC<SongPlayButtonProps> = ({
