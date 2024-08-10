@@ -2,10 +2,9 @@ import { songList as songListData } from "@/lib/songList";
 import { KeyMap } from "@/components/Keys";
 
 type TrackType = "song" | "soprano" | "alto" | "tenor" | "bass" | "backup";
-
 type MelodyType = "Bass" | "Tenor" | "Alto" | "Soprano" | "TBD";
-
 type TextureType = "Solo" | "Unison" | "Harmony" | "Partly Harmony" | "Interlude" | "Bars";
+type KeyQuality = "major" | "minor" | "diminished" | "augmented";
 
 type KeyNote =
 	"A"
@@ -26,8 +25,6 @@ type KeyNote =
 	| "G#"
 	| "A♭"
 	| "TBD";
-
-type KeyQuality = "major" | "minor" | "diminished" | "augmented";
 
 interface Duration {
 	minutes: number;

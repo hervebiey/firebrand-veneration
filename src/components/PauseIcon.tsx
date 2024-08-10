@@ -1,3 +1,5 @@
+import React from "react";
+
 export function PauseIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 	return (
 		<svg viewBox="0 0 36 36" aria-hidden="true" {...props}>

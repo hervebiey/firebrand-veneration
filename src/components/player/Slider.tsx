@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { mergeProps, useFocusRing, useSlider, useSliderThumb, VisuallyHidden } from "react-aria";
 import { type SliderState, type SliderStateOptions, useSliderState } from "react-stately";
 import clsx from "clsx";
