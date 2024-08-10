@@ -43,7 +43,8 @@ interface Duration {
 
 interface AudioTrack {
 	src: string;
-	audioType: TrackType;
+	trackType: TrackType;
+	trackIndex: number;
 	isPrimary?: boolean;
 }
 

@@ -2,12 +2,13 @@
 
 import React from "react";
 import { formatArray, formatKeys, formatSectionsOverview, isMedley, Medley, SingleSong, type Song } from "@/lib/songs";
-import { SongPlayButton } from "@/components/SongPlayButton";
+import { PlayButton } from "@/components/player/PlayButton";
 import { getTime } from "@/components/Time";
 import Link from "next/link";
 
 export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium" | "large" }> = ({ song, size }) => {
 	const primaryTrack = song.audioTracks?.find(track => track.isPrimary);
+	const primaryTrackIndex = song.audioTracks?.findIndex(track => track.isPrimary) ?? 0;
 	
 	const sizeToClasses = {
 		mini: {
@@ -45,10 +46,10 @@ export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium
 		<>
 			<div className={mainDivClassName}>
 				{primaryTrack && (size === "large" || size === "medium") && (
-					<SongPlayButton
-						key={`${song.id}-${primaryTrack.audioType}-primary`}
+					<PlayButton
+						key={`${song.id}-${primaryTrackIndex}-primary`}
 						song={song}
-						trackType={primaryTrack.audioType}
+						trackIndex={primaryTrackIndex}
 						size={size}
 						isPrimary={true}
 					/>
@@ -79,17 +80,20 @@ export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium
 					</p>
 				</div>
 			</div>
-			{primaryTrack && (size === "mini" || size === "small") && (
+			{(size === "mini" || size === "small") && (
 				<div className="mb-2 flex items-center gap-2">
-					<SongPlayButton
+					{primaryTrack && <PlayButton
+						key={`${song.id}-${primaryTrackIndex}-primary-mini`}
 						song={song}
-						trackType={primaryTrack.audioType}
+						trackIndex={primaryTrackIndex}
 						size={size}
 						isPrimary={true}
 					/>
+					}
 					{size === "small" && (
 						<>
-							<span aria-hidden="true" className="text-sm font-bold text-slate-400">/</span>
+							{primaryTrack &&
+								<span aria-hidden="true" className="text-sm font-bold text-slate-400">/</span>}
 							<Link href={`/${song.id}`}
 							      className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
 							      aria-label={`Show notes for song ${song.title}`}>
@@ -144,15 +148,20 @@ export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => 
 			{song.performanceNotes && <p className="my-2">Notes: {song.performanceNotes}</p>}
 			{song.sections && <p className="my-1 text-base">{formatSectionsOverview(song.sections)}</p>}
 			<div className="mt-4 space-y-2">
-				{nonPrimaryTracks && nonPrimaryTracks.map((track, trackIndex) => (
-					<SongPlayButton
-						key={`${song.id}-${track.audioType}-${trackIndex}`}
-						song={song}
-						trackType={track.audioType}
-						size="medium"
-						isPrimary={false}
-					/>
-				))}
+				{nonPrimaryTracks && nonPrimaryTracks.map(track => {
+					// Find the index of this track in the original audioTracks array
+					const trackIndex = song.audioTracks!.indexOf(track);
+					
+					return (
+						<PlayButton
+							key={`${song.id}-${track}-${trackIndex}`}
+							song={song}
+							trackIndex={trackIndex}
+							size="medium"
+							isPrimary={false}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);

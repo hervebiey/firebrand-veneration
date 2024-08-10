@@ -18,16 +18,19 @@ export const PraiseInMedley: SingleSong = {
 	audioTracks: [
 		{
 			src: "/songs/praise.mp3",
-			audioType: "song",
+			trackType: "song",
+			trackIndex: 1,
 			isPrimary: true,
 		},
 		{
 			src: "/background/praise.m4a",
-			audioType: "backup",
+			trackType: "backup",
+			trackIndex: 2,
 		},
 		{
 			src: "/alto/praise.m4a",
-			audioType: "alto",
+			trackType: "alto",
+			trackIndex: 3,
 		},
 	],
 	sections: [

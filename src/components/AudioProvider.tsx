@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useMemo, useReducer, useRef } from "react";
 
-import { type Song, TrackType } from "@/lib/songs";
+import { type Song } from "@/lib/songs";
 
 // PlayerState interface
 interface PlayerState {
@@ -11,19 +11,19 @@ interface PlayerState {
 	duration: number;
 	currentTime: number;
 	song: Song | null;
-	trackType: TrackType;
+	trackId: string | null;  // Unique identifier for the track
 }
 
 // PublicPlayerActions interface
 interface PublicPlayerActions {
-	play: (song?: Song, trackType?: TrackType) => void;
+	play: (song?: Song, trackIndex?: number) => void;
 	pause: () => void;
-	toggle: (song?: Song, trackType?: TrackType) => void;
+	toggle: (song?: Song, trackIndex?: number) => void;
 	seekBy: (amount: number) => void;
 	seek: (time: number) => void;
 	playbackRate: (rate: number) => void;
 	toggleMute: () => void;
-	isPlaying: (song?: Song, trackType?: TrackType) => boolean;
+	isPlaying: (song?: Song, trackIndex?: number) => boolean;
 }
 
 // Combine PlayerState and PublicPlayerActions
@@ -32,7 +32,6 @@ export type PlayerAPI = PlayerState & PublicPlayerActions;
 // Actions enum
 const enum ActionKind {
 	SET_META = "SET_META",
-	SET_TRACK_TYPE = "SET_TRACK_TYPE",
 	PLAY = "PLAY",
 	PAUSE = "PAUSE",
 	TOGGLE_MUTE = "TOGGLE_MUTE",
@@ -42,13 +41,12 @@ const enum ActionKind {
 
 // Action type
 type Action =
-	| { type: ActionKind.SET_META; payload: Song }
-	| { type: ActionKind.SET_TRACK_TYPE; payload: TrackType }
+	| { type: ActionKind.SET_META; payload: { song: Song, trackId: string } }
 	| { type: ActionKind.PLAY }
 	| { type: ActionKind.PAUSE }
 	| { type: ActionKind.TOGGLE_MUTE }
 	| { type: ActionKind.SET_CURRENT_TIME; payload: number }
-	| { type: ActionKind.SET_DURATION; payload: number }
+	| { type: ActionKind.SET_DURATION; payload: number };
 
 // Create contexts
 export const AudioContext = createContext<PlayerAPI | null>(null);
@@ -57,9 +55,7 @@ export const AudioContext = createContext<PlayerAPI | null>(null);
 function audioReducer(state: PlayerState, action: Action): PlayerState {
 	switch (action.type) {
 		case ActionKind.SET_META:
-			return { ...state, song: action.payload };
-		case ActionKind.SET_TRACK_TYPE:
-			return { ...state, trackType: action.payload };
+			return { ...state, song: action.payload.song, trackId: action.payload.trackId };
 		case ActionKind.PLAY:
 			return { ...state, playing: true };
 		case ActionKind.PAUSE:
@@ -83,28 +79,31 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		duration: 0,
 		currentTime: 0,
 		song: null,
-		trackType: TrackType.SONG,
+		trackId: null,
 	});
 	
 	const playerRef = useRef<HTMLAudioElement>(null);
 	
 	const actions = useMemo<PublicPlayerActions>(() => ({
-		play(song, trackType = TrackType.SONG) {
+		play(song, trackIndex = 0) {
 			if (song) {
-				const track = song.audioTracks?.find((t) => t.audioType === trackType);
+				const track = song.audioTracks?.[trackIndex];
 				const src = track ? track.src : undefined;
+				const trackId = `${song.id}-${trackIndex}`;  // Unique track identifier
 				
 				if (src) {
-					dispatch({ type: ActionKind.SET_META, payload: song });
-					dispatch({ type: ActionKind.SET_TRACK_TYPE, payload: trackType });
-					
-					if (playerRef.current && playerRef.current.currentSrc !== src) {
-						const playbackRate = playerRef.current.playbackRate;
-						playerRef.current.src = src;
-						playerRef.current.load();
-						playerRef.current.pause();
-						playerRef.current.playbackRate = playbackRate;
-						playerRef.current.currentTime = 0;
+					if (state.song !== song || state.trackId !== trackId) {
+						// If a different song or track is played, set the meta and reset the player
+						dispatch({ type: ActionKind.SET_META, payload: { song, trackId } });
+						
+						if (playerRef.current && playerRef.current.currentSrc !== src) {
+							const playbackRate = playerRef.current.playbackRate;
+							playerRef.current.src = src;
+							playerRef.current.load();
+							playerRef.current.pause();
+							playerRef.current.playbackRate = playbackRate;
+							playerRef.current.currentTime = 0; // start from beginning
+						}
 					}
 				}
 			}
@@ -119,11 +118,18 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		},
 		
 		pause() {
-			playerRef.current?.pause();
+			if (playerRef.current) {
+				playerRef.current.pause();
+				dispatch({ type: ActionKind.PAUSE });
+			}
 		},
 		
-		toggle(song, trackType) {
-			this.isPlaying(song, trackType) ? this.pause() : this.play(song, trackType);
+		toggle(song, trackIndex = 0) {
+			if (this.isPlaying(song, trackIndex)) {
+				this.pause();
+			} else {
+				this.play(song, trackIndex);
+			}
 		},
 		
 		seekBy(amount) {
@@ -148,13 +154,11 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 			dispatch({ type: ActionKind.TOGGLE_MUTE });
 		},
 		
-		isPlaying(song, trackType) {
-			return song
-				? state.playing && playerRef.current?.currentSrc ===
-				song.audioTracks?.find(t => t.audioType === trackType)?.src
-				: state.playing;
+		isPlaying(song, trackIndex = 0) {
+			const trackId = `${song?.id}-${trackIndex}`;
+			return trackId ? state.playing && state.trackId === trackId : state.playing;
 		},
-	}), [state.playing, state.muted, state.duration, state.currentTime, state.song, state.trackType]);
+	}), [state.playing, state.muted, state.duration, state.currentTime, state.song, state.trackId]);
 	
 	const api = useMemo<PlayerAPI>(
 		() => ({ ...state, ...actions }),
@@ -187,30 +191,25 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 }
 
 // Custom hook for using audio player
-export function useAudioPlayer(song?: Song, trackType: TrackType = TrackType.SONG) {
+export function useAudioPlayer(song?: Song, trackIndex: number = 0) {
 	const audioPlayer = useContext(AudioContext);
 	
 	if (!audioPlayer) throw new Error("useAudioPlayer must be used within an AudioProvider");
-	
-	console.log(`useAudioPlayer called with song: ${song?.title || "undefined"} and trackType: ${trackType}`);
 	
 	return useMemo<PlayerAPI>(
 		() => ({
 			...audioPlayer!,
 			play() {
-				console.log(`Play action called with song: ${song?.title || "undefined"} and trackType: ${trackType}`);
-				audioPlayer.play(song, trackType);
+				audioPlayer.play(song, trackIndex);
 			},
 			toggle() {
-				console.log(`Toggle action called with song: ${song?.title || "undefined"} and trackType: ${trackType}`);
-				audioPlayer.toggle(song, trackType);
+				audioPlayer.toggle(song, trackIndex);
 			},
 			get playing() {
-				return song && trackType
-					? audioPlayer.isPlaying(song, trackType)
-					: audioPlayer.playing;
+				const trackId = `${song?.id}-${trackIndex}`;
+				return trackId ? audioPlayer.trackId === trackId && audioPlayer.playing : audioPlayer.playing;
 			},
 		}),
-		[audioPlayer, song, trackType],
+		[audioPlayer, song, trackIndex],
 	);
 }

@@ -7,9 +7,9 @@ import { useAudioPlayer } from "@/components/AudioProvider";
 import { ForwardButton } from "@/components/player/ForwardButton";
 import { MuteButton } from "@/components/player/MuteButton";
 import { PlaybackRateButton } from "@/components/player/PlaybackRateButton";
-import { AudioPlayerButton } from "@/components/player/PlayButton";
 import { RewindButton } from "@/components/player/RewindButton";
 import { Slider } from "@/components/player/Slider";
+import { PlayButton } from "@/components/player/PlayButton";
 
 function parseTime(seconds: number) {
 	let hours = Math.floor(seconds / 3600);
@@ -40,11 +40,13 @@ export function AudioPlayer() {
 		return null;
 	}
 	
+	const trackIndex = player.trackId ? parseInt(player.trackId.split("-").pop() || "0", 10) : 0;
+	
 	return (
 		<div
 			className="flex items-center gap-6 bg-white/90 px-4 py-4 shadow shadow-slate-200/80 ring-1 ring-slate-900/5 backdrop-blur-sm md:px-6">
 			<div className="hidden md:block">
-				<AudioPlayerButton player={player}/>
+				<PlayButton song={player.song} trackIndex={trackIndex} size="grand" />
 			</div>
 			<div className="mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1">
 				<Link
@@ -61,7 +63,7 @@ export function AudioPlayer() {
 					<div className="flex flex-none items-center gap-4">
 						<RewindButton player={player}/>
 						<div className="md:hidden">
-							<AudioPlayerButton player={player}/>
+							<PlayButton song={player.song} trackIndex={trackIndex} size="grand" />
 						</div>
 						<ForwardButton player={player}/>
 					</div>

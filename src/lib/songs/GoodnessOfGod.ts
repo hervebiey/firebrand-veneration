@@ -28,12 +28,14 @@ export const GoodnessOfGod: SingleSong = {
 	audioTracks: [
 		{
 			src: "/songs/worthy-of-it-all.mp3",
-			audioType: "song",
+			trackType: "song",
+			trackIndex: 1,
 			isPrimary: true,
 		},
 		{
 			src: "/backups/worthy-of-it-all.m4a",
-			audioType: "backup",
+			trackType: "backup",
+			trackIndex: 2,
 		},
 	],
 	sections: [

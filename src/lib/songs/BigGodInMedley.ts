@@ -18,7 +18,8 @@ export const BigGodInMedley: SingleSong = {
 	audioTracks: [
 		{
 			src: "/songs/big-god.mp3",
-			audioType: "song",
+			trackType: "song",
+			trackIndex: 1,
 			isPrimary: true,
 		},
 	],
