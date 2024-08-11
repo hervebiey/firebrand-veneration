@@ -1,6 +1,6 @@
-import {WorthyOfItAllInMedley} from "@/lib/songs/WorthyOfItAllInMedley";
-import {AlleluiaHosanaInMedley} from "@/lib/songs/AlleluiaHosanaInMedley";
-import {WayMakerInMedley} from "@/lib/songs/WayMakerInMedley";
+import {WorthyOfItAllInMedley} from "@/lib/songs/old/WorthyOfItAllInMedley";
+import {AlleluiaHosanaInMedley} from "@/lib/songs/old/AlleluiaHosanaInMedley";
+import {WayMakerInMedley} from "@/lib/songs/old/WayMakerInMedley";
 
 export const FirstWorshipMedley = {
 	id: "deeper-medley",

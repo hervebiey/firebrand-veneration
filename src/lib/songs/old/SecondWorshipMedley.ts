@@ -1,5 +1,5 @@
-import {PowerAndMightInMedley} from "@/lib/songs/PowerAndMightInMedley";
-import {SaintEspritInMedley} from "@/lib/songs/SaintEspritInMedley";
+import {PowerAndMightInMedley} from "@/lib/songs/old/PowerAndMightInMedley";
+import {SaintEspritInMedley} from "@/lib/songs/old/SaintEspritInMedley";
 import {NothingLikeYourPresence} from "@/lib/songs/NothingLikeYourPresence";
 
 export const SecondWorshipMedley = {
