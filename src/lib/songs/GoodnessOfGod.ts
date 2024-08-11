@@ -18,7 +18,7 @@ export const GoodnessOfGod: SingleSong = {
 	chordify: ["https://chordify.net/chords/cece-winans-songs/goodness-of-god-chords"],
 	audioTracks: [
 		{
-			src: "/songs/worthy-of-it-all.mp3",
+			src: "/songs/goodness-of-god.mp3",
 			trackType: "song",
 			trackIndex: 1,
 			isPrimary: true,
