@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-
 import { useAudioPlayer } from "@/components/AudioProvider";
 import { type Song } from "@/components/Songs";
 import { PauseIcon } from "@/components/PauseIcon";
@@ -20,16 +19,17 @@ const capitalizeTrackType = (trackType?: string): string => {
 };
 
 export const PlayButton: React.FC<SongPlayButtonProps> = ({
-	                                                              song,
-	                                                              trackIndex = 0, // Default to the first track if no index is provided
-	                                                              isPrimary,
-	                                                              size,
-                                                              }) => {
+	                                                          song,
+	                                                          trackIndex = 0, // Default to the first track if no index is provided
+	                                                          isPrimary,
+	                                                          size,
+                                                          }) => {
 	if (!song) {
 		console.warn("SongPlayButton rendered with undefined song");
 		return null;
 	}
 	
+	// Use the custom hook to get the player object
 	const player = useAudioPlayer(song, trackIndex);
 	
 	const sizeToClasses = {
@@ -70,7 +70,8 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 	const sizeSpanClassName = sizeToClasses[size].spanClassName;
 	const sizeDivClassName = sizeToClasses[size].divClassName;
 	
-	let Icon = player.playing ? PauseIcon : PlayIcon;
+	// Determine which icon to use based on the playing state
+	let Icon = player.isPlaying() ? PauseIcon : PlayIcon;
 	
 	return (
 		<div className={`${isPrimary ? "primary-audio-button" : (size === "medium" || size ===
@@ -78,17 +79,17 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 			<button
 				type="button"
 				className={sizeClassName}
-				onClick={() => player.toggle()}
-				aria-label={`${player.playing ? "Pause" : "Play"} ${player.trackIndex}`}
+				onClick={() => player.toggle()} // Toggle play/pause
+				aria-label={`${player.isPlaying() ? "Pause" : "Play"} ${player.trackIndex}`}
 			>
 				{sizeDivClassName && (
 					<div className={sizeDivClassName}/>
 				)}
-				<Icon className={sizeIconClassName}/>
+				<Icon className={sizeIconClassName}/> {/* Use the correct icon */}
 				{(size === "mini" || size === "small") && (
 					<span className={sizeSpanClassName} aria-hidden="true">
-                    Listen
-                </span>
+                        Listen
+                    </span>
 				)}
 			</button>
 			{!isPrimary && size === "medium" && song.audioTracks?.[trackIndex]?.trackType && (

@@ -13,7 +13,7 @@ export const GoodnessOfGod: SingleSong = {
 		note: "A♭",
 	}],
 	melody: ["Soprano"],
-	duration: { minutes: 5 },
+	getDuration: { minutes: 5 },
 	youtube: ["9sE5kEnitqE"],
 	chordify: ["https://chordify.net/chords/cece-winans-songs/goodness-of-god-chords"],
 	audioTracks: [

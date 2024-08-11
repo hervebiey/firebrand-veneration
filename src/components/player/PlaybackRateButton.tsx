@@ -104,7 +104,7 @@ export function PlaybackRateButton({ player }: { player: PlayerAPI }) {
 					let idx = (existingIdx + 1) % playbackRates.length;
 					let next = playbackRates[idx];
 					
-					player.playbackRate(next.value);
+					player.setPlaybackRate(next.value);
 					
 					return next;
 				});

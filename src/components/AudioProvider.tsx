@@ -6,10 +6,6 @@ import { type Song } from "@/components/Songs";
 
 // PlayerState interface
 interface PlayerState {
-	playing: boolean;
-	muted: boolean;
-	duration: number;
-	currentTime: number;
 	song: Song | null;
 	trackIndex: string | null;  // Unique identifier for the track
 }
@@ -19,34 +15,29 @@ interface PublicPlayerActions {
 	play: (song?: Song, trackIndex?: number) => void;
 	pause: () => void;
 	toggle: (song?: Song, trackIndex?: number) => void;
-	seekBy: (amount: number) => void;
+	skip: (amount: number) => void;
 	seek: (time: number) => void;
-	playbackRate: (rate: number) => void;
+	setPlaybackRate: (rate: number) => void;
 	toggleMute: () => void;
-	isPlaying: (song?: Song, trackIndex?: number) => boolean;
+	isPlaying: () => boolean;
+	isMuted: () => boolean;
+	getCurrentTime: () => number;
+	getDuration: () => number;
 }
 
-// Combine PlayerState and PublicPlayerActions
-export type PlayerAPI = PlayerState & PublicPlayerActions;
+// Combine PlayerState, PublicPlayerActions, and the Wavesurfer ref
+export type PlayerAPI = PlayerState & PublicPlayerActions & {
+	wavesurferRef: React.MutableRefObject<any>;
+};
 
 // Actions enum
 const enum ActionKind {
 	SET_META = "SET_META",
-	PLAY = "PLAY",
-	PAUSE = "PAUSE",
-	TOGGLE_MUTE = "TOGGLE_MUTE",
-	SET_CURRENT_TIME = "SET_CURRENT_TIME",
-	SET_DURATION = "SET_DURATION",
 }
 
 // Action type
 type Action =
-	| { type: ActionKind.SET_META; payload: { song: Song, trackId: string } }
-	| { type: ActionKind.PLAY }
-	| { type: ActionKind.PAUSE }
-	| { type: ActionKind.TOGGLE_MUTE }
-	| { type: ActionKind.SET_CURRENT_TIME; payload: number }
-	| { type: ActionKind.SET_DURATION; payload: number };
+	| { type: ActionKind.SET_META; payload: { song: Song, trackId: string } };
 
 // Create contexts
 export const AudioContext = createContext<PlayerAPI | null>(null);
@@ -56,16 +47,6 @@ function audioReducer(state: PlayerState, action: Action): PlayerState {
 	switch (action.type) {
 		case ActionKind.SET_META:
 			return { ...state, song: action.payload.song, trackIndex: action.payload.trackId };
-		case ActionKind.PLAY:
-			return { ...state, playing: true };
-		case ActionKind.PAUSE:
-			return { ...state, playing: false };
-		case ActionKind.TOGGLE_MUTE:
-			return { ...state, muted: !state.muted };
-		case ActionKind.SET_CURRENT_TIME:
-			return { ...state, currentTime: action.payload };
-		case ActionKind.SET_DURATION:
-			return { ...state, duration: action.payload };
 		default:
 			return state;
 	}
@@ -74,15 +55,12 @@ function audioReducer(state: PlayerState, action: Action): PlayerState {
 // AudioProvider component
 export function AudioProvider({ children }: { children: React.ReactNode }) {
 	const [state, dispatch] = useReducer(audioReducer, {
-		playing: false,
-		muted: false,
-		duration: 0,
-		currentTime: 0,
 		song: null,
 		trackIndex: null,
 	});
 	
 	const playerRef = useRef<HTMLAudioElement>(null);
+	const wavesurferRef = useRef<any>(null); // Reference to Wavesurfer instance
 	
 	const actions = useMemo<PublicPlayerActions>(() => ({
 		play(song, trackIndex = 0) {
@@ -104,88 +82,73 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 							playerRef.current.playbackRate = playbackRate;
 							playerRef.current.currentTime = 0; // start from beginning
 						}
+						
+						// Load new track in Wavesurfer
+						wavesurferRef.current?.load(src);
 					}
 				}
 			}
 			
-			if (playerRef.current) {
-				playerRef.current.play().then(() => {
-					dispatch({ type: ActionKind.PLAY });
-				}).catch((error) => {
-					console.error("Failed to start playing: ", error);
-				});
-			}
+			// Play via Wavesurfer
+			wavesurferRef.current?.play().catch(console.error);
 		},
 		
 		pause() {
-			if (playerRef.current) {
-				playerRef.current.pause();
-				dispatch({ type: ActionKind.PAUSE });
-			}
+			// Pause via Wavesurfer
+			wavesurferRef.current?.pause();
 		},
 		
 		toggle(song, trackIndex = 0) {
-			if (this.isPlaying(song, trackIndex)) {
-				this.pause();
-			} else {
-				this.play(song, trackIndex);
-			}
+			const isPlaying = wavesurferRef.current?.isPlaying();
+			isPlaying ? this.pause() : this.play(song, trackIndex);
 		},
 		
-		seekBy(amount) {
-			if (playerRef.current) {
-				playerRef.current.currentTime += amount;
-			}
+		skip(amount) {
+			wavesurferRef.current?.skip(amount);
 		},
 		
 		seek(time) {
-			if (playerRef.current) {
-				playerRef.current.currentTime = time;
-			}
+			wavesurferRef.current?.seekTo(time / wavesurferRef.current.getDuration());
 		},
 		
-		playbackRate(rate) {
-			if (playerRef.current) {
-				playerRef.current.playbackRate = rate;
-			}
+		setPlaybackRate(rate) {
+			wavesurferRef.current?.setPlaybackRate(rate);
 		},
 		
 		toggleMute() {
-			dispatch({ type: ActionKind.TOGGLE_MUTE });
+			if (wavesurferRef.current) {
+				const currentVolume = wavesurferRef.current.getVolume();
+				wavesurferRef.current.setVolume(currentVolume > 0 ? 0 : 1);
+			}
 		},
 		
-		isPlaying(song, trackIndex = 0) {
-			const trackId = `${song?.id}-${trackIndex}`;
-			return trackId ? state.playing && state.trackIndex === trackId : state.playing;
+		isPlaying() {
+			return wavesurferRef.current?.isPlaying();
 		},
-	}), [state.playing, state.muted, state.duration, state.currentTime, state.song, state.trackIndex]);
+		
+		isMuted() {
+			return wavesurferRef.current?.getVolume() === 0;
+		},
+		
+		getCurrentTime() {
+			return wavesurferRef.current?.getCurrentTime();
+		},
+		
+		getDuration() {
+			return wavesurferRef.current?.getDuration();
+		}
+		
+	}), [state.song, state.trackIndex]);
 	
 	const api = useMemo<PlayerAPI>(
-		() => ({ ...state, ...actions }),
+		() => ({ ...state, ...actions, wavesurferRef }),
 		[state, actions],
 	);
 	
 	return (
 		<AudioContext.Provider value={api}>
 			{children}
-			<audio
-				ref={playerRef as React.RefObject<HTMLAudioElement>}
-				onPlay={() => dispatch({ type: ActionKind.PLAY })}
-				onPause={() => dispatch({ type: ActionKind.PAUSE })}
-				onTimeUpdate={(event) => {
-					dispatch({
-						type: ActionKind.SET_CURRENT_TIME,
-						payload: Math.floor(event.currentTarget.currentTime),
-					});
-				}}
-				onDurationChange={(event) => {
-					dispatch({
-						type: ActionKind.SET_DURATION,
-						payload: Math.floor(event.currentTarget.duration),
-					});
-				}}
-				muted={state.muted}
-			/>
+			<audio ref={playerRef as React.RefObject<HTMLAudioElement>} />
 		</AudioContext.Provider>
 	);
 }
@@ -205,9 +168,17 @@ export function useAudioPlayer(song?: Song, trackIndex: number = 0) {
 			toggle() {
 				audioPlayer.toggle(song, trackIndex);
 			},
-			get playing() {
-				const trackId = `${song?.id}-${trackIndex}`;
-				return trackId ? audioPlayer.trackIndex === trackId && audioPlayer.playing : audioPlayer.playing;
+			isPlaying() {
+				return audioPlayer.isPlaying();
+			},
+			// getCurrentTime() {
+			// 	return audioPlayer.getCurrentTime();
+			// },
+			getDuration() {
+				return audioPlayer.getDuration();
+			},
+			isMuted() {
+				return audioPlayer.isMuted();
 			},
 		}),
 		[audioPlayer, song, trackIndex],

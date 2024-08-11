@@ -8,7 +8,7 @@ export const PraiseMedley: Medley = {
 	order: 2,
 	title: "Praise Medley (Sound from Zion)",
 	artist: "The Epoch House",
-	duration: { minutes: 10 },
+	getDuration: { minutes: 10 },
 	youtube: ["wpG1jUnnI7o"],
 	/*audio: {
 		src: "/songs/praise-medley.mp3",

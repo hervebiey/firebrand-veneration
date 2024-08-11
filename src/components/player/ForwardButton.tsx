@@ -30,14 +30,14 @@ export function ForwardButton({
 	                              player,
 	                              amount = 10,
                               }: {
-	player: PlayerAPI
-	amount?: number
+	player: PlayerAPI;
+	amount?: number;
 }) {
 	return (
 		<button
 			type="button"
 			className="group relative rounded-full focus:outline-none"
-			onClick={() => player.seekBy(amount)}
+			onClick={() => player.skip(amount)}
 			aria-label={`Fast-forward ${amount} seconds`}
 		>
 			<div className="absolute -inset-4 -left-2 md:hidden"/>

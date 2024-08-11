@@ -11,7 +11,7 @@ export const PraiseInMedley: SingleSong = {
 		note: "A♭",
 	}],
 	melody: ["Alto"],
-	duration: { minutes: 2, seconds: 45 },
+	getDuration: { minutes: 2, seconds: 45 },
 	youtube: ["f2oxGYpuLkw"],
 	chordify: ["https://chordify.net/chords/praise-medley-live-at-sound-from-zion-24-god-in-this-music"],
 	structureNotes: "From 7\'00\" Until the End",
