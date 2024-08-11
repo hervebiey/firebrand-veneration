@@ -36,14 +36,16 @@ export const GoodnessOfGod: SingleSong = {
 				type: "Solo",
 				repetitions: 1,
 			}],
-			text: `I love You, Lord
-			For Your mercy never failed me
-			All my days
-			I\'ve been held in Your hands
-			
-			From the moment that I wake up
-			Until I lay my head
-			I will sing of the goodness of God`,
+			text: [
+				"I love You, Lord",
+				"For Your mercy never failed me",
+				"All my days",
+				"I've been held in Your hands",
+				null,
+				"From the moment that I wake up",
+				"Until I lay my head",
+				"I will sing of the goodness of God",
+			],
 		},
 		{
 			sectionName: "Chorus",
@@ -51,10 +53,12 @@ export const GoodnessOfGod: SingleSong = {
 				type: "Solo",
 				repetitions: 1,
 			}],
-			text: `All my life You have been faithful
-			All my life You have been so, so good
-			With every breath that I am able
-			I will sing of the goodness of God`,
+			text: [
+				"All my life You have been faithful",
+				"All my life You have been so, so good",
+				"With every breath that I am able",
+				"I will sing of the goodness of God",
+			],
 		},
 		{
 			sectionName: "Verse 2",
@@ -62,14 +66,16 @@ export const GoodnessOfGod: SingleSong = {
 				type: "Partly Harmony",
 				repetitions: 1,
 			}],
-			text: `I love Your voice [Unison]
-			You have led me through the fire [Harmony]
-			In darkest nights [Unison]
-			You are close like no other [Harmony]
-			
-			I\'ve known You as a Father [Unison]
-			I\'ve known You as a Friend [Harmony]
-			I have lived in the goodness of God [Harmony]`,
+			text: [
+				["I love Your voice", null, "Unison"],
+				["You have led me through the fire", null, "Harmony"],
+				["In darkest nights", null, "Unison"],
+				["You are close like no other", null, "Harmony"],
+				null,
+				["I've known You as a Father", null, "Unison"],
+				["I've known You as a Friend", null, "Harmony"],
+				["I have lived in the goodness of God", null, "Harmony"],
+			],
 		},
 		{
 			sectionName: "Chorus",
@@ -77,10 +83,12 @@ export const GoodnessOfGod: SingleSong = {
 				type: "Harmony",
 				repetitions: 1,
 			}],
-			text: `All my life You have been faithful
-			All my life You have been so, so good
-			With every breath that I am able
-			I will sing of the goodness of God [Unison]`,
+			text: [
+				"All my life You have been faithful",
+				"All my life You have been so, so good",
+				"With every breath that I am able",
+				["I will sing of the goodness of God", null, "Unison"],
+			],
 		},
 		{
 			sectionName: "Bridge",
@@ -94,10 +102,12 @@ export const GoodnessOfGod: SingleSong = {
 					repetitions: 1,
 				},
 			],
-			text: `Your goodness is running after, it\'s running after me (x2)
-			With my life laid down, I\'m surrendered now
-			I give You everything
-			Your goodness is running after, it\'s running after me`,
+			text: [
+				["Your goodness is running after, it's running after me", null, "x2"],
+				"With my life laid down, I'm surrendered now",
+				"I give You everything",
+				"Your goodness is running after, it's running after me",
+			],
 		},
 		{
 			sectionName: "Chorus",
@@ -111,10 +121,12 @@ export const GoodnessOfGod: SingleSong = {
 					repetitions: 1,
 				},
 			],
-			text: `All my life You have been faithful
-			All my life You have been so, so good
-			With every breath that I am able
-			I will sing of the goodness of God [Unison]`,
+			text: [
+				"All my life You have been faithful",
+				"All my life You have been so, so good",
+				"With every breath that I am able",
+				["I will sing of the goodness of God", null, "Unison"],
+			],
 		},
 		{
 			sectionName: "Tag",
@@ -122,7 +134,9 @@ export const GoodnessOfGod: SingleSong = {
 				type: "Unison",
 				repetitions: 2,
 			}],
-			text: `I will sing of the goodness of God`,
+			text: [
+				"I will sing of the goodness of God",
+			],
 		},
 	],
 };

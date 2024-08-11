@@ -30,14 +30,16 @@ export const BigGodInMedley: SingleSong = {
 				type: "Unison",
 				repetitions: 4,
 			}],
-			text: `I have a very big God
-			A very big God oh
-			He no dey fall my hand
-			He\'s always on my side
-			A very big God`,
+			text: [
+				"I have a very big God",
+				"A very big God oh",
+				"He no dey fall my hand",
+				"He's always on my side",
+				"A very big God",
+			],
 		},
 		{
-			sectionName: "Instrumental Interlude",
+			sectionName: "Interlude",
 			textures: [{
 				type: "Bars",
 				repetitions: 2,
@@ -49,11 +51,13 @@ export const BigGodInMedley: SingleSong = {
 				type: "Unison",
 				repetitions: 4,
 			}],
-			text: `I have a very big God
-			A very big God oh
-			He no dey fall my hand
-			He\'s always on my side
-			A very big God`,
+			text: [
+				"I have a very big God",
+				"A very big God oh",
+				"He no dey fall my hand",
+				"He's always on my side",
+				"A very big God",
+			],
 		},
 	],
 };

@@ -86,12 +86,12 @@ const YoutubeElements: React.FC<{ youtubeIds?: string[] }> = ({ youtubeIds }) =>
 };
 
 const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
-	<div className="prose prose-slate leading-7">
+	<div className="prose prose-slate">
 		{song.sections?.map((section, sectionIndex) => (
 			<div key={sectionIndex}>
 				<h3 className="font-black">{section.sectionName}</h3>
 				{section.textures && section.textures.length > 0 && (
-					<p className="-mt-2 font-bold">
+					<p className="-mt-2 font-bold text-purple-900">
 						{formatTextures(section.textures)}
 					</p>
 				)}
@@ -101,10 +101,39 @@ const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
 						Key: {formatKeys(section.keys)}
 					</p>
 				)}
-				<p className="-mt-2 leading-7 font-medium">
-					{section.text && section.text.split("\n").flatMap((sectionLine, sectionLineIndex, arr) =>
-						sectionLineIndex === arr.length - 1 ? sectionLine : [sectionLine,
-							<br key={`section-line-${sectionLineIndex}`}/>],
+				<p className="-mt-2 font-medium text-lg">
+					{Array.isArray(section.text)
+						? section.text.flatMap((sectionLine, sectionLineIndex) => {
+							if (Array.isArray(sectionLine)) {
+								return (
+									<div key={`section-line-${sectionLineIndex}`} className="-mb-3">
+										<p>
+											{sectionLine[0]}
+											{sectionLine[2] && (
+												<span className="text-fuchsia-700 ml-2 uppercase">[{sectionLine[2]}]</span>
+											)}
+										</p>
+										{sectionLine[1] && (
+											<p className="-mt-5 text-slate-400">
+												{sectionLine[1]}
+											</p>
+										)}
+									</div>
+								);
+							} else if (sectionLine === null || sectionLine === "") {
+								return <br key={`section-line-${sectionLineIndex}-blank`} />;
+							} else {
+								return (
+									<p key={`section-line-${sectionLineIndex}`} className="-mb-3">
+										{sectionLine}
+									</p>
+								);
+							}
+						})
+						: section.text && (
+						<p key={`section-text`} className="">
+							{section.text}
+						</p>
 					)}
 				</p>
 			</div>

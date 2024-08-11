@@ -55,7 +55,7 @@ interface SongSection {
 	sectionName: string;
 	textures?: Texture[];
 	extraNotes?: string;
-	text?: string;
+	text?: (string | null | (string | null)[])[];
 	keys?: Key[];
 }
 

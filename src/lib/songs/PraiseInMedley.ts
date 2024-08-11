@@ -40,11 +40,13 @@ export const PraiseInMedley: SingleSong = {
 				type: "Harmony",
 				repetitions: 2,
 			}],
-			text: `Praise the Lord, oh my soul [Unison]
-			Praise the Lord, oh my soul`,
+			text: [
+				["Praise the Lord, oh my soul", null, "Unison"],
+				"Praise the Lord, oh my soul",
+			],
 		},
 		{
-			sectionName: "Instrumental Interlude",
+			sectionName: "Interlude",
 			textures: [{
 				type: "Bars",
 				repetitions: 2,
@@ -67,10 +69,12 @@ export const PraiseInMedley: SingleSong = {
 				},
 			],
 			extraNotes: "Tenor Melody",
-			text: `I won\'t be quiet, my God is alive
-			How could I keep it inside
-			I won\'t be quiet, my God is alive
-			How could I keep it inside`,
+			text: [
+				"I won't be quiet, my God is alive",
+				"How could I keep it inside",
+				"I won't be quiet, my God is alive",
+				"How could I keep it inside",
+			],
 		},
 		{
 			sectionName: "Chorus",
@@ -78,11 +82,13 @@ export const PraiseInMedley: SingleSong = {
 				type: "Harmony",
 				repetitions: 2,
 			}],
-			text: `Praise the Lord, oh my soul [Unison]
-			Praise the Lord, oh my soul`,
+			text: [
+				["Praise the Lord, oh my soul", null, "Unison"],
+				"Praise the Lord, oh my soul",
+			],
 		},
 		{
-			sectionName: "Instrumental Interlude",
+			sectionName: "Interlude",
 			textures: [{
 				type: "Bars",
 				repetitions: 2,
@@ -94,8 +100,10 @@ export const PraiseInMedley: SingleSong = {
 				type: "Unison",
 				repetitions: 1,
 			}],
-			text: `Hey, Hey
-			Hey, Hey`,
+			text: [
+				"Hey, Hey",
+				"Hey, Hey",
+			],
 		},
 	],
 };
