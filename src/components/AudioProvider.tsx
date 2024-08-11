@@ -11,7 +11,7 @@ interface PlayerState {
 	duration: number;
 	currentTime: number;
 	song: Song | null;
-	trackId: string | null;  // Unique identifier for the track
+	trackIndex: string | null;  // Unique identifier for the track
 }
 
 // PublicPlayerActions interface
@@ -55,7 +55,7 @@ export const AudioContext = createContext<PlayerAPI | null>(null);
 function audioReducer(state: PlayerState, action: Action): PlayerState {
 	switch (action.type) {
 		case ActionKind.SET_META:
-			return { ...state, song: action.payload.song, trackId: action.payload.trackId };
+			return { ...state, song: action.payload.song, trackIndex: action.payload.trackId };
 		case ActionKind.PLAY:
 			return { ...state, playing: true };
 		case ActionKind.PAUSE:
@@ -79,7 +79,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		duration: 0,
 		currentTime: 0,
 		song: null,
-		trackId: null,
+		trackIndex: null,
 	});
 	
 	const playerRef = useRef<HTMLAudioElement>(null);
@@ -92,7 +92,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 				const trackId = `${song.id}-${trackIndex}`;  // Unique track identifier
 				
 				if (src) {
-					if (state.song !== song || state.trackId !== trackId) {
+					if (state.song !== song || state.trackIndex !== trackId) {
 						// If a different song or track is played, set the meta and reset the player
 						dispatch({ type: ActionKind.SET_META, payload: { song, trackId } });
 						
@@ -156,9 +156,9 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		
 		isPlaying(song, trackIndex = 0) {
 			const trackId = `${song?.id}-${trackIndex}`;
-			return trackId ? state.playing && state.trackId === trackId : state.playing;
+			return trackId ? state.playing && state.trackIndex === trackId : state.playing;
 		},
-	}), [state.playing, state.muted, state.duration, state.currentTime, state.song, state.trackId]);
+	}), [state.playing, state.muted, state.duration, state.currentTime, state.song, state.trackIndex]);
 	
 	const api = useMemo<PlayerAPI>(
 		() => ({ ...state, ...actions }),
@@ -207,7 +207,7 @@ export function useAudioPlayer(song?: Song, trackIndex: number = 0) {
 			},
 			get playing() {
 				const trackId = `${song?.id}-${trackIndex}`;
-				return trackId ? audioPlayer.trackId === trackId && audioPlayer.playing : audioPlayer.playing;
+				return trackId ? audioPlayer.trackIndex === trackId && audioPlayer.playing : audioPlayer.playing;
 			},
 		}),
 		[audioPlayer, song, trackIndex],

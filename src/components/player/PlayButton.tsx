@@ -79,7 +79,7 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 				type="button"
 				className={sizeClassName}
 				onClick={() => player.toggle()}
-				aria-label={`${player.playing ? "Pause" : "Play"} ${player.trackId}`}
+				aria-label={`${player.playing ? "Pause" : "Play"} ${player.trackIndex}`}
 			>
 				{sizeDivClassName && (
 					<div className={sizeDivClassName}/>

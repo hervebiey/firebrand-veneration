@@ -12,23 +12,23 @@ import { Slider } from "@/components/player/Slider";
 import { PlayButton } from "@/components/player/PlayButton";
 
 function parseTime(seconds: number) {
-	let hours = Math.floor(seconds / 3600);
-	let minutes = Math.floor((seconds - hours * 3600) / 60);
+	const hours = Math.floor(seconds / 3600);
+	const minutes = Math.floor((seconds - hours * 3600) / 60);
 	seconds = seconds - hours * 3600 - minutes * 60;
 	return [hours, minutes, seconds];
 }
 
 function formatHumanTime(seconds: number) {
-	let [h, m, s] = parseTime(seconds);
+	const [h, m, s] = parseTime(seconds);
 	return `${h} hour${h === 1 ? "" : "s"}, ${m} minute${
 		m === 1 ? "" : "s"
 	}, ${s} second${s === 1 ? "" : "s"}`;
 }
 
 export function AudioPlayer() {
-	let player = useAudioPlayer();
-	let wasPlayingRef = useRef(false);
-	let [currentTime, setCurrentTime] = useState<number | null>(
+	const player = useAudioPlayer();
+	const wasPlayingRef = useRef(false);
+	const [currentTime, setCurrentTime] = useState<number | null>(
 		player.currentTime,
 	);
 	
@@ -40,7 +40,7 @@ export function AudioPlayer() {
 		return null;
 	}
 	
-	const trackIndex = player.trackId ? parseInt(player.trackId.split("-").pop() || "0", 10) : 0;
+	const trackIndex = player.trackIndex ? parseInt(player.trackIndex.split("-").pop() || "0", 10) : 0;
 	
 	return (
 		<div
