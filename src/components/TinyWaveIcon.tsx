@@ -1,6 +1,6 @@
 import React from "react";
 
-export function TinyWaveFormIcon({
+export function TinyWaveIcon({
 	                                 colors,
 	                                 ...props
                                  }: React.ComponentPropsWithoutRef<"svg"> & {

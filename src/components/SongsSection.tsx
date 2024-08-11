@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 import { songList } from "@/lib/songList";
-import { TinyWaveFormIcon } from "@/components/TinyWaveFormIcon";
+import { TinyWaveIcon } from "@/components/TinyWaveIcon";
 
 function ordinalSuffix(i: number) {
 	const j = i % 10,
@@ -29,7 +29,7 @@ function generateSession(sessionNumber: number) {
 	return (
 		<React.Fragment key={sessionNumber}>
 			<h2 className="flex items-center font-mono text-sm font-medium leading-7 text-slate-900">
-				<TinyWaveFormIcon colors={["fill-violet-300", "fill-pink-300"]} className="h-2.5 w-2.5"/>
+				<TinyWaveIcon colors={["fill-violet-300", "fill-pink-300"]} className="h-2.5 w-2.5"/>
 				<span className="ml-2.5">{ordinalSuffix(sessionNumber)} Session</span>
 			</h2>
 			<ul className="mt-2 mb-5 text-base font-medium leading-8 text-slate-700">

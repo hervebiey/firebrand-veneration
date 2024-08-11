@@ -8,7 +8,7 @@ function randomBetween(min: number, max: number, seed = 1) {
 	};
 }
 
-export function Waveform(props: React.ComponentPropsWithoutRef<"svg">) {
+export function WaveImage(props: React.ComponentPropsWithoutRef<"svg">) {
 	let id = useId();
 	let bars = {
 		total: 100,
