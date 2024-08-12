@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useMemo, useReducer, useRef } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useReducer, useRef } from "react";
 import WaveSurfer from "wavesurfer.js";
 import { type Song } from "@/components/Songs";
 
@@ -60,6 +60,25 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 	});
 	
 	const wavesurferRef = useRef<WaveSurfer | null>(null);  // Reference to Wavesurfer instance
+	
+	// Initialize WaveSurfer when AudioProvider mounts
+	useEffect(() => {
+		if (!wavesurferRef.current) {
+			const container = document.createElement('div');
+			container.style.display = 'none'; // Hidden container
+			document.body.appendChild(container);
+			
+			wavesurferRef.current = WaveSurfer.create({
+				container: container,
+			});
+		}
+		
+		// Clean up the container on unmount
+		return () => {
+			wavesurferRef.current?.destroy();
+			wavesurferRef.current = null;
+		};
+	}, []);
 	
 	const actions = useMemo<PublicPlayerActions>(() => ({
 		play(song, trackIndex) {
