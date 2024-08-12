@@ -54,16 +54,14 @@ export function AudioPlayer() {
 		progressGradient.addColorStop((canvas.height * 0.7 + 2) / canvas.height, "#ffffff"); // White line
 		progressGradient.addColorStop((canvas.height * 0.7 + 3) / canvas.height, "#F6B094"); // Bottom color
 		progressGradient.addColorStop(1, "#F6B094"); // Bottom color
-		
-		const url = song?.audioTracks?.[trackIndex]?.src || "";
-		
+
 		// Create the WaveSurfer instance
 		wavesurferRef.current = WaveSurfer.create({
 			container: waveformContainerRef.current,
 			waveColor: gradient,
 			progressColor: progressGradient,
 			barWidth: 2,
-			url: url,
+			url: song?.audioTracks?.[trackIndex]?.src || "",
 			plugins: [
 				Hover.create({
 					lineColor: "#ff0000", // Hover line color
