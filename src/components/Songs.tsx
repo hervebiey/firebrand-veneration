@@ -1,5 +1,5 @@
 import { songList as songListData } from "@/lib/songList";
-import { KeyMap } from "@/components/Keys";
+import { KeyMap } from "@/components/KeyMap";
 
 type TrackType = "song" | "soprano" | "alto" | "tenor" | "bass" | "backup";
 type MelodyType = "Bass" | "Tenor" | "Alto" | "Soprano" | "TBD";
