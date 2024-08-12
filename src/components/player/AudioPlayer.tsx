@@ -10,6 +10,7 @@ import { MuteButton } from "@/components/player/MuteButton";
 import { PlaybackRateButton } from "@/components/player/PlaybackRateButton";
 import { RewindButton } from "@/components/player/RewindButton";
 import { PlayButton } from "@/components/player/PlayButton";
+import WaveSurfer from "wavesurfer.js";
 
 function formatTime(seconds: number) {
 	const minutes = Math.floor(seconds / 60);
@@ -27,16 +28,17 @@ export function AudioPlayer() {
 	
 	// Attach the Wavesurfer instance to the DOM container when available
 	useEffect(() => {
-		if (!waveformContainerRef.current || wavesurferRef.current) return;
+		if (!waveformContainerRef.current) return;
 		
 		// Create the canvas to generate the gradient
 		const canvas = document.createElement("canvas");
-		const ctx = canvas.getContext("2d");
+		const context = canvas.getContext("2d");
 		
-		if (!ctx) return; // Handle the case where ctx could be null
+		// Handle the case where context could be null
+		if (!context) return;
 		
 		// Define the waveform gradient (background)
-		const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height * 1.35);
+		const gradient = context.createLinearGradient(0, 0, 0, canvas.height * 1.35);
 		gradient.addColorStop(0, "#655555"); // Top color
 		gradient.addColorStop((canvas.height * 0.7) / canvas.height, "#655555"); // Top color
 		gradient.addColorStop((canvas.height * 0.7 + 1) / canvas.height, "#ffffff"); // White line
@@ -45,7 +47,7 @@ export function AudioPlayer() {
 		gradient.addColorStop(1, "#B1B1B1"); // Bottom color
 		
 		// Define the progress gradient
-		const progressGradient = ctx.createLinearGradient(0, 0, 0, canvas.height * 1.35);
+		const progressGradient = context.createLinearGradient(0, 0, 0, canvas.height * 1.35);
 		progressGradient.addColorStop(0, "#EE772F"); // Top color
 		progressGradient.addColorStop((canvas.height * 0.7) / canvas.height, "#EB4926"); // Top color
 		progressGradient.addColorStop((canvas.height * 0.7 + 1) / canvas.height, "#ffffff"); // White line
@@ -55,8 +57,8 @@ export function AudioPlayer() {
 		
 		const url = song?.audioTracks?.[trackIndex]?.src || "";
 		
-		// Attach the existing Wavesurfer instance to the actual waveform container
-		wavesurferRef.current.init({
+		// Create the WaveSurfer instance
+		wavesurferRef.current = WaveSurfer.create({
 			container: waveformContainerRef.current,
 			waveColor: gradient,
 			progressColor: progressGradient,
@@ -73,28 +75,23 @@ export function AudioPlayer() {
 			],
 		});
 		
-		// Load and play the track when ready
-		wavesurferRef.current.load(url).catch(console.error);
-		
 		// Start playing the track when it's decoded
 		wavesurferRef.current.on("decode", () => {
 			wavesurferRef.current?.play().catch(console.error);
 		});
 		
 		// Update the current time and duration
-		{
-			const timeEl = document.querySelector<HTMLDivElement>("#time");
-			const durationEl = document.querySelector<HTMLDivElement>("#duration");
-			
-			// Display the duration after decoding
-			if (durationEl) {
-				wavesurferRef.current.on("decode", (duration: number) => (durationEl.textContent = formatTime(duration)));
-			}
-			
-			// Update the current time during playback
-			if (timeEl) {
-				wavesurferRef.current.on("audioprocess", (currentTime: number) => (timeEl.textContent = formatTime(currentTime)));
-			}
+		const timeEl = document.querySelector<HTMLDivElement>("#time");
+		const durationEl = document.querySelector<HTMLDivElement>("#duration");
+		
+		// Display the duration after decoding
+		if (durationEl) {
+			wavesurferRef.current.on("decode", (duration: number) => (durationEl.textContent = formatTime(duration)));
+		}
+		
+		// Update the current time during playback
+		if (timeEl) {
+			wavesurferRef.current.on("audioprocess", (currentTime: number) => (timeEl.textContent = formatTime(currentTime)));
 		}
 		
 		// Clean up on unmount
