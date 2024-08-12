@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { SongsSection } from "@/components/SongsSection";
-import { AudioProvider } from "@/components/AudioProvider";
+import { AudioProvider } from "@/components/player/AudioProvider";
 import { AudioPlayer } from "@/components/player/AudioPlayer";
 import { TinyWaveIcon } from "@/components/TinyWaveIcon";
 import { WaveImage } from "@/components/WaveImage";

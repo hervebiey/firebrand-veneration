@@ -154,7 +154,7 @@ export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => 
 					
 					return (
 						<PlayButton
-							key={`${song.id}-${track}-${trackIndex}`}
+							key={`${song.id}-${trackIndex}`}
 							song={song}
 							trackIndex={trackIndex}
 							size="medium"

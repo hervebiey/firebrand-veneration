@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { type PlayerAPI } from "@/components/AudioProvider";
+import { type PlayerAPI } from "@/components/player/AudioProvider";
 
 const playbackRates = [
 	{

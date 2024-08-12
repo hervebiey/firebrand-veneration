@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAudioPlayer } from "@/components/AudioProvider";
+import { useAudioPlayer } from "@/components/player/AudioProvider";
 import { type Song } from "@/components/Songs";
 import { PauseIcon } from "@/components/PauseIcon";
 import { PlayIcon } from "@/components/PlayIcon";
@@ -70,7 +70,7 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 	const sizeSpanClassName = sizeToClasses[size].spanClassName;
 	const sizeDivClassName = sizeToClasses[size].divClassName;
 	
-	// Determine which icon to use based on the playing state
+	// Determine which icon to use based on whether the player is playing the current song and track
 	let Icon = player.isPlaying() ? PauseIcon : PlayIcon;
 	
 	return (
@@ -80,7 +80,7 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 				type="button"
 				className={sizeClassName}
 				onClick={() => player.toggle()} // Toggle play/pause
-				aria-label={`${player.isPlaying() ? "Pause" : "Play"} ${player.trackIndex}`}
+				aria-label={`${player.isPlaying() ? "Pause" : "Play"} ${song.title} ${trackIndex}`}
 			>
 				{sizeDivClassName && (
 					<div className={sizeDivClassName}/>

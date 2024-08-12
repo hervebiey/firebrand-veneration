@@ -13,20 +13,18 @@ export const GoodnessOfGod: SingleSong = {
 		note: "A♭",
 	}],
 	melody: ["Soprano"],
-	getDuration: { minutes: 5 },
+	duration: { minutes: 5 },
 	youtube: ["9sE5kEnitqE"],
 	chordify: ["https://chordify.net/chords/cece-winans-songs/goodness-of-god-chords"],
 	audioTracks: [
 		{
 			src: "/songs/goodness-of-god.mp3",
 			trackType: "song",
-			trackIndex: 1,
 			isPrimary: true,
 		},
 		{
 			src: "/backups/worthy-of-it-all.m4a",
 			trackType: "backup",
-			trackIndex: 2,
 		},
 	],
 	sections: [

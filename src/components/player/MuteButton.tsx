@@ -1,4 +1,4 @@
-import { type PlayerAPI } from "@/components/AudioProvider";
+import { type PlayerAPI } from "@/components/player/AudioProvider";
 import React from "react";
 
 function MuteIcon({
@@ -41,7 +41,7 @@ export function MuteButton({ player }: { player: PlayerAPI }) {
 		<button
 			type="button"
 			className="group relative rounded-md hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 md:order-none"
-			onClick={() => player.toggleMute()}
+			onClick={() => player.mute()}
 			aria-label={player.isMuted() ? "Unmute" : "Mute"}
 		>
 			<div className="absolute -inset-4 md:hidden"/>

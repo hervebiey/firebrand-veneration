@@ -1,13 +1,13 @@
 "use client";
 
 import React, { createContext, useContext, useMemo, useReducer, useRef } from "react";
-
+import WaveSurfer from "wavesurfer.js";
 import { type Song } from "@/components/Songs";
 
 // PlayerState interface
 interface PlayerState {
 	song: Song | null;
-	trackIndex: string | null;  // Unique identifier for the track
+	trackIndex: number | null;  // Track index for the currently playing track
 }
 
 // PublicPlayerActions interface
@@ -18,8 +18,8 @@ interface PublicPlayerActions {
 	skip: (amount: number) => void;
 	seek: (time: number) => void;
 	setPlaybackRate: (rate: number) => void;
-	toggleMute: () => void;
-	isPlaying: () => boolean;
+	mute: () => void;
+	isPlaying: (song?: Song, trackIndex?: number) => boolean;
 	isMuted: () => boolean;
 	getCurrentTime: () => number;
 	getDuration: () => number;
@@ -37,7 +37,7 @@ const enum ActionKind {
 
 // Action type
 type Action =
-	| { type: ActionKind.SET_META; payload: { song: Song, trackId: string } };
+	| { type: ActionKind.SET_META; payload: { song: Song, trackIndex: number } };
 
 // Create contexts
 export const AudioContext = createContext<PlayerAPI | null>(null);
@@ -46,7 +46,7 @@ export const AudioContext = createContext<PlayerAPI | null>(null);
 function audioReducer(state: PlayerState, action: Action): PlayerState {
 	switch (action.type) {
 		case ActionKind.SET_META:
-			return { ...state, song: action.payload.song, trackIndex: action.payload.trackId };
+			return { ...state, song: action.payload.song, trackIndex: action.payload.trackIndex };
 		default:
 			return state;
 	}
@@ -59,38 +59,30 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		trackIndex: null,
 	});
 	
-	const playerRef = useRef<HTMLAudioElement>(null);
-	const wavesurferRef = useRef<any>(null); // Reference to Wavesurfer instance
+	const wavesurferRef = useRef<WaveSurfer | null>(null);  // Reference to Wavesurfer instance
 	
 	const actions = useMemo<PublicPlayerActions>(() => ({
-		play(song, trackIndex = 0) {
-			if (song) {
-				const track = song.audioTracks?.[trackIndex];
-				const src = track ? track.src : undefined;
-				const trackId = `${song.id}-${trackIndex}`;  // Unique track identifier
-				
-				if (src) {
-					if (state.song !== song || state.trackIndex !== trackId) {
-						// If a different song or track is played, set the meta and reset the player
-						dispatch({ type: ActionKind.SET_META, payload: { song, trackId } });
-						
-						if (playerRef.current && playerRef.current.currentSrc !== src) {
-							const playbackRate = playerRef.current.playbackRate;
-							playerRef.current.src = src;
-							playerRef.current.load();
-							playerRef.current.pause();
-							playerRef.current.playbackRate = playbackRate;
-							playerRef.current.currentTime = 0; // start from beginning
-						}
-						
-						// Load new track in Wavesurfer
-						wavesurferRef.current?.load(src);
-					}
+		play(song, trackIndex) {
+			if (!song || trackIndex === null || trackIndex === undefined) return;
+			
+			const track = song.audioTracks?.[trackIndex];
+			const src = track ? track.src : undefined;
+			
+			if (src && wavesurferRef.current) {
+				// Only update the state if the song or trackIndex has changed
+				if (state.song !== song || state.trackIndex !== trackIndex) {
+					// If a different song or track is played, set the meta and reset the player
+					dispatch({ type: ActionKind.SET_META, payload: { song, trackIndex } });
+					
+					// Load new track in Wavesurfer and play it once it's decoded
+					wavesurferRef.current.load(src).then(() => {
+						wavesurferRef.current?.play().catch(console.error);
+					}).catch(console.error);
+				} else {
+					// Play the current track
+					wavesurferRef.current?.play().catch(console.error);
 				}
 			}
-			
-			// Play via Wavesurfer
-			wavesurferRef.current?.play().catch(console.error);
 		},
 		
 		pause() {
@@ -98,9 +90,14 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 			wavesurferRef.current?.pause();
 		},
 		
-		toggle(song, trackIndex = 0) {
-			const isPlaying = wavesurferRef.current?.isPlaying();
-			isPlaying ? this.pause() : this.play(song, trackIndex);
+		toggle(song, trackIndex) {
+			// Use playPause() to toggle play/pause
+			if (state.song !== song || state.trackIndex !== trackIndex) {
+				this.play(song, trackIndex);
+			} else {
+				wavesurferRef.current?.playPause();
+			}
+			// this.isPlaying(song, trackIndex) ? this.pause() : this.play(song, trackIndex);
 		},
 		
 		skip(amount) {
@@ -115,28 +112,29 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 			wavesurferRef.current?.setPlaybackRate(rate);
 		},
 		
-		toggleMute() {
-			if (wavesurferRef.current) {
-				const currentVolume = wavesurferRef.current.getVolume();
-				wavesurferRef.current.setVolume(currentVolume > 0 ? 0 : 1);
-			}
+		mute() {
+			wavesurferRef.current?.setMuted(!wavesurferRef.current.getMuted());
 		},
 		
-		isPlaying() {
-			return wavesurferRef.current?.isPlaying();
+		isPlaying(song, trackIndex) {
+			return !!(
+				state.song === song &&
+				state.trackIndex === trackIndex &&
+				wavesurferRef.current?.isPlaying()
+			);
 		},
 		
 		isMuted() {
-			return wavesurferRef.current?.getVolume() === 0;
+			return !!wavesurferRef.current?.getMuted();
 		},
 		
 		getCurrentTime() {
-			return wavesurferRef.current?.getCurrentTime();
+			return wavesurferRef.current?.getCurrentTime() ?? 0;
 		},
 		
 		getDuration() {
-			return wavesurferRef.current?.getDuration();
-		}
+			return wavesurferRef.current?.getDuration() ?? 0;
+		},
 		
 	}), [state.song, state.trackIndex]);
 	
@@ -148,13 +146,12 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 	return (
 		<AudioContext.Provider value={api}>
 			{children}
-			<audio ref={playerRef as React.RefObject<HTMLAudioElement>} />
 		</AudioContext.Provider>
 	);
 }
 
 // Custom hook for using audio player
-export function useAudioPlayer(song?: Song, trackIndex: number = 0) {
+export function useAudioPlayer(song?: Song, trackIndex?: number) {
 	const audioPlayer = useContext(AudioContext);
 	
 	if (!audioPlayer) throw new Error("useAudioPlayer must be used within an AudioProvider");
@@ -169,7 +166,7 @@ export function useAudioPlayer(song?: Song, trackIndex: number = 0) {
 				audioPlayer.toggle(song, trackIndex);
 			},
 			isPlaying() {
-				return audioPlayer.isPlaying();
+				return audioPlayer.isPlaying(song, trackIndex);
 			},
 			// getCurrentTime() {
 			// 	return audioPlayer.getCurrentTime();

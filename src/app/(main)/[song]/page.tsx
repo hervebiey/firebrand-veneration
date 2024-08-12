@@ -121,7 +121,7 @@ const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
 									</div>
 								);
 							} else if (sectionLine === null || sectionLine === "") {
-								return <br key={`section-line-${sectionLineIndex}-blank`} />;
+								return <div key={`section-line-${sectionLineIndex}-blank`} className="-mb-7"><br/></div>;
 							} else {
 								return (
 									<p key={`section-line-${sectionLineIndex}`} className="-mb-3">

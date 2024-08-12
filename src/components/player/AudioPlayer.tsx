@@ -2,22 +2,26 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import WaveSurfer from "wavesurfer.js";
+import Hover from "wavesurfer.js/dist/plugins/hover.esm.js";
 
-import { useAudioPlayer } from "@/components/AudioProvider";
+import { useAudioPlayer } from "@/components/player/AudioProvider";
 import { ForwardButton } from "@/components/player/ForwardButton";
 import { MuteButton } from "@/components/player/MuteButton";
 import { PlaybackRateButton } from "@/components/player/PlaybackRateButton";
 import { RewindButton } from "@/components/player/RewindButton";
 import { PlayButton } from "@/components/player/PlayButton";
-import WaveSurfer from "wavesurfer.js";
-import Hover from "wavesurfer.js/dist/plugins/hover.esm.js";
 
 export function AudioPlayer() {
 	const player = useAudioPlayer();
-	const waveformRef = useRef<HTMLDivElement>(null);
+	const song = player.song;
+	const trackIndex = player.trackIndex ?? 0;
+	const wavesurferRef = player.wavesurferRef;
+	const waveformContainerRef = useRef<HTMLDivElement>(null);
 	
+	// Attach the Wavesurfer instance to the DOM container when available
 	useEffect(() => {
-		if (!player.song || !waveformRef.current) return;
+		if (!waveformContainerRef.current || wavesurferRef.current) return;
 		
 		// Create the canvas to generate the gradient
 		const canvas = document.createElement("canvas");
@@ -43,13 +47,15 @@ export function AudioPlayer() {
 		progressGradient.addColorStop((canvas.height * 0.7 + 3) / canvas.height, "#F6B094"); // Bottom color
 		progressGradient.addColorStop(1, "#F6B094"); // Bottom color
 		
+		const url = song?.audioTracks?.[trackIndex]?.src || "";
+		
 		// Initialize Wavesurfer
 		const wavesurfer = WaveSurfer.create({
-			container: waveformRef.current as HTMLElement,
+			container: "#waveform",
 			waveColor: gradient,
 			progressColor: progressGradient,
 			barWidth: 2,
-			url: player.song.audioTracks?.[0]?.src || "",
+			url: url,
 			plugins: [
 				Hover.create({
 					lineColor: "#ff0000", // Hover line color
@@ -61,21 +67,15 @@ export function AudioPlayer() {
 			],
 		});
 		
-		player.wavesurferRef.current = wavesurfer; // Attach Wavesurfer instance to player
+		wavesurferRef.current = wavesurfer; // Attach Wavesurfer instance to player
 		
-		// Load and synchronize Wavesurfer with player state
-		wavesurfer.load(player.song.audioTracks?.[0]?.src || "").catch(console.error);
+		// Initialize Wavesurfer with appropriate settings
+		wavesurfer.load(url).catch(console.error);
 		
-		// Synchronize play/pause between Wavesurfer and player
-		if (player.isPlaying()) {
+		// Start playing the track when it's decoded
+		wavesurfer.on("decode", () => {
 			wavesurfer.play().catch(console.error);
-		} else {
-			wavesurfer.pause();
-		}
-		
-		// Update player state based on Wavesurfer events
-		wavesurfer.on("play", () => player.play());
-		wavesurfer.on("pause", () => player.pause());
+		});
 		
 		// Update the current time and duration
 		{
@@ -91,38 +91,37 @@ export function AudioPlayer() {
 			
 			// Display the duration after decoding
 			if (durationEl) {
-				wavesurfer.on('decode', (duration) => (durationEl.textContent = formatTime(duration)))
+				wavesurfer.on("decode", (duration) => (durationEl.textContent = formatTime(duration)));
 			}
 			
 			// Update the current time during playback
 			if (timeEl) {
-				wavesurfer.on('audioprocess', (currentTime) => (timeEl.textContent = formatTime(currentTime)))
+				wavesurfer.on("audioprocess", (currentTime) => (timeEl.textContent = formatTime(currentTime)));
 			}
 		}
 		
-		// Clean up
-		return () => wavesurfer.destroy();
-	}, [player.song, player.isPlaying()]);
+		// Clean up on unmount
+		return () => {
+			wavesurferRef.current?.destroy();
+			wavesurferRef.current = null;
+		};
+	}, [song, trackIndex, wavesurferRef]);
 	
-	if (!player.song) {
-		return null;
-	}
-	
-	const trackIndex = player.trackIndex ? parseInt(player.trackIndex.split("-").pop() || "0", 10) : 0;
+	if (!song) return null;
 	
 	return (
 		<div
 			className="flex items-center gap-6 bg-white/90 px-4 py-4 shadow shadow-slate-200/80 ring-1 ring-slate-900/5 backdrop-blur-sm md:px-6">
 			<div className="hidden md:block">
-				<PlayButton song={player.song} trackIndex={trackIndex} size="grand"/>
+				<PlayButton song={song} trackIndex={trackIndex} size="grand"/>
 			</div>
 			<div className="mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1">
 				<Link
-					href={`/${player.song.id}`}
+					href={`/${song.id}`}
 					className="truncate text-center text-sm font-bold leading-6 md:text-left"
-					title={player.song.title}
+					title={song.title}
 				>
-					{player.song.title}
+					{song.title}
 				</Link>
 				<div className="flex justify-between gap-6">
 					<div className="flex items-center md:hidden">
@@ -131,16 +130,18 @@ export function AudioPlayer() {
 					<div className="flex flex-none items-center gap-4">
 						<RewindButton player={player}/>
 						<div className="md:hidden">
-							<PlayButton song={player.song} trackIndex={trackIndex} size="grand"/>
+							<PlayButton song={song} trackIndex={trackIndex} size="grand"/>
 						</div>
 						<ForwardButton player={player}/>
 					</div>
-					<div ref={waveformRef} id="waveform" className="w-full h-16 bg-gray-200 relative">
+					<div ref={waveformContainerRef} id="waveform" className="w-full h-16 bg-gray-200 relative">
 						<div id="time"
-						     className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-75 text-white text-xs px-1 py-0.5">0:00
+						     className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-75 text-white text-xs px-1 py-0.5">
+							0:00
 						</div>
 						<div id="duration"
-						     className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-75 text-white text-xs px-1 py-0.5">0:00
+						     className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-75 text-white text-xs px-1 py-0.5">
+							0:00
 						</div>
 						<div id="hover"
 						     className="absolute left-0 top-0 h-full w-0 bg-white bg-opacity-50 transition-opacity duration-200 opacity-0"></div>
