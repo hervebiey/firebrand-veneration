@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import WaveSurfer from "wavesurfer.js";
 import Hover from "wavesurfer.js/dist/plugins/hover.esm.js";
 
 import { useAudioPlayer } from "@/components/player/AudioProvider";
@@ -11,6 +10,13 @@ import { MuteButton } from "@/components/player/MuteButton";
 import { PlaybackRateButton } from "@/components/player/PlaybackRateButton";
 import { RewindButton } from "@/components/player/RewindButton";
 import { PlayButton } from "@/components/player/PlayButton";
+
+function formatTime(seconds: number) {
+	const minutes = Math.floor(seconds / 60);
+	const secondsRemainder = Math.round(seconds) % 60;
+	const paddedSeconds = `0${secondsRemainder}`.slice(-2);
+	return `${minutes}:${paddedSeconds}`;
+}
 
 export function AudioPlayer() {
 	const player = useAudioPlayer();
@@ -49,9 +55,9 @@ export function AudioPlayer() {
 		
 		const url = song?.audioTracks?.[trackIndex]?.src || "";
 		
-		// Initialize Wavesurfer
-		const wavesurfer = WaveSurfer.create({
-			container: "#waveform",
+		// Attach the existing Wavesurfer instance to the actual waveform container
+		wavesurferRef.current.init({
+			container: waveformContainerRef.current,
 			waveColor: gradient,
 			progressColor: progressGradient,
 			barWidth: 2,
@@ -67,36 +73,27 @@ export function AudioPlayer() {
 			],
 		});
 		
-		wavesurferRef.current = wavesurfer; // Attach Wavesurfer instance to player
-		
-		// Initialize Wavesurfer with appropriate settings
-		wavesurfer.load(url).catch(console.error);
+		// Load and play the track when ready
+		wavesurferRef.current.load(url).catch(console.error);
 		
 		// Start playing the track when it's decoded
-		wavesurfer.on("decode", () => {
-			wavesurfer.play().catch(console.error);
+		wavesurferRef.current.on("decode", () => {
+			wavesurferRef.current?.play().catch(console.error);
 		});
 		
 		// Update the current time and duration
 		{
-			const formatTime = (seconds: number) => {
-				const minutes = Math.floor(seconds / 60);
-				const secondsRemainder = Math.round(seconds) % 60;
-				const paddedSeconds = `0${secondsRemainder}`.slice(-2);
-				return `${minutes}:${paddedSeconds}`;
-			};
-			
 			const timeEl = document.querySelector<HTMLDivElement>("#time");
 			const durationEl = document.querySelector<HTMLDivElement>("#duration");
 			
 			// Display the duration after decoding
 			if (durationEl) {
-				wavesurfer.on("decode", (duration) => (durationEl.textContent = formatTime(duration)));
+				wavesurferRef.current.on("decode", (duration: number) => (durationEl.textContent = formatTime(duration)));
 			}
 			
 			// Update the current time during playback
 			if (timeEl) {
-				wavesurfer.on("audioprocess", (currentTime) => (timeEl.textContent = formatTime(currentTime)));
+				wavesurferRef.current.on("audioprocess", (currentTime: number) => (timeEl.textContent = formatTime(currentTime)));
 			}
 		}
 		

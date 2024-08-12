@@ -66,7 +66,6 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		if (!wavesurferRef.current) {
 			const container = document.createElement('div');
 			container.style.display = 'none'; // Hidden container
-			document.body.appendChild(container);
 			
 			wavesurferRef.current = WaveSurfer.create({
 				container: container,
