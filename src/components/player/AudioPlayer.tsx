@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import WaveSurfer from "wavesurfer.js";
 import Hover from "wavesurfer.js/dist/plugins/hover.esm.js";
 
 import { useAudioPlayer } from "@/components/player/AudioProvider";
@@ -10,7 +11,7 @@ import { MuteButton } from "@/components/player/MuteButton";
 import { PlaybackRateButton } from "@/components/player/PlaybackRateButton";
 import { RewindButton } from "@/components/player/RewindButton";
 import { PlayButton } from "@/components/player/PlayButton";
-import WaveSurfer from "wavesurfer.js";
+import { capitalizeTrackType, findMedleyForSong } from "@/components/Songs";
 
 function formatTime(seconds: number) {
 	const minutes = Math.floor(seconds / 60);
@@ -101,6 +102,15 @@ export function AudioPlayer() {
 	
 	if (!song) return null;
 	
+	// Determine the title and link based on whether the song is part of a medley
+	const medleyDetails = findMedleyForSong(song.id);
+	const linkHref = medleyDetails ? `/${medleyDetails.medley.id}` : `/${song.id}`;
+	const trackType = song.audioTracks?.[trackIndex]?.trackType;
+	const trackTypeDisplay = trackType && trackType !== "song" ? ` [${capitalizeTrackType(trackType)}]` : "";
+	const displayTitle = medleyDetails
+		? `${medleyDetails.medley.title}: ${medleyDetails.song.title}${trackTypeDisplay}`
+		: `${song.title}${trackTypeDisplay}`;
+	
 	return (
 		<div
 			className="flex items-center gap-6 bg-white/90 px-4 py-4 shadow shadow-slate-200/80 ring-1 ring-slate-900/5 backdrop-blur-sm md:px-6">
@@ -109,11 +119,11 @@ export function AudioPlayer() {
 			</div>
 			<div className="mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1">
 				<Link
-					href={`/${song.id}`}
+					href={linkHref}
 					className="truncate text-center text-sm font-bold leading-6 md:text-left"
 					title={song.title}
 				>
-					{song.title}
+					{displayTitle}
 				</Link>
 				<div className="flex justify-between gap-6">
 					<div className="flex items-center md:hidden">

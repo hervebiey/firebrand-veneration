@@ -121,3 +121,19 @@ export const formatSectionsOverview = (sections: SongSection[]): string => {
 		return `${section.sectionName} (${repetitions}x)`;
 	}).join(", ");
 };
+
+// Helper function to capitalize track types (if needed for display purposes)
+export const capitalizeTrackType = (trackType?: string): string => {
+	return trackType ? trackType.charAt(0).toUpperCase() + trackType.slice(1) : "";
+};
+
+// Function to check if a song is part of a medley and return the medley and song details
+export function findMedleyForSong(songId: string): { medley: Medley, song: SingleSong } | null {
+	for (const medley of songListData.filter(isMedley)) {
+		const foundSong = medley.songList.find(s => s.id === songId);
+		if (foundSong) {
+			return { medley, song: foundSong };
+		}
+	}
+	return null;
+}

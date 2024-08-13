@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useAudioPlayer } from "@/components/player/AudioProvider";
-import { type Song } from "@/components/Songs";
+import { capitalizeTrackType, type Song } from "@/components/Songs";
 import { PauseIcon } from "@/components/PauseIcon";
 import { PlayIcon } from "@/components/PlayIcon";
 
@@ -12,11 +12,6 @@ interface SongPlayButtonProps {
 	isPrimary?: boolean;
 	size: "mini" | "small" | "medium" | "large" | "grand";
 }
-
-// Helper function to capitalize track types (if needed for display purposes)
-const capitalizeTrackType = (trackType?: string): string => {
-	return trackType ? trackType.charAt(0).toUpperCase() + trackType.slice(1) : "";
-};
 
 export const PlayButton: React.FC<SongPlayButtonProps> = ({
 	                                                          song,
