@@ -7,7 +7,7 @@ export const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
 			<div key={sectionIndex}>
 				<h3 className="font-black">{section.sectionName}</h3>
 				{section.textures && section.textures.length > 0 && (
-					<p className="-mt-2 font-bold text-purple-900">
+					<p className="-mt-2 font-bold">
 						{formatTextures(section.textures)}
 					</p>
 				)}
@@ -26,7 +26,7 @@ export const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
 										<p>
 											{sectionLine[0]}
 											{sectionLine[2] && (
-												<span className="text-fuchsia-700 ml-2 uppercase">[{sectionLine[2]}]</span>
+												<span className="text-indigo-700 ml-2 uppercase">[{sectionLine[2]}]</span>
 											)}
 										</p>
 										{sectionLine[1] && (
