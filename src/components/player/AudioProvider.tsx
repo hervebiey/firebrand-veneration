@@ -164,7 +164,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		},
 		setPlaying() {
 			// If not playing, start playing
-			if(!state.isPlaying) {
+			if (!state.isPlaying) {
 				waveSurferRef.current?.play().then(() => {
 					dispatch({ type: ActionKind.SET_PLAYING });
 				}).catch(console.error);
@@ -199,22 +199,20 @@ export function useAudioPlayer(song?: Song, trackIndex?: number) {
 	
 	if (!audioPlayer) throw new Error("useAudioPlayer must be used within an AudioProvider");
 	
-	return useMemo<PlayerAPI>(
-		() => ({
-			...audioPlayer!,
-			play() {
-				audioPlayer.play(song, trackIndex);
-			},
-			toggle() {
-				audioPlayer!.toggle(song, trackIndex);
-			},
-			playing() {
-				return audioPlayer!.playing(song, trackIndex);
-			},
-			muted() {
-				return audioPlayer!.muted();
-			},
-		}),
-		[audioPlayer, song, trackIndex],
-	);
+	// Use memoized result for player actions
+	return useMemo<PlayerAPI>(() => ({
+		...audioPlayer!,
+		play() {
+			audioPlayer.play(song, trackIndex);
+		},
+		toggle() {
+			audioPlayer.toggle(song, trackIndex);
+		},
+		playing() {
+			return audioPlayer.playing(song, trackIndex);
+		},
+		muted() {
+			return audioPlayer.muted();
+		},
+	}), [audioPlayer, song, trackIndex]);
 }

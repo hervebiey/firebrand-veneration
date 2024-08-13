@@ -19,13 +19,13 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 	                                                          isPrimary,
 	                                                          size,
                                                           }) => {
-	if (!song) {
+	// Use the custom hook to get the player object
+	const player = useAudioPlayer(song, trackIndex);
+	
+	if (!song || !trackIndex) {
 		console.warn("SongPlayButton rendered with undefined song");
 		return null;
 	}
-	
-	// Use the custom hook to get the player object
-	const player = useAudioPlayer(song, trackIndex);
 	
 	const sizeToClasses = {
 		mini: {

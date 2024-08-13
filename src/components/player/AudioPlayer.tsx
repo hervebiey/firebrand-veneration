@@ -121,7 +121,7 @@ export function AudioPlayer() {
 			wavesurferRef.current?.destroy();
 			wavesurferRef.current = null;
 		};
-	}, [song, trackIndex, wavesurferRef]);
+	}, [player, song, trackIndex, wavesurferRef]);
 	
 	if (!song) return null;
 	
