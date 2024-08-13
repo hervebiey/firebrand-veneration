@@ -31,7 +31,7 @@ interface Duration {
 	seconds?: number;
 }
 
-interface AudioTrack {
+export interface AudioTrack {
 	src: string;
 	trackType: TrackType;
 	isPrimary?: boolean;

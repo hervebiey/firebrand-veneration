@@ -1,8 +1,26 @@
 "use client";
 
-import React from "react";
-import { formatArray, formatKeys, formatSectionsOverview, isMedley, Medley, SingleSong } from "@/components/Songs";
+import React, { useEffect, useState } from "react";
+import {
+	AudioTrack,
+	formatArray,
+	formatKeys,
+	formatSectionsOverview,
+	isMedley,
+	Medley,
+	SingleSong,
+} from "@/components/Songs";
 import { PlayButton } from "@/components/player/PlayButton";
+
+// Assuming you have a function that checks if a source is valid
+async function isSourceValid(src: string): Promise<boolean> {
+	try {
+		const response = await fetch(src, { method: 'HEAD' });
+		return response.ok;
+	} catch (error) {
+		return false;
+	}
+}
 
 export const MedleyMetaData: React.FC<{ song: Medley }> = ({ song }) => {
 	let leadsArray: string[] = [];
@@ -33,7 +51,28 @@ export const MedleyMetaData: React.FC<{ song: Medley }> = ({ song }) => {
 };
 
 export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => {
-	const nonPrimaryTracks = song.audioTracks?.filter(track => !track.isPrimary);
+	const [validNonPrimaryTracks, setValidNonPrimaryTracks] = useState<AudioTrack[]>([]);
+	
+	useEffect(() => {
+		async function validateTracks() {
+			if (!song.audioTracks) return;
+			
+			const validTracks = await Promise.all(
+				song.audioTracks.map(async (track) => {
+					if (!track.isPrimary && track.src) {
+						const isValid = await isSourceValid(track.src);
+						return isValid ? track : null;
+					}
+					return null;
+				})
+			);
+			
+			// Filter out null values and update state
+			setValidNonPrimaryTracks(validTracks.filter((track) => track !== null) as AudioTrack[]);
+		}
+		
+		validateTracks().catch(console.error);
+	}, [song.audioTracks]);
 	
 	return (
 		<div className="my-1 leading-relaxed font-medium text-slate-700">
@@ -45,7 +84,7 @@ export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => 
 			{song.performanceNotes && <p className="my-2">Notes: {song.performanceNotes}</p>}
 			{song.sections && <p className="my-1 text-base">{formatSectionsOverview(song.sections)}</p>}
 			<div className="mt-4 space-y-2">
-				{nonPrimaryTracks && nonPrimaryTracks.map(track => {
+				{validNonPrimaryTracks.map(track => {
 					// Find the index of this track in the original audioTracks array
 					const trackIndex = song.audioTracks!.indexOf(track);
 					
