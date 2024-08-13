@@ -139,3 +139,13 @@ export function findMedleyForSong(songId: string): { medley: Medley, song: Singl
 	}
 	return null;
 }
+
+// Assuming you have a function that checks if a source is valid
+export async function isSourceValid(src: string): Promise<boolean> {
+	try {
+		const response = await fetch(src, { method: 'HEAD' });
+		return response.ok;
+	} catch (error) {
+		return false;
+	}
+}

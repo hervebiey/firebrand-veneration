@@ -6,21 +6,11 @@ import {
 	formatArray,
 	formatKeys,
 	formatSectionsOverview,
-	isMedley,
+	isMedley, isSourceValid,
 	Medley,
 	SingleSong,
 } from "@/components/Songs";
 import { PlayButton } from "@/components/player/PlayButton";
-
-// Assuming you have a function that checks if a source is valid
-async function isSourceValid(src: string): Promise<boolean> {
-	try {
-		const response = await fetch(src, { method: 'HEAD' });
-		return response.ok;
-	} catch (error) {
-		return false;
-	}
-}
 
 export const MedleyMetaData: React.FC<{ song: Medley }> = ({ song }) => {
 	let leadsArray: string[] = [];
@@ -64,7 +54,7 @@ export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => 
 						return isValid ? track : null;
 					}
 					return null;
-				})
+				}),
 			);
 			
 			// Filter out null values and update state
