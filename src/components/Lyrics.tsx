@@ -7,9 +7,9 @@ export const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
 			<div key={sectionIndex}>
 				<h3 className="font-black">{section.sectionName}</h3>
 				{section.textures && section.textures.length > 0 && (
-					<p className="-mt-2 font-bold">
+					<div className="-mt-2 font-bold">
 						{formatTextures(section.textures)}
-					</p>
+					</div>
 				)}
 				{section.extraNotes && <p className="-mt-4 font-semibold">{section.extraNotes}</p>}
 				{section.keys && section.keys.length > 0 && (
@@ -17,7 +17,7 @@ export const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
 						Key: {formatKeys(section.keys)}
 					</p>
 				)}
-				<p className="-mt-2 font-medium text-lg">
+				<div className="-mt-2 font-medium text-lg">
 					{Array.isArray(section.text)
 						? section.text.flatMap((sectionLine, sectionLineIndex) => {
 							if (Array.isArray(sectionLine)) {
@@ -51,7 +51,7 @@ export const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
 							{section.text}
 						</p>
 					)}
-				</p>
+				</div>
 			</div>
 		))}
 	</div>

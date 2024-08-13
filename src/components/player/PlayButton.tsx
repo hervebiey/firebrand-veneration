@@ -88,7 +88,7 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 				)}
 			</button>
 			{!isPrimary && size === "medium" && song.audioTracks?.[trackIndex]?.trackType && (
-				<p>{capitalizeTrackType(song.audioTracks[trackIndex].trackType)}</p>
+				<span>{capitalizeTrackType(song.audioTracks[trackIndex].trackType)}</span>
 			)}
 		</div>
 	);
