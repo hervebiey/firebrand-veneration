@@ -22,7 +22,7 @@ export const PraiseInMedley: SingleSong = {
 			isPrimary: true,
 		},
 		{
-			src: "/background/praise.m4a",
+			src: "/backups/praise.m4a",
 			trackType: "backup",
 		},
 		{

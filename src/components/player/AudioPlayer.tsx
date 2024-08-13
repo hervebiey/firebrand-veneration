@@ -49,12 +49,12 @@ export function AudioPlayer() {
 		
 		// Define the progress gradient
 		const progressGradient = context.createLinearGradient(0, 0, 0, canvas.height * 1.35);
-		progressGradient.addColorStop(0, "#EE772F"); // Top color
-		progressGradient.addColorStop((canvas.height * 0.7) / canvas.height, "#EB4926"); // Top color
+		progressGradient.addColorStop(0, "#af4ef6"); // Top color
+		progressGradient.addColorStop((canvas.height * 0.7) / canvas.height, "#9a27e8"); // Top color
 		progressGradient.addColorStop((canvas.height * 0.7 + 1) / canvas.height, "#ffffff"); // White line
 		progressGradient.addColorStop((canvas.height * 0.7 + 2) / canvas.height, "#ffffff"); // White line
-		progressGradient.addColorStop((canvas.height * 0.7 + 3) / canvas.height, "#F6B094"); // Bottom color
-		progressGradient.addColorStop(1, "#F6B094"); // Bottom color
+		progressGradient.addColorStop((canvas.height * 0.7 + 3) / canvas.height, "#be7fea"); // Bottom color
+		progressGradient.addColorStop(1, "#cd96f5"); // Bottom color
 
 		// Create the WaveSurfer instance
 		wavesurferRef.current = WaveSurfer.create({
@@ -121,14 +121,14 @@ export function AudioPlayer() {
 	const trackType = song.audioTracks?.[trackIndex]?.trackType;
 	const trackTypeDisplay = trackType && trackType !== "song" ? ` [${capitalizeTrackType(trackType)}]` : "";
 	const displayTitle = medleyDetails
-		? `${medleyDetails.medley.title}: ${medleyDetails.song.title}${trackTypeDisplay}`
-		: `${song.title}${trackTypeDisplay}`;
+		? `${medleyDetails.song.artist} - ${medleyDetails.medley.title}: ${medleyDetails.song.title}${trackTypeDisplay}`
+		: `${song.artist} - ${song.title}${trackTypeDisplay}`;
 	
 	return (
 		<div
 			className="flex items-center gap-6 bg-white/90 px-4 py-4 shadow shadow-slate-200/80 ring-1 ring-slate-900/5 backdrop-blur-sm md:px-6">
 			<div className="hidden md:block">
-				<PlayButton song={song} trackIndex={trackIndex} size="grand"/>
+				<PlayButton song={song} trackIndex={trackIndex} size="grandPlayer"/>
 			</div>
 			<div className="mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1">
 				<Link
@@ -145,29 +145,27 @@ export function AudioPlayer() {
 					<div className="flex flex-none items-center gap-4">
 						<RewindButton player={player}/>
 						<div className="md:hidden">
-							<PlayButton song={song} trackIndex={trackIndex} size="grand"/>
+							<PlayButton song={song} trackIndex={trackIndex} size="miniPlayer"/>
 						</div>
 						<ForwardButton player={player}/>
-					</div>
-					<div ref={waveformContainerRef} id="waveform" className="w-full h-16 bg-gray-200 relative">
-						<div id="time"
-						     className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-75 text-white text-xs px-1 py-0.5">
-							0:00
-						</div>
-						<div id="duration"
-						     className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-75 text-white text-xs px-1 py-0.5">
-							0:00
-						</div>
-						<div id="hover"
-						     className="absolute left-0 top-0 h-full w-0 bg-white bg-opacity-50 transition-opacity duration-200 opacity-0"></div>
-					</div>
-					<div className="flex items-center gap-4">
 						<div className="flex items-center">
 							<PlaybackRateButton player={player}/>
 						</div>
 						<div className="hidden items-center md:flex">
 							<MuteButton player={player}/>
 						</div>
+					</div>
+					<div ref={waveformContainerRef} id="waveform" className="relative w-full">
+						<div id="time"
+						     className="z-10 absolute left-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-75 text-white text-xs px-1 py-0.5">
+							0:00
+						</div>
+						<div id="duration"
+						     className="z-10 absolute right-0 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-75 text-white text-xs px-1 py-0.5">
+							0:00
+						</div>
+						<div id="hover"
+						     className="absolute left-0 top-0 h-full w-0 bg-white bg-opacity-50 transition-opacity duration-200 opacity-0"></div>
 					</div>
 				</div>
 			</div>

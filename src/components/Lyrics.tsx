@@ -11,7 +11,7 @@ export const Lyrics: React.FC<{ song: SingleSong }> = ({ song }) => (
 						{formatTextures(section.textures)}
 					</div>
 				)}
-				{section.extraNotes && <p className="-mt-4 font-semibold">{section.extraNotes}</p>}
+				{section.extraNotes && <p className="mt-1 font-semibold">{section.extraNotes}</p>}
 				{section.keys && section.keys.length > 0 && (
 					<p className="-mt-4 italic font-semibold">
 						Key: {formatKeys(section.keys)}

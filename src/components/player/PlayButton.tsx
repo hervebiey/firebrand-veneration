@@ -10,7 +10,7 @@ interface SongPlayButtonProps {
 	song: Song;
 	trackIndex?: number;
 	isPrimary?: boolean;
-	size: "mini" | "small" | "medium" | "large" | "grand";
+	size: "mini" | "small" | "medium" | "large" | "grandPlayer" | "miniPlayer";
 }
 
 export const PlayButton: React.FC<SongPlayButtonProps> = ({
@@ -52,9 +52,15 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 			spanClassName: undefined,
 			divClassName: undefined,
 		},
-		grand: {
+		grandPlayer: {
 			container: "group relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-700 focus:ring-offset-2 md:h-14 md:w-14",
 			icon: "h-9 w-9 fill-white group-active:fill-white/80",
+			spanClassName: undefined,
+			divClassName: "absolute -inset-3 md:hidden",
+		},
+		miniPlayer: {
+			container: "group relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-slate-700 hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-700 focus:ring-offset-2 md:h-14 md:w-14",
+			icon: "h-5 w-5 fill-white group-active:fill-white/80",
 			spanClassName: undefined,
 			divClassName: "absolute -inset-3 md:hidden",
 		},
