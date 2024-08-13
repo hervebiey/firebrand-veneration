@@ -7,7 +7,9 @@ import { type Song } from "@/components/Songs";
 // PlayerState interface
 interface PlayerState {
 	song: Song | null;
-	trackIndex: number | null;  // Track index for the currently playing track
+	trackIndex: number | null;
+	isPlaying: boolean;
+	isMuted: boolean;
 }
 
 // PublicPlayerActions interface
@@ -19,8 +21,8 @@ interface PublicPlayerActions {
 	seek: (time: number) => void;
 	setPlaybackRate: (rate: number) => void;
 	mute: () => void;
-	isPlaying: (song?: Song, trackIndex?: number) => boolean;
-	isMuted: () => boolean;
+	playing: (song?: Song, trackIndex?: number) => boolean; // This is a method in the actions
+	muted: () => boolean;
 	getCurrentTime: () => number;
 	getDuration: () => number;
 }
@@ -33,11 +35,17 @@ export type PlayerAPI = PlayerState & PublicPlayerActions & {
 // Actions enum
 const enum ActionKind {
 	SET_META = "SET_META",
+	SET_PLAYING = "SET_PLAYING",
+	SET_PAUSING = "SET_PAUSING",
+	SET_MUTED = "SET_MUTED",
 }
 
 // Action type
 type Action =
-	| { type: ActionKind.SET_META; payload: { song: Song, trackIndex: number } };
+	| { type: ActionKind.SET_META; payload: { song: Song, trackIndex: number } }
+	| { type: ActionKind.SET_PLAYING }
+	| { type: ActionKind.SET_PAUSING }
+	| { type: ActionKind.SET_MUTED };
 
 // Create contexts
 export const AudioContext = createContext<PlayerAPI | null>(null);
@@ -47,6 +55,12 @@ function audioReducer(state: PlayerState, action: Action): PlayerState {
 	switch (action.type) {
 		case ActionKind.SET_META:
 			return { ...state, song: action.payload.song, trackIndex: action.payload.trackIndex };
+		case ActionKind.SET_PLAYING:
+			return { ...state, isPlaying: true };
+		case ActionKind.SET_PAUSING:
+			return { ...state, isPlaying: false };
+		case ActionKind.SET_MUTED:
+			return { ...state, isMuted: !state.isMuted };
 		default:
 			return state;
 	}
@@ -57,6 +71,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 	const [state, dispatch] = useReducer(audioReducer, {
 		song: null,
 		trackIndex: null,
+		isPlaying: false,
+		isMuted: false,
 	});
 	
 	const wavesurferRef = useRef<WaveSurfer | null>(null);  // Reference to Wavesurfer instance
@@ -64,8 +80,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 	// Initialize WaveSurfer when AudioProvider mounts
 	useEffect(() => {
 		if (!wavesurferRef.current) {
-			const container = document.createElement('div');
-			container.style.display = 'none'; // Hidden container
+			const container = document.createElement("div");
+			container.style.display = "none"; // Hidden container
 			
 			wavesurferRef.current = WaveSurfer.create({
 				container: container,
@@ -94,11 +110,15 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 					
 					// Load new track in Wavesurfer and play it once it's decoded
 					wavesurferRef.current.load(src).then(() => {
-						wavesurferRef.current?.play().catch(console.error);
+						wavesurferRef.current?.play().then(() => {
+							dispatch({ type: ActionKind.SET_PLAYING });
+						}).catch(console.error);
 					}).catch(console.error);
 				} else {
 					// Play the current track
-					wavesurferRef.current?.play().catch(console.error);
+					wavesurferRef.current?.play().then(() => {
+						dispatch({ type: ActionKind.SET_PLAYING });
+					}).catch(console.error);
 				}
 			}
 		},
@@ -106,16 +126,22 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		pause() {
 			// Pause via Wavesurfer
 			wavesurferRef.current?.pause();
+			dispatch({ type: ActionKind.SET_PAUSING });
 		},
 		
 		toggle(song, trackIndex) {
-			// Use playPause() to toggle play/pause
+			// Toggle play/pause
 			if (state.song !== song || state.trackIndex !== trackIndex) {
 				this.play(song, trackIndex);
 			} else {
 				wavesurferRef.current?.playPause();
+				
+				if (wavesurferRef.current?.isPlaying()) {
+					dispatch({ type: ActionKind.SET_PLAYING });
+				} else {
+					dispatch({ type: ActionKind.SET_PAUSING });
+				}
 			}
-			// this.isPlaying(song, trackIndex) ? this.pause() : this.play(song, trackIndex);
 		},
 		
 		skip(amount) {
@@ -131,19 +157,15 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		},
 		
 		mute() {
-			wavesurferRef.current?.setMuted(!wavesurferRef.current.getMuted());
+			dispatch({type: ActionKind.SET_MUTED});
 		},
 		
-		isPlaying(song, trackIndex) {
-			return !!(
-				state.song === song &&
-				state.trackIndex === trackIndex &&
-				wavesurferRef.current?.isPlaying()
-			);
+		playing(song, trackIndex) {
+			return state.song === song && state.trackIndex === trackIndex && state.isPlaying;
 		},
 		
-		isMuted() {
-			return !!wavesurferRef.current?.getMuted();
+		muted() {
+			return state.isMuted;
 		},
 		
 		getCurrentTime() {
@@ -154,7 +176,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 			return wavesurferRef.current?.getDuration() ?? 0;
 		},
 		
-	}), [state.song, state.trackIndex]);
+	}), [state.song, state.trackIndex, state.isPlaying]);
 	
 	const api = useMemo<PlayerAPI>(
 		() => ({ ...state, ...actions, wavesurferRef }),
@@ -178,22 +200,22 @@ export function useAudioPlayer(song?: Song, trackIndex?: number) {
 		() => ({
 			...audioPlayer!,
 			play() {
-				audioPlayer.play(song, trackIndex);
+				audioPlayer!.play(song, trackIndex);
 			},
 			toggle() {
-				audioPlayer.toggle(song, trackIndex);
+				audioPlayer!.toggle(song, trackIndex);
 			},
-			isPlaying() {
-				return audioPlayer.isPlaying(song, trackIndex);
+			playing() {
+				return audioPlayer!.playing(song, trackIndex);
 			},
 			// getCurrentTime() {
-			// 	return audioPlayer.getCurrentTime();
+			// 	return audioPlayer!.getCurrentTime();
 			// },
 			getDuration() {
-				return audioPlayer.getDuration();
+				return audioPlayer!.getDuration();
 			},
-			isMuted() {
-				return audioPlayer.isMuted();
+			muted() {
+				return audioPlayer!.muted();
 			},
 		}),
 		[audioPlayer, song, trackIndex],

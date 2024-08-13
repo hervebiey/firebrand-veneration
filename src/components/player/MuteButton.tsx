@@ -42,11 +42,11 @@ export function MuteButton({ player }: { player: PlayerAPI }) {
 			type="button"
 			className="group relative rounded-md hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 md:order-none"
 			onClick={() => player.mute()}
-			aria-label={player.isMuted() ? "Unmute" : "Mute"}
+			aria-label={player.muted() ? "Unmute" : "Mute"}
 		>
 			<div className="absolute -inset-4 md:hidden"/>
 			<MuteIcon
-				muted={player.isMuted()}
+				muted={player.muted()}
 				className="h-6 w-6 fill-slate-500 stroke-slate-500 group-hover:fill-slate-700 group-hover:stroke-slate-700"
 			/>
 		</button>

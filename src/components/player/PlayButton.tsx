@@ -71,7 +71,7 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 	const sizeDivClassName = sizeToClasses[size].divClassName;
 	
 	// Determine which icon to use based on whether the player is playing the current song and track
-	let Icon = player.isPlaying() ? PauseIcon : PlayIcon;
+	let Icon = player.playing() ? PauseIcon : PlayIcon;
 	
 	return (
 		<div className={`${isPrimary ? "primary-audio-button" : (size === "medium" || size ===
@@ -80,7 +80,7 @@ export const PlayButton: React.FC<SongPlayButtonProps> = ({
 				type="button"
 				className={sizeClassName}
 				onClick={() => player.toggle()} // Toggle play/pause
-				aria-label={`${player.isPlaying() ? "Pause" : "Play"} ${song.title} ${trackIndex}`}
+				aria-label={`${player.playing() ? "Pause" : "Play"} ${song.title} ${trackIndex}`}
 			>
 				{sizeDivClassName && (
 					<div className={sizeDivClassName}/>
