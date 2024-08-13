@@ -6,7 +6,7 @@ export const GoodnessOfGod: SingleSong = {
 	order: 1,
 	title: "Goodness of God",
 	artist: "CeCe Winans",
-	original: "Jenn Johnson - Goodness of God",
+	originalArtist: "Jenn Johnson",
 	lead: ["TBD"],
 	language: ["English"],
 	keys: [{
@@ -23,8 +23,8 @@ export const GoodnessOfGod: SingleSong = {
 			isPrimary: true,
 		},
 		{
-			src: "/backups/worthy-of-it-all.m4a",
-			trackType: "backup",
+			src: "/choir/goodness-of-god.m4a",
+			trackType: "choir",
 		},
 	],
 	sections: [

@@ -4,8 +4,8 @@ export const BigGodInMedley: SingleSong = {
 	id: "big-god",
 	title: "Big God",
 	artist: "The Epoch House",
-	original: "Tim Godfrey - Big God",
-	lead: ["Pollet"],
+	originalArtist: "Tim Godfrey",
+	lead: ["TBD"],
 	language: ["English"],
 	keys: [{
 		note: "A♭",
@@ -17,9 +17,14 @@ export const BigGodInMedley: SingleSong = {
 	structureNotes: "From 1\'40\" Until 4\'00\"",
 	audioTracks: [
 		{
-			src: "/songs/big-god.mp3",
+			src: "/song/big-god.mp3",
 			trackType: "song",
 			isPrimary: true,
+		},
+		{
+			src: "/original/big-god.mp3",
+			trackType: "original",
+			artist: "Tim Godfrey & Fearless Community feat. Anderson"
 		},
 	],
 	sections: [

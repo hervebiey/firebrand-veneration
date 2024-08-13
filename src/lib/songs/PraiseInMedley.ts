@@ -3,27 +3,31 @@ import { SingleSong } from "@/components/Songs";
 export const PraiseInMedley: SingleSong = {
 	id: "praise",
 	title: "Praise",
-	artist: "The Epoch House",
-	original: "Elevation Worship - Praise",
-	lead: ["Sharon"],
+	artist: "Elevation Worship",
+	lead: ["TBD"],
 	language: ["English"],
 	keys: [{
 		note: "A♭",
 	}],
 	melody: ["Alto"],
-	duration: { minutes: 2, seconds: 45 },
+	duration: { minutes: 5 },
 	youtube: ["f2oxGYpuLkw"],
 	chordify: ["https://chordify.net/chords/praise-medley-live-at-sound-from-zion-24-god-in-this-music"],
 	structureNotes: "From 7\'00\" Until the End",
 	audioTracks: [
 		{
-			src: "/songs/praise.mp3",
+			src: "/song/praise.mp3",
 			trackType: "song",
 			isPrimary: true,
 		},
 		{
-			src: "/backups/praise.m4a",
-			trackType: "backup",
+			src: "/cover/praise.mp3",
+			trackType: "cover",
+			artist: "The Epoch House",
+		},
+		{
+			src: "/backing/praise.m4a",
+			trackType: "backing",
 		},
 		{
 			src: "/alto/praise.m4a",
