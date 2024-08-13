@@ -21,7 +21,7 @@ interface PublicPlayerActions {
 	seek: (time: number) => void;
 	setPlaybackRate: (rate: number) => void;
 	mute: () => void;
-	playing: (song?: Song, trackIndex?: number) => boolean; // This is a method in the actions
+	playing: (song?: Song, trackIndex?: number) => boolean;
 	muted: () => boolean;
 	getCurrentTime: () => number;
 	getDuration: () => number;
@@ -157,7 +157,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		},
 		
 		mute() {
-			dispatch({type: ActionKind.SET_MUTED});
+			wavesurferRef.current?.setMuted(!state.isMuted);
+			dispatch({ type: ActionKind.SET_MUTED });
 		},
 		
 		playing(song, trackIndex) {
@@ -176,7 +177,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 			return wavesurferRef.current?.getDuration() ?? 0;
 		},
 		
-	}), [state.song, state.trackIndex, state.isPlaying]);
+	}), [state.song, state.trackIndex, state.isPlaying, state.isMuted]);
 	
 	const api = useMemo<PlayerAPI>(
 		() => ({ ...state, ...actions, wavesurferRef }),
