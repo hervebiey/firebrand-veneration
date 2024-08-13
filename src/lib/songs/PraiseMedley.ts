@@ -1,24 +1,21 @@
-import {OpenTheEyesOfMyHeartInMedley} from "@/lib/songs/OpenTheEyesOfMyHeartInMedley";
-import {BigGodInMedley} from "@/lib/songs/BigGodInMedley";
-import {AllThingsArePossibleInMedley} from "@/lib/songs/AllThingsArePossibleInMedley";
-import {PraiseInMedley} from "@/lib/songs/PraiseInMedley";
+import { BigGodInMedley } from "@/lib/songs/BigGodInMedley";
+import { PraiseInMedley } from "@/lib/songs/PraiseInMedley";
+import { Medley } from "@/components/Songs";
 
-export const PraiseMedley = {
+export const PraiseMedley: Medley = {
 	id: "praise-medley",
 	session: 2,
 	order: 2,
-	title: "Praise Medley (Sound from Zion)",
-	artist: "The Epoch House",
-	length: {minutes: 10},
-	youtube: "wpG1jUnnI7o",
-	/*audio: {
-		src: "/songs/praise-medley.mp3",
-		type: "audio/mpeg",
-	},*/
-	songs: [
-		OpenTheEyesOfMyHeartInMedley,
+	title: "Praise Medley",
+	duration: { minutes: 10 },
+	youtube: ["wpG1jUnnI7o"],
+	audioTracks: [{
+		src: "/song/praise-medley.mp3",
+		trackType: "song",
+		isPrimary: true,
+	}],
+	songList: [
 		BigGodInMedley,
-		AllThingsArePossibleInMedley,
-		PraiseInMedley
-	]
-}
+		PraiseInMedley,
+	],
+};

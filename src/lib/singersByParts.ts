@@ -1,5 +1,5 @@
 export const singersByParts = {
-	"Soprano": ["Yvonne", "Pollet", "Sharon"],
-	"Alto": ["Raissa", "Lynn", "Sheilah"],
-	"Tenor": ["Hervé", "Steven", "Margaret"]
+	"Soprano": ["Pollet", "Sharon", "Ordelie", "Elodie"],
+	"Alto": ["Yvonne", "Raissa", "Lynn", "Sheilah"],
+	"Tenor": ["Hervé", "Onesmus", "Steven", "Margaret"]
 }

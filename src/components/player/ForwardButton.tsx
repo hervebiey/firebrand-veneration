@@ -1,6 +1,7 @@
-import {type PlayerAPI} from '@/components/AudioProvider';
+import { type PlayerAPI } from "@/components/player/AudioProvider";
+import React from "react";
 
-function ForwardIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+function ForwardIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 	return (
 		<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" {...props}>
 			<path
@@ -22,25 +23,25 @@ function ForwardIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 				strokeLinejoin="round"
 			/>
 		</svg>
-	)
+	);
 }
 
 export function ForwardButton({
 	                              player,
 	                              amount = 10,
                               }: {
-	player: PlayerAPI
-	amount?: number
+	player: PlayerAPI;
+	amount?: number;
 }) {
 	return (
 		<button
 			type="button"
 			className="group relative rounded-full focus:outline-none"
-			onClick={() => player.seekBy(amount)}
+			onClick={() => player.skip(amount)}
 			aria-label={`Fast-forward ${amount} seconds`}
 		>
 			<div className="absolute -inset-4 -left-2 md:hidden"/>
 			<ForwardIcon className="h-6 w-6 stroke-slate-500 group-hover:stroke-slate-700"/>
 		</button>
-	)
+	);
 }
