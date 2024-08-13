@@ -1,7 +1,7 @@
-import { songList as songListData } from "@/lib/songList";
+import { allSongs } from "@/lib/allSongs";
 import { KeyMap } from "@/components/KeyMap";
 
-type TrackType = "song" | "soprano" | "alto" | "tenor" | "bass" | "backup";
+type TrackType = "song" |  "original" |  "cover" | "soprano" | "alto" | "tenor" | "bass" | "backing" | "choir";
 type MelodyType = "Bass" | "Tenor" | "Alto" | "Soprano" | "TBD";
 type TextureType = "Solo" | "Unison" | "Harmony" | "Partly Harmony" | "Interlude" | "Bars";
 type KeyQuality = "major" | "minor" | "diminished" | "augmented";
@@ -34,6 +34,7 @@ interface Duration {
 export interface AudioTrack {
 	src: string;
 	trackType: TrackType;
+	artist?: string;
 	isPrimary?: boolean;
 }
 
@@ -64,7 +65,7 @@ interface BaseSong {
 	session?: number;
 	order?: number;
 	title: string;
-	artist: string;
+	artist?: string;
 	duration: Duration;
 	youtube?: string[];
 	chordify?: string[];
@@ -73,7 +74,8 @@ interface BaseSong {
 
 // Interface for single songs
 export interface SingleSong extends BaseSong {
-	original?: string;
+	originalArtist?: string;
+	originalTitle?: string;
 	lead: string[];
 	language: string[];
 	keys: Key[];
@@ -96,7 +98,7 @@ export const isMedley = (song: Song): song is Medley => "songList" in song;
 
 // Function to retrieve all song details
 export async function getAllSongDetails(): Promise<Song[]> {
-	return songListData;
+	return allSongs;
 }
 
 // Function to format textures
@@ -129,7 +131,7 @@ export const capitalizeTrackType = (trackType?: string): string => {
 
 // Function to check if a song is part of a medley and return the medley and song details
 export function findMedleyForSong(songId: string): { medley: Medley, song: SingleSong } | null {
-	for (const medley of songListData.filter(isMedley)) {
+	for (const medley of allSongs.filter(isMedley)) {
 		const foundSong = medley.songList.find(s => s.id === songId);
 		if (foundSong) {
 			return { medley, song: foundSong };

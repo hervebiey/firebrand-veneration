@@ -63,7 +63,13 @@ export const SongHeader: React.FC<{ song: Song, size: "mini" | "small" | "medium
 						<h1 id={`song-${song.id}-title`} className={headerClassName}>{song.title}</h1>
 					)}
 					<p className={paragraphClassName}>
-						{song.artist} | {getTime(song)}
+						{song.artist && (
+							<span>
+								{song.artist}
+								{" | "}
+							</span>
+						)}
+						{getTime(song)}
 						{song.chordify && song.chordify.length > 0 && (
 							<span>
 								{" | "}

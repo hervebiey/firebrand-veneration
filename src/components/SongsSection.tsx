@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React from "react";
 
-import { songList } from "@/lib/songList";
+import { allSongs } from "@/lib/allSongs";
 import { TinyWaveIcon } from "@/components/TinyWaveIcon";
 
 function ordinalSuffix(i: number) {
@@ -22,7 +22,7 @@ function ordinalSuffix(i: number) {
 }
 
 function generateSession(sessionNumber: number) {
-	const sessionSongs = songList
+	const sessionSongs = allSongs
 		.filter(song => song.session === sessionNumber)
 		.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 	
@@ -44,7 +44,7 @@ function generateSession(sessionNumber: number) {
 }
 
 export function SongsSection(props: React.ComponentPropsWithoutRef<"section">) {
-	const uniqueSessions = [...new Set(songList.map(song => song.session ?? 0))].filter(number => number > 0);
+	const uniqueSessions = [...new Set(allSongs.map(song => song.session ?? 0))].filter(number => number > 0);
 	
 	return (
 		<section {...props}>

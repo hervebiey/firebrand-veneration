@@ -76,7 +76,9 @@ export const SingleSongMetaData: React.FC<{ song: SingleSong }> = ({ song }) => 
 	
 	return (
 		<div className="my-1 leading-relaxed font-medium text-slate-700">
-			{song.original && <p className="text-sm">Original: {song.original}</p>}
+			{song.originalArtist && <p className="text-sm">
+				Original: {song.originalArtist} {song.originalTitle ? ` - ${song.originalTitle}` : ` - ${song.title}`}
+			</p>}
 			<p className="my-3">Lead: {formatArray(song.lead)} • Language: {formatArray(song.language)}</p>
 			<p className="my-3">Key: {formatKeys(song.keys)} •
 				Melody: {song.melody ? formatArray(song.melody) : ["TBD"]}</p>

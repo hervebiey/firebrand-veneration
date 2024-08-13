@@ -128,10 +128,16 @@ export function AudioPlayer() {
 	const medleyDetails = findMedleyForSong(song.id);
 	const linkHref = medleyDetails ? `/${medleyDetails.medley.id}` : `/${song.id}`;
 	const trackType = song.audioTracks?.[trackIndex ?? 0]?.trackType;
-	const trackTypeDisplay = trackType && trackType !== "song" ? ` [${capitalizeTrackType(trackType)}]` : "";
+	const trackArtist = song.audioTracks?.[trackIndex ?? 0]?.artist;
+	const trackArtistDisplay = song.audioTracks?.[trackIndex ?? 0]?.trackType === "cover" ? `${trackArtist} ` : "";
+	const trackTypeDisplay = (trackType && trackType !==
+		"song") ? ` [${trackArtistDisplay}${capitalizeTrackType(trackType)}]` : "";
+	const medleyDetailsArtist = (medleyDetails && medleyDetails.song.artist) ? trackType !==
+	"original" ? `${medleyDetails.song.artist} - ` : `${trackArtist} - ` : "";
+	const songDetailsArtist = (song.artist) ? `${song.artist} - ` : "";
 	const displayTitle = medleyDetails
-		? `${medleyDetails.song.artist} - ${medleyDetails.medley.title}: ${medleyDetails.song.title}${trackTypeDisplay}`
-		: `${song.artist} - ${song.title}${trackTypeDisplay}`;
+		? `${medleyDetailsArtist} ${medleyDetails.song.title}${trackTypeDisplay} - ${medleyDetails.medley.title}`
+		: `${songDetailsArtist}${song.title}${trackTypeDisplay}`;
 	
 	return (
 		<div
