@@ -67,34 +67,36 @@ function audioReducer(state: PlayerState, action: Action): PlayerState {
 	}
 }
 
+// Initialize WaveSurfer function
+const initializeWaveSurfer = (waveSurferRef: React.MutableRefObject<WaveSurfer | null>) => {
+	if (!waveSurferRef.current) {
+		const container = document.createElement("div");
+		container.style.display = "none"; // Hidden container
+		waveSurferRef.current = WaveSurfer.create({ container: container });
+	}
+	
+	// Clean up the container on unmount
+	return () => {
+		waveSurferRef.current?.destroy();
+		waveSurferRef.current = null;
+	};
+};
+
+// Initial state
+const initialState: PlayerState = {
+	song: null,
+	trackIndex: null,
+	isPlaying: false,
+	isMuted: false,
+};
+
 // AudioProvider component
 export function AudioProvider({ children }: { children: React.ReactNode }) {
-	const [state, dispatch] = useReducer(audioReducer, {
-		song: null,
-		trackIndex: null,
-		isPlaying: false,
-		isMuted: false,
-	});
-	
-	const wavesurferRef = useRef<WaveSurfer | null>(null);  // Reference to Wavesurfer instance
+	const [state, dispatch] = useReducer(audioReducer, initialState);
+	const waveSurferRef = useRef<WaveSurfer | null>(null);
 	
 	// Initialize WaveSurfer when AudioProvider mounts
-	useEffect(() => {
-		if (!wavesurferRef.current) {
-			const container = document.createElement("div");
-			container.style.display = "none"; // Hidden container
-			
-			wavesurferRef.current = WaveSurfer.create({
-				container: container,
-			});
-		}
-		
-		// Clean up the container on unmount
-		return () => {
-			wavesurferRef.current?.destroy();
-			wavesurferRef.current = null;
-		};
-	}, []);
+	useEffect(() => initializeWaveSurfer(waveSurferRef), []);
 	
 	const actions = useMemo<PublicPlayerActions>(() => ({
 		play(song, trackIndex) {
@@ -103,96 +105,84 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 			const track = song.audioTracks?.[trackIndex];
 			const src = track ? track.src : undefined;
 			
-			if (src && wavesurferRef.current) {
+			if (src && waveSurferRef.current) {
 				// Only update the state if the song or trackIndex has changed
 				if (state.song !== song || state.trackIndex !== trackIndex) {
 					// If a different song or track is played, set the meta and reset the player
 					dispatch({ type: ActionKind.SET_META, payload: { song, trackIndex } });
 					
 					// Load new track in Wavesurfer and play it once it's decoded
-					wavesurferRef.current.load(src).then(() => {
-						wavesurferRef.current?.play().then(() => {
+					waveSurferRef.current.load(src).then(() => {
+						waveSurferRef.current?.play().then(() => {
 							dispatch({ type: ActionKind.SET_PLAYING });
 						}).catch(console.error);
 					}).catch(console.error);
 				} else {
 					// Play the current track
-					wavesurferRef.current?.play().then(() => {
+					waveSurferRef.current?.play().then(() => {
 						dispatch({ type: ActionKind.SET_PLAYING });
 					}).catch(console.error);
 				}
 			}
 		},
-		
 		pause() {
 			// Pause via Wavesurfer
-			wavesurferRef.current?.pause();
+			waveSurferRef.current?.pause();
 			dispatch({ type: ActionKind.SET_PAUSING });
 		},
-		
 		toggle(song, trackIndex) {
 			// Toggle play/pause
 			if (state.song !== song || state.trackIndex !== trackIndex) {
 				this.play(song, trackIndex);
 			} else {
-				wavesurferRef.current?.playPause();
+				waveSurferRef.current?.playPause();
 				
-				if (wavesurferRef.current?.isPlaying()) {
+				if (waveSurferRef.current?.isPlaying()) {
 					dispatch({ type: ActionKind.SET_PLAYING });
 				} else {
 					dispatch({ type: ActionKind.SET_PAUSING });
 				}
 			}
 		},
-		
 		skip(amount) {
-			wavesurferRef.current?.skip(amount);
+			waveSurferRef.current?.skip(amount);
 			this.setPlaying();
 		},
-		
 		seek(time) {
-			wavesurferRef.current?.seekTo(time / wavesurferRef.current.getDuration());
+			waveSurferRef.current?.seekTo(time / waveSurferRef.current.getDuration());
 			this.setPlaying();
 		},
-		
 		setPlaybackRate(rate) {
-			wavesurferRef.current?.setPlaybackRate(rate);
+			waveSurferRef.current?.setPlaybackRate(rate);
 		},
-		
 		mute() {
-			wavesurferRef.current?.setMuted(!state.isMuted);
+			waveSurferRef.current?.setMuted(!state.isMuted);
 			dispatch({ type: ActionKind.SET_MUTED });
 		},
-		
 		playing(song, trackIndex) {
 			return state.song === song && state.trackIndex === trackIndex && state.isPlaying;
 		},
-		
 		setPlaying() {
 			// If not playing, start playing
 			if(!state.isPlaying) {
-				wavesurferRef.current?.play().then(() => {
+				waveSurferRef.current?.play().then(() => {
 					dispatch({ type: ActionKind.SET_PLAYING });
 				}).catch(console.error);
 			}
 		},
-		
 		muted() {
 			return state.isMuted;
 		},
-		
 		getCurrentTime() {
-			return wavesurferRef.current?.getCurrentTime() ?? 0;
+			return waveSurferRef.current?.getCurrentTime() ?? 0;
 		},
-		
 		getDuration() {
-			return wavesurferRef.current?.getDuration() ?? 0;
+			return waveSurferRef.current?.getDuration() ?? 0;
 		},
-		
 	}), [state.song, state.trackIndex, state.isPlaying, state.isMuted]);
 	
 	const api = useMemo<PlayerAPI>(
-		() => ({ ...state, ...actions, wavesurferRef }),
+		() => ({ ...state, ...actions, wavesurferRef: waveSurferRef }),
 		[state, actions],
 	);
 	
@@ -220,12 +210,6 @@ export function useAudioPlayer(song?: Song, trackIndex?: number) {
 			},
 			playing() {
 				return audioPlayer!.playing(song, trackIndex);
-			},
-			// getCurrentTime() {
-			// 	return audioPlayer!.getCurrentTime();
-			// },
-			getDuration() {
-				return audioPlayer!.getDuration();
 			},
 			muted() {
 				return audioPlayer!.muted();

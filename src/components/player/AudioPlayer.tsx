@@ -13,6 +13,23 @@ import { RewindButton } from "@/components/player/RewindButton";
 import { PlayButton } from "@/components/player/PlayButton";
 import { capitalizeTrackType, findMedleyForSong } from "@/components/Songs";
 
+// Color constants
+const WAVEFORM_TOP_COLOR = "#655555";
+const WAVEFORM_BOTTOM_COLOR = "#B1B1B1";
+const WAVEFORM_WHITE_LINE = "#ffffff";
+const PROGRESS_TOP_COLOR = "#af4ef6";
+const PROGRESS_BOTTOM_COLOR = "#cd96f5";
+const PROGRESS_WHITE_LINE = "#ffffff";
+
+function generateGradient(context: CanvasRenderingContext2D, height: number, colorStops: {
+	offset: number,
+	color: string
+}[]) {
+	const gradient = context.createLinearGradient(0, 0, 0, height * 1.35);
+	colorStops.forEach(({ offset, color }) => gradient.addColorStop(offset, color));
+	return gradient;
+}
+
 function formatTime(seconds: number) {
 	const minutes = Math.floor(seconds / 60);
 	const secondsRemainder = Math.round(seconds) % 60;
@@ -22,86 +39,79 @@ function formatTime(seconds: number) {
 
 export function AudioPlayer() {
 	const player = useAudioPlayer();
-	const song = player.song;
-	const trackIndex = player.trackIndex ?? 0;
-	const wavesurferRef = player.wavesurferRef;
+	const { song, trackIndex, wavesurferRef } = player;
 	const waveformContainerRef = useRef<HTMLDivElement>(null);
 	
 	// Attach the Wavesurfer instance to the DOM container when available
 	useEffect(() => {
 		if (!waveformContainerRef.current) return;
 		
-		// Create the canvas to generate the gradient
 		const canvas = document.createElement("canvas");
 		const context = canvas.getContext("2d");
-		
-		// Handle the case where context could be null
 		if (!context) return;
 		
-		// Define the waveform gradient (background)
-		const gradient = context.createLinearGradient(0, 0, 0, canvas.height * 1.35);
-		gradient.addColorStop(0, "#655555"); // Top color
-		gradient.addColorStop((canvas.height * 0.7) / canvas.height, "#655555"); // Top color
-		gradient.addColorStop((canvas.height * 0.7 + 1) / canvas.height, "#ffffff"); // White line
-		gradient.addColorStop((canvas.height * 0.7 + 2) / canvas.height, "#ffffff"); // White line
-		gradient.addColorStop((canvas.height * 0.7 + 3) / canvas.height, "#B1B1B1"); // Bottom color
-		gradient.addColorStop(1, "#B1B1B1"); // Bottom color
+		const waveformGradient = generateGradient(context, canvas.height, [
+			{ offset: 0, color: WAVEFORM_TOP_COLOR },
+			{ offset: 0.7, color: WAVEFORM_TOP_COLOR },
+			{ offset: 0.7 + 0.01, color: WAVEFORM_WHITE_LINE },
+			{ offset: 0.7 + 0.02, color: WAVEFORM_WHITE_LINE },
+			{ offset: 0.7 + 0.03, color: WAVEFORM_BOTTOM_COLOR },
+			{ offset: 1, color: WAVEFORM_BOTTOM_COLOR },
+		]);
 		
-		// Define the progress gradient
-		const progressGradient = context.createLinearGradient(0, 0, 0, canvas.height * 1.35);
-		progressGradient.addColorStop(0, "#af4ef6"); // Top color
-		progressGradient.addColorStop((canvas.height * 0.7) / canvas.height, "#9a27e8"); // Top color
-		progressGradient.addColorStop((canvas.height * 0.7 + 1) / canvas.height, "#ffffff"); // White line
-		progressGradient.addColorStop((canvas.height * 0.7 + 2) / canvas.height, "#ffffff"); // White line
-		progressGradient.addColorStop((canvas.height * 0.7 + 3) / canvas.height, "#be7fea"); // Bottom color
-		progressGradient.addColorStop(1, "#cd96f5"); // Bottom color
-
+		const progressGradient = generateGradient(context, canvas.height, [
+			{ offset: 0, color: PROGRESS_TOP_COLOR },
+			{ offset: 0.7, color: PROGRESS_TOP_COLOR },
+			{ offset: 0.7 + 0.01, color: PROGRESS_WHITE_LINE },
+			{ offset: 0.7 + 0.02, color: PROGRESS_WHITE_LINE },
+			{ offset: 0.7 + 0.03, color: PROGRESS_BOTTOM_COLOR },
+			{ offset: 1, color: PROGRESS_BOTTOM_COLOR },
+		]);
+		
 		// Create the WaveSurfer instance
 		wavesurferRef.current = WaveSurfer.create({
 			container: waveformContainerRef.current,
-			waveColor: gradient,
+			waveColor: waveformGradient,
 			progressColor: progressGradient,
 			barWidth: 2,
-			url: song?.audioTracks?.[trackIndex]?.src || "",
+			url: song?.audioTracks?.[trackIndex ?? 0]?.src || "",
 			plugins: [
 				Hover.create({
-					lineColor: "#ff0000", // Hover line color
-					lineWidth: 2, // Hover line width
-					labelBackground: "#555", // Hover label background color
-					labelColor: "#fff", // Hover label text color
-					labelSize: "11px", // Hover label text size
+					lineColor: "#ff0000",
+					lineWidth: 2,
+					labelBackground: "#555",
+					labelColor: "#fff",
+					labelSize: "11px",
 				}),
 			],
 		});
 		
-		// Start playing the track when it's decoded
-		wavesurferRef.current.on("decode", () => {
+		const handleDecode = () => {
 			wavesurferRef.current?.play().then(() => {
 				player.setPlaying();
 			}).catch(console.error);
-		});
+		};
 		
-		// Start playing the track when it's seeking
-		wavesurferRef.current.on("seeking", () => {
+		const handleSeeking = () => {
 			player.setPlaying();
-		});
+		};
 		
-		// Set isPlaying to false when audio finishes
-		wavesurferRef.current.on("finish", () => {
+		const handleFinish = () => {
 			player.pause();
-		});
+		};
 		
-		// Update the current time and duration
-		const timeEl = document.querySelector<HTMLDivElement>("#time");
-		const durationEl = document.querySelector<HTMLDivElement>("#duration");
+		wavesurferRef.current.on("decode", handleDecode);
+		wavesurferRef.current.on("seeking", handleSeeking);
+		wavesurferRef.current.on("finish", handleFinish);
 		
-		// Display the duration after decoding
+		const timeEl = document.getElementById("time");
+		const durationEl = document.getElementById("duration");
 		if (durationEl) {
+			durationEl.textContent = "0:00";
 			wavesurferRef.current.on("decode", (duration: number) => (durationEl.textContent = formatTime(duration)));
 		}
-		
-		// Update the current time during playback
 		if (timeEl) {
+			timeEl.textContent = "0:00";
 			wavesurferRef.current.on("audioprocess", (currentTime: number) => (timeEl.textContent = formatTime(currentTime)));
 			wavesurferRef.current.on("seeking", (currentTime: number) => (timeEl.textContent = formatTime(currentTime)));
 		}
@@ -115,10 +125,9 @@ export function AudioPlayer() {
 	
 	if (!song) return null;
 	
-	// Determine the title and link based on whether the song is part of a medley
 	const medleyDetails = findMedleyForSong(song.id);
 	const linkHref = medleyDetails ? `/${medleyDetails.medley.id}` : `/${song.id}`;
-	const trackType = song.audioTracks?.[trackIndex]?.trackType;
+	const trackType = song.audioTracks?.[trackIndex ?? 0]?.trackType;
 	const trackTypeDisplay = trackType && trackType !== "song" ? ` [${capitalizeTrackType(trackType)}]` : "";
 	const displayTitle = medleyDetails
 		? `${medleyDetails.song.artist} - ${medleyDetails.medley.title}: ${medleyDetails.song.title}${trackTypeDisplay}`
@@ -128,7 +137,7 @@ export function AudioPlayer() {
 		<div
 			className="flex items-center gap-6 bg-white/90 px-4 py-4 shadow shadow-slate-200/80 ring-1 ring-slate-900/5 backdrop-blur-sm md:px-6">
 			<div className="hidden md:block">
-				<PlayButton song={song} trackIndex={trackIndex} size="grandPlayer"/>
+				<PlayButton song={song} trackIndex={trackIndex ?? 0} size="grandPlayer"/>
 			</div>
 			<div className="mb-[env(safe-area-inset-bottom)] flex flex-1 flex-col gap-3 overflow-hidden p-1">
 				<Link
@@ -145,7 +154,7 @@ export function AudioPlayer() {
 					<div className="flex flex-none items-center gap-4">
 						<RewindButton player={player}/>
 						<div className="md:hidden">
-							<PlayButton song={song} trackIndex={trackIndex} size="miniPlayer"/>
+							<PlayButton song={song} trackIndex={trackIndex ?? 0} size="miniPlayer"/>
 						</div>
 						<ForwardButton player={player}/>
 						<div className="flex items-center">
