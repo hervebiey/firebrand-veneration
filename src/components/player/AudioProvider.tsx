@@ -22,6 +22,7 @@ interface PublicPlayerActions {
 	setPlaybackRate: (rate: number) => void;
 	mute: () => void;
 	playing: (song?: Song, trackIndex?: number) => boolean;
+	setPlaying: () => void;
 	muted: () => boolean;
 	getCurrentTime: () => number;
 	getDuration: () => number;
@@ -146,10 +147,12 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		
 		skip(amount) {
 			wavesurferRef.current?.skip(amount);
+			this.setPlaying();
 		},
 		
 		seek(time) {
 			wavesurferRef.current?.seekTo(time / wavesurferRef.current.getDuration());
+			this.setPlaying();
 		},
 		
 		setPlaybackRate(rate) {
@@ -163,6 +166,15 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 		
 		playing(song, trackIndex) {
 			return state.song === song && state.trackIndex === trackIndex && state.isPlaying;
+		},
+		
+		setPlaying() {
+			// If not playing, start playing
+			if(!state.isPlaying) {
+				wavesurferRef.current?.play().then(() => {
+					dispatch({ type: ActionKind.SET_PLAYING });
+				}).catch(console.error);
+			}
 		},
 		
 		muted() {
@@ -201,7 +213,7 @@ export function useAudioPlayer(song?: Song, trackIndex?: number) {
 		() => ({
 			...audioPlayer!,
 			play() {
-				audioPlayer!.play(song, trackIndex);
+				audioPlayer.play(song, trackIndex);
 			},
 			toggle() {
 				audioPlayer!.toggle(song, trackIndex);

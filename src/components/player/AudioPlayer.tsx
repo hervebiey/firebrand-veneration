@@ -74,9 +74,9 @@ export function AudioPlayer() {
 			],
 		});
 		
-		// Start playing the track when it's decoded
-		wavesurferRef.current.on("decode", () => {
-			wavesurferRef.current?.play().catch(console.error);
+		// Set isPlaying to false when audio finishes
+		wavesurferRef.current.on("finish", () => {
+			player.pause();
 		});
 		
 		// Update the current time and duration
@@ -91,6 +91,10 @@ export function AudioPlayer() {
 		// Update the current time during playback
 		if (timeEl) {
 			wavesurferRef.current.on("audioprocess", (currentTime: number) => (timeEl.textContent = formatTime(currentTime)));
+			wavesurferRef.current.on("seeking", (currentTime: number) => {
+				timeEl.textContent = formatTime(currentTime);
+				player.setPlaying();
+			});
 		}
 		
 		// Clean up on unmount
