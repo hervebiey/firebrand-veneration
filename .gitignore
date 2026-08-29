@@ -37,3 +37,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# design canvas build output (regenerated from design/*.dc.html)
+/design/music-site-v4.html
