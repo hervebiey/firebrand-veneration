@@ -1,24 +1,21 @@
 import Link from "next/link";
 
-import { WaveImage } from "@/components/WaveImage";
-
 export default function NotFound() {
 	return (
-		<main className="relative flex h-full items-center py-36 lg:px-8">
-			<WaveImage className="absolute left-0 top-0 h-20 w-full"/>
-			<div className="relative mx-auto flex w-full max-w-2xl flex-col items-center px-4 sm:px-6 lg:px-0">
-				<p className="font-mono text-sm leading-7 text-slate-500">404</p>
-				<h1 className="mt-4 text-lg font-bold text-slate-900">
+		<main className="flex min-h-screen items-center justify-center bg-surface px-8 text-center text-ink">
+			<div>
+				<p className="text-[11px] font-bold tracking-[0.4em] text-soft">404</p>
+				<h1 className="mt-5 text-3xl font-bold tracking-[0.06em]">
 					Page not found
 				</h1>
-				<p className="mt-2 text-base leading-7 text-slate-700">
-					Sorry, we couldn’t find the page you’re looking for.
+				<p className="mt-4 text-[15px] leading-relaxed text-soft">
+					Sorry, we couldn&rsquo;t find the page you&rsquo;re looking for.
 				</p>
 				<Link
 					href="/"
-					className="mt-4 text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
+					className="mt-8 inline-block border border-strong px-8 py-4 text-[11px] font-bold tracking-[0.3em] transition hover:bg-ink hover:text-surface"
 				>
-					Go back home
+					BACK TO THE SITE
 				</Link>
 			</div>
 		</main>

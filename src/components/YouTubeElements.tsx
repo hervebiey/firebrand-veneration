@@ -1,19 +1,16 @@
 import React from "react";
 
 const YoutubeEmbed: React.FC<{ youtubeId: string }> = ({ youtubeId }) => {
-	if (!youtubeId) {
-		console.error("YoutubeEmbed: Missing or invalid youtubeId");
-		return null;
-	}
-	
+	if (!youtubeId) return null;
+
 	const sanitizedYoutubeId = youtubeId.replace(/[^\w-]/g, "");
-	
+
 	return (
-		<div className="video-responsive overflow-hidden relative pt-[56.25%]">
+		<div className="relative overflow-hidden bg-stage pt-[56.25%]">
 			<iframe
 				title="Embedded youtube"
 				src={`https://www.youtube.com/embed/${sanitizedYoutubeId}`}
-				style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+				className="absolute inset-0 h-full w-full border-0"
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 				allowFullScreen
 			/>
@@ -21,17 +18,16 @@ const YoutubeEmbed: React.FC<{ youtubeId: string }> = ({ youtubeId }) => {
 	);
 };
 
-export const YouTubeElements: React.FC<{ youtubeIds?: string[] }> = ({ youtubeIds }) => {
+export const YouTubeElements: React.FC<{ youtubeIds?: string[] }> = ({
+	youtubeIds,
+}) => {
 	if (!youtubeIds || youtubeIds.length === 0) return null;
-	
+
 	return (
-		<>
+		<div className="flex flex-col gap-6">
 			{youtubeIds.map((youtubeId) => (
-				<React.Fragment key={youtubeId}>
-					<YoutubeEmbed youtubeId={youtubeId}/>
-					<hr key={"hr_" + youtubeId} className="my-10 border-gray-50"/>
-				</React.Fragment>
+				<YoutubeEmbed key={youtubeId} youtubeId={youtubeId} />
 			))}
-		</>
+		</div>
 	);
 };
