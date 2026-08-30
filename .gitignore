@@ -39,4 +39,4 @@ yarn-error.log*
 next-env.d.ts
 
 # design canvas build output (regenerated from design/*.dc.html)
-/design/music-site-v4.html
+/design/music-site-*.html

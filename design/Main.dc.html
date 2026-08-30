@@ -8,16 +8,15 @@
 <body>
 <x-dc>
 <helmet>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800;900&display=swap">
 <style>
 body{margin:0;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 a:hover{color:inherit}
-html{scroll-behavior:smooth}
 @keyframes fb-pulse{0%,100%{transform:scale(1);opacity:.65}50%{transform:scale(1.18);opacity:1}}
-@keyframes fb-rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 </style>
 <script>
 window.__fbTimer = window.__fbTimer || setInterval(function () {
@@ -28,200 +27,186 @@ window.__fbTimer = window.__fbTimer || setInterval(function () {
 </script>
 </helmet>
 <div style="{{ themeVars }}">
-<div style="font-family: Satoshi, 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif; background: var(--bg,#0d0c10); color: var(--ink,#f5f4f7); min-height: 100vh; padding-bottom: 92px; transition: background 0.3s, color 0.3s;">
-  <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: 18px 60px; background: var(--navbg,rgba(13,12,16,0.55)); backdrop-filter: blur(12px); transition: background 0.3s;">
-    <button type="button" onClick="{{ goHome }}" style="border: none; background: none; padding: 0; cursor: pointer; color: var(--ink,#f5f4f7); font-family: inherit; font-weight: 800; font-size: 15px; letter-spacing: 0.3em;">FIREBRAND</button>
-    <div style="display: flex; align-items: center; gap: 36px;">
-      <button type="button" onClick="{{ goListen }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--muted,rgba(245,244,247,0.52)); transition: color 0.25s;" style-hover="color: var(--ink,#f5f4f7);">LISTEN</button>
-      <button type="button" onClick="{{ goEvent }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--muted,rgba(245,244,247,0.52)); transition: color 0.25s;" style-hover="color: var(--ink,#f5f4f7);">LIVE</button>
-      <button type="button" onClick="{{ goCollective }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--muted,rgba(245,244,247,0.52)); transition: color 0.25s;" style-hover="color: var(--ink,#f5f4f7);">COLLECTIVE</button>
-      <button type="button" onClick="{{ goPractice }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--muted,rgba(245,244,247,0.52)); transition: color 0.25s;" style-hover="color: var(--ink,#f5f4f7);">SONGBOOK</button>
-      <button type="button" onClick="{{ toggleDark }}" aria-label="Toggle light mode" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--muted,rgba(245,244,247,0.52)); transition: border-color 0.25s, color 0.25s;" style-hover="border-color: var(--ink,#f5f4f7); color: var(--ink,#f5f4f7);">
+<div style="font-family: Satoshi, 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif; background: var(--bg,#0e0d0c); color: var(--ink,#f5f3f0); min-height: 100vh; padding-bottom: 96px; transition: background 0.3s, color 0.3s;">
+  <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: 22px 56px; background: linear-gradient(rgba(10,9,8,0.55), transparent); backdrop-filter: blur(2px);">
+    <button type="button" onClick="{{ goHome }}" style="border: none; background: none; padding: 0; cursor: pointer; color: #fff; font-family: inherit; font-weight: 700; font-size: 16px; letter-spacing: 0.34em;">FIREBRAND</button>
+    <div style="display: flex; align-items: center; gap: 34px;">
+      <button type="button" onClick="{{ goListen }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.26em; color: rgba(255,255,255,0.85);" style-hover="color: #fff;">LISTEN</button>
+      <button type="button" onClick="{{ goEvent }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.26em; color: rgba(255,255,255,0.85);" style-hover="color: #fff;">LIVE</button>
+      <button type="button" onClick="{{ goCollective }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.26em; color: rgba(255,255,255,0.85);" style-hover="color: #fff;">THE COLLECTIVE</button>
+      <button type="button" onClick="{{ goPractice }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.26em; color: rgba(255,255,255,0.85);" style-hover="color: #fff;">SONGBOOK</button>
+      <button type="button" onClick="{{ toggleDark }}" aria-label="Toggle light mode" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.3); border-radius: 9999px; background: none; cursor: pointer; color: rgba(255,255,255,0.85);" style-hover="border-color: #fff; color: #fff;">
         <sc-if value="{{ dark }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width: 14px; height: 14px;"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"></path></svg></sc-if>
         <sc-if value="{{ light }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 13px; height: 13px;"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"></path></svg></sc-if>
       </button>
     </div>
   </nav>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Menu" style="position: fixed; inset: 0; z-index: 50; background: rgba(10,9,8,0.97); color: #faf9f7; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;">
+    <button type="button" onClick="{{ closeMenu }}" aria-label="Close menu" style="position: absolute; top: 26px; right: 48px; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.25); border-radius: 9999px; background: none; color: #faf9f7; cursor: pointer; font-size: 16px; font-family: inherit;" style-hover="background: rgba(255,255,255,0.08);">✕</button>
+    <sc-for list="{{ menuLinks }}" as="mi" hint-placeholder-count="5">
+      <button type="button" onClick="{{ mi.go }}" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.85); font-family: inherit; font-size: 28px; font-weight: 700; letter-spacing: 0.26em;" style-hover="color: var(--accent,#e11d48);">{{ mi.label }}</button>
+    </sc-for>
+  </div>
+  </sc-if>
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-  <div data-screen-label="Home">
-    <section style="position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; background: #0b0a0e;">
-      <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; opacity: 0.5; filter: saturate(0.75);">
-      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,10,14,0.2) 0%, rgba(11,10,14,0.4) 50%, #0d0c10 100%);"></div>
-      <div style="position: relative; width: 100%; max-width: 1240px; margin: 0 auto; padding: 160px 60px 88px; box-sizing: border-box;">
-        <p style="margin: 0 0 18px; font-size: 12px; font-weight: 600; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(255,255,255,0.6); animation: fb-rise 0.9s ease both;">VNC Worldwide — Worship Collective</p>
-        <h1 style="margin: 0; font-size: 118px; font-weight: 900; letter-spacing: 0.01em; line-height: 0.95; color: #fff; animation: fb-rise 0.9s ease 0.12s both;">FIREBRAND</h1>
-        <p style="margin: 26px 0 0; max-width: 44ch; font-size: 18px; font-weight: 400; line-height: 1.6; color: rgba(255,255,255,0.72); animation: fb-rise 0.9s ease 0.24s both;">Two sessions of praise — the set, the voices, and everything the choir needs to carry the night.</p>
-        <div style="margin-top: 36px; display: flex; align-items: center; gap: 14px; animation: fb-rise 0.9s ease 0.36s both;">
-          <button type="button" onClick="{{ playAll }}" style="display: flex; align-items: center; gap: 12px; border: none; border-radius: 9999px; background: #fff; color: #0b0a0e; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; padding: 17px 34px; transition: background 0.25s, color 0.25s;" style-hover="background: var(--accent,#e11d48); color: #fff;">
-            <svg viewBox="0 0 36 36" style="width: 11px; height: 11px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg>
-            PLAY THE SET
-          </button>
-          <button type="button" onClick="{{ goPractice }}" style="border: 1px solid rgba(255,255,255,0.35); border-radius: 9999px; background: none; cursor: pointer; color: rgba(255,255,255,0.85); font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; padding: 16px 32px; transition: border-color 0.25s, color 0.25s;" style-hover="border-color: #fff; color: #fff;">THE SONGBOOK</button>
-        </div>
+  <div data-screen-label="Public home">
+    <section style="position: relative; min-height: 92vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0a0908;">
+      <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: saturate(0.85);">
+      <div style="position: absolute; inset: 0; background: radial-gradient(75% 75% at 50% 40%, transparent 0%, rgba(10,9,8,0.75) 100%);"></div>
+      <div style="position: relative; text-align: center; padding: 120px 32px 80px;">
+        <p style="margin: 0 0 20px; font-size: 11px; font-weight: 500; letter-spacing: 0.5em; text-transform: uppercase; color: rgba(255,255,255,0.65);">VNC Worldwide</p>
+        <h1 style="margin: 0; font-size: 100px; font-weight: 700; letter-spacing: 0.22em; line-height: 1; color: #fff;">FIREBRAND</h1>
       </div>
     </section>
-    <section id="listen" style="padding: 104px 60px 40px;">
-      <div style="max-width: 1120px; margin: 0 auto;">
-        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;">
-          <div>
-            <p style="margin: 0 0 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent,#e11d48);">Listen</p>
-            <h2 style="margin: 0; font-size: 46px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.05;">The Veneration Set</h2>
-          </div>
-          <p style="margin: 0 0 6px; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--muted,rgba(245,244,247,0.52));">Three songs · one night</p>
-        </div>
-        <div style="margin-top: 44px; border-top: 1px solid var(--line,rgba(245,244,247,0.09));">
+    <section style="padding: 100px 56px 40px;">
+      <p style="margin: 0 auto; max-width: 46ch; text-align: center; font-size: 26px; font-weight: 400; line-height: 1.65; color: var(--ink,#f5f3f0); text-wrap: balance;">“Two sessions of praise — the set, the voices, and everything the choir needs to carry the night.”</p>
+    </section>
+    <section style="padding: 64px 56px;">
+      <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;">
+        <sc-for list="{{ tiles }}" as="tile" hint-placeholder-count="4">
+          <button type="button" onClick="{{ tile.onOpen }}" style="position: relative; display: block; border: none; padding: 0; cursor: pointer; overflow: hidden; height: 300px; background: #0a0908; font-family: inherit; text-align: center; width: 100%;">
+            <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{ tile.pos }}; opacity: 0.5; filter: saturate(0.8); transition: transform 0.5s;">
+            <span style="position: absolute; inset: 0; background: rgba(10,9,8,0.55); transition: background 0.3s;" style-hover="background: rgba(10,9,8,0.35);"></span>
+            <span style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 10px; pointer-events: none;">
+              <span style="font-size: 22px; font-weight: 700; letter-spacing: 0.22em; color: #fff;">{{ tile.title }}</span>
+              <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.3em; color: rgba(255,255,255,0.65);">{{ tile.sub }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+    <section id="listen" style="padding: 72px 56px 40px;">
+      <div style="max-width: 760px; margin: 0 auto;">
+        <p style="margin: 0 0 10px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent,#e11d48);">Listen</p>
+        <h2 style="margin: 0 0 40px; text-align: center; font-size: 34px; font-weight: 700; letter-spacing: 0.06em;">The Veneration Set</h2>
+        <div style="border-top: 1px solid var(--line,rgba(255,255,255,0.12));">
           <sc-for list="{{ listenCards }}" as="card" hint-placeholder-count="3">
-            <div style="display: flex; align-items: center; gap: 26px; padding: 26px 10px; border-bottom: 1px solid var(--line,rgba(245,244,247,0.09)); transition: background 0.25s; border-radius: 2px;" style-hover="background: var(--rowhov,rgba(245,244,247,0.03));">
-              <span style="width: 34px; flex: none; font-size: 14px; font-weight: 500; color: var(--muted,rgba(245,244,247,0.52)); font-variant-numeric: tabular-nums;">{{ card.num }}</span>
-              <button type="button" onClick="{{ card.onPlay }}" aria-label="Play" style="display: flex; width: 48px; height: 48px; flex: none; align-items: center; justify-content: center; border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f4f7); transition: background 0.25s, color 0.25s, border-color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10); border-color: var(--ink,#f5f4f7);">
+            <div style="display: flex; align-items: center; gap: 22px; padding: 24px 6px; border-bottom: 1px solid var(--line,rgba(255,255,255,0.12));">
+              <button type="button" onClick="{{ card.onPlay }}" aria-label="Play" style="display: flex; width: 46px; height: 46px; flex: none; align-items: center; justify-content: center; border: 1px solid var(--line2,rgba(255,255,255,0.35)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f3f0);" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">
                 <svg viewBox="0 0 36 36" style="width: 13px; height: 13px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg>
               </button>
               <button type="button" onClick="{{ card.onOpen }}" style="flex: 1; min-width: 0; border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; text-align: left; color: inherit;">
-                <span style="display: block; font-size: 21px; font-weight: 600; letter-spacing: -0.005em;">{{ card.title }}</span>
-                <span style="display: block; margin-top: 4px; font-size: 13.5px; font-weight: 400; color: var(--muted,rgba(245,244,247,0.52));">{{ card.sub }}</span>
+                <span style="display: block; font-size: 20px; font-weight: 500; letter-spacing: 0.02em;" style-hover="color: var(--accent,#e11d48);">{{ card.title }}</span>
+                <span style="display: block; margin-top: 3px; font-size: 13px; font-weight: 400; color: var(--muted,rgba(255,255,255,0.55));">{{ card.sub }}</span>
               </button>
-              <span style="font-size: 13px; font-weight: 500; color: var(--muted,rgba(245,244,247,0.52)); flex: none; font-variant-numeric: tabular-nums;">{{ card.dur }}</span>
-              <button type="button" onClick="{{ card.onOpen }}" aria-label="Open song page" style="border: none; background: none; padding: 8px; cursor: pointer; color: var(--muted,rgba(245,244,247,0.52)); flex: none; font-size: 18px; font-family: inherit; transition: color 0.25s, transform 0.25s;" style-hover="color: var(--ink,#f5f4f7); transform: translateX(4px);">→</button>
+              <span style="font-size: 13px; font-weight: 400; color: var(--muted,rgba(255,255,255,0.55)); flex: none;">{{ card.dur }}</span>
+              <button type="button" onClick="{{ card.onOpen }}" aria-label="Open song page" style="border: none; background: none; padding: 6px; cursor: pointer; color: var(--muted,rgba(255,255,255,0.55)); flex: none; font-size: 16px; font-family: inherit;" style-hover="color: var(--ink,#f5f3f0);">→</button>
             </div>
           </sc-for>
         </div>
       </div>
     </section>
-    <section id="event" style="padding: 104px 60px;">
-      <div style="max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 88px; align-items: center;">
-        <img src="poster.png" alt="Veneration event poster" style="width: 100%; max-width: 430px; border-radius: 8px; box-shadow: 0 50px 110px -40px rgba(0,0,0,0.75); justify-self: end;">
-        <div>
-          <p style="margin: 0 0 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent,#e11d48);">Live</p>
-          <h2 style="margin: 0; font-size: 46px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.1; text-wrap: balance;">Veneration Night with the King</h2>
-          <p style="margin: 24px 0 0; max-width: 46ch; font-size: 16px; font-weight: 400; line-height: 1.8; color: var(--muted,rgba(245,244,247,0.52));">VNC Firebrand's worship evening — two sessions of praise led by the collective's voices, from the opening set to the closing medley.</p>
-          <div style="margin-top: 34px; display: flex; align-items: center; gap: 22px;">
-            <button type="button" onClick="{{ playAll }}" style="display: flex; align-items: center; gap: 12px; border: none; border-radius: 9999px; background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10); cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; padding: 16px 32px; transition: background 0.25s, color 0.25s;" style-hover="background: var(--accent,#e11d48); color: #fff;">
-              <svg viewBox="0 0 36 36" style="width: 11px; height: 11px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg>
-              PLAY ALL
-            </button>
-            <button type="button" onClick="{{ goListen }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--muted,rgba(245,244,247,0.52)); transition: color 0.25s;" style-hover="color: var(--ink,#f5f4f7);">THE SET →</button>
-          </div>
-        </div>
+    <section id="event" style="padding: 80px 56px;">
+      <div style="max-width: 760px; margin: 0 auto; text-align: center;">
+        <p style="margin: 0 0 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent,#e11d48);">Live</p>
+        <h2 style="margin: 0 0 36px; font-size: 34px; font-weight: 700; letter-spacing: 0.06em; text-wrap: balance;">Veneration Night with the King</h2>
+        <img src="poster.png" alt="Veneration event poster" style="display: block; width: 340px; margin: 0 auto; box-shadow: 0 40px 90px -30px rgba(0,0,0,0.8);">
+        <p style="margin: 32px auto 0; font-size: 16px; font-weight: 400; line-height: 1.7; color: var(--muted,rgba(255,255,255,0.55)); max-width: 46ch;">VNC Firebrand's worship evening — two sessions of praise led by the collective's voices.</p>
+        <button type="button" onClick="{{ playAll }}" style="margin-top: 30px; border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; color: var(--ink,#f5f3f0); font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; padding: 15px 34px;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">PLAY ALL</button>
       </div>
     </section>
-    <section id="collective" style="padding: 40px 60px 110px;">
-      <div style="max-width: 1120px; margin: 0 auto;">
-        <p style="margin: 0 0 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent,#e11d48);">The Collective</p>
-        <h2 style="margin: 0; font-size: 46px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.05;">Twelve voices, three parts</h2>
-        <div style="margin-top: 52px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px;">
+    <section id="collective" style="padding: 56px 56px 88px;">
+      <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <p style="margin: 0 0 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent,#e11d48);">The collective</p>
+        <h2 style="margin: 0 0 44px; font-size: 34px; font-weight: 700; letter-spacing: 0.06em;">Twelve Voices, Three Parts</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
           <sc-for list="{{ vocalParts }}" as="vp" hint-placeholder-count="3">
-            <div style="border-top: 1px solid var(--line,rgba(245,244,247,0.09)); padding-top: 22px;">
-              <p style="margin: 0 0 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted,rgba(245,244,247,0.52));">{{ vp.part }}</p>
-              <p style="margin: 0; font-size: 18px; font-weight: 500; line-height: 2; white-space: pre-line;">{{ vp.singerList }}</p>
+            <div>
+              <p style="margin: 0 0 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted,rgba(255,255,255,0.55));">{{ vp.part }}</p>
+              <p style="margin: 0; font-size: 17px; font-weight: 500; line-height: 2; color: var(--ink,#f5f3f0);">{{ vp.singersLines }}</p>
             </div>
           </sc-for>
         </div>
       </div>
     </section>
-    <section style="padding: 0 60px 110px;">
-      <div style="max-width: 1120px; margin: 0 auto; border-top: 1px solid var(--line,rgba(245,244,247,0.09)); padding-top: 64px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
-        <p style="margin: 0; max-width: 44ch; font-size: 22px; font-weight: 500; line-height: 1.55;">In the choir? The songbook holds the lyrics, keys, voice parts and practice tracks.</p>
-        <button type="button" onClick="{{ goPractice }}" style="border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f4f7); font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; padding: 16px 32px; flex: none; transition: background 0.25s, color 0.25s, border-color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10); border-color: var(--ink,#f5f4f7);">ENTER THE SONGBOOK</button>
-      </div>
-    </section>
-    <footer style="padding: 34px 60px 44px; border-top: 1px solid var(--line,rgba(245,244,247,0.09));">
-      <div style="max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
-        <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.3em; color: var(--ink,#f5f4f7);">FIREBRAND</span>
-        <p style="margin: 0; font-size: 12px; font-weight: 400; color: var(--muted,rgba(245,244,247,0.52));">&copy; 2026 VNC Worldwide. All rights reserved.</p>
-      </div>
+    <footer style="padding: 32px 56px 40px; border-top: 1px solid var(--line,rgba(255,255,255,0.12)); display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <p style="margin: 0; font-size: 12px; font-weight: 400; color: var(--muted,rgba(255,255,255,0.55));">&copy; 2026 VNC Worldwide. All rights reserved.</p>
+      <button type="button" onClick="{{ goPractice }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.26em; color: var(--muted,rgba(255,255,255,0.55));" style-hover="color: var(--ink,#f5f3f0);">THE SONGBOOK →</button>
     </footer>
   </div>
   </sc-if>
   <sc-if value="{{ isPublicSong }}" hint-placeholder-val="{{ false }}">
-  <div data-screen-label="Song page">
-    <section style="position: relative; overflow: hidden; background: #0b0a0e; display: flex; align-items: flex-end; min-height: 66vh;">
-      <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.28; filter: saturate(0.75);">
-      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,10,14,0.4) 0%, #0d0c10 100%);"></div>
-      <div style="position: relative; width: 100%; max-width: 1000px; margin: 0 auto; padding: 150px 60px 64px; box-sizing: border-box;">
-        <button type="button" onClick="{{ goListenBack }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); transition: color 0.25s;" style-hover="color: #fff;">← THE VENERATION SET</button>
-        <p style="margin: 44px 0 0; font-size: 12px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.6);">{{ pubOverline }}</p>
-        <h1 style="margin: 12px 0 0; font-size: 68px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.02; color: #fff; text-wrap: balance;">{{ pubTitle }}</h1>
-        <p style="margin: 18px 0 0; font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.58);">{{ pubCredit }}</p>
-        <div style="margin-top: 32px; display: flex; align-items: center; gap: 14px;">
-          <button type="button" onClick="{{ pubPlay }}" style="display: flex; align-items: center; gap: 12px; border: none; border-radius: 9999px; background: #fff; color: #0b0a0e; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; padding: 16px 32px; transition: background 0.25s, color 0.25s;" style-hover="background: var(--accent,#e11d48); color: #fff;">
+  <div data-screen-label="Public song page">
+    <section style="position: relative; overflow: hidden; background: #0a0908; padding: 140px 56px 72px;">
+      <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.22; filter: saturate(0.8);">
+      <div style="position: absolute; inset: 0; background: linear-gradient(rgba(10,9,8,0.3), rgba(10,9,8,0.85));"></div>
+      <div style="position: relative; max-width: 760px; margin: 0 auto; text-align: center;">
+        <button type="button" onClick="{{ goListenBack }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.26em; color: rgba(255,255,255,0.6);" style-hover="color: #fff;">← THE VENERATION SET</button>
+        <p style="margin: 40px 0 0; font-size: 12px; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.65);">{{ pubOverline }}</p>
+        <h1 style="margin: 14px 0 0; font-size: 56px; font-weight: 700; letter-spacing: 0.08em; line-height: 1.08; color: #fff; text-wrap: balance;">{{ pubTitle }}</h1>
+        <p style="margin: 18px 0 0; font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.6);">{{ pubCredit }}</p>
+        <div style="margin-top: 36px; display: flex; justify-content: center; gap: 14px;">
+          <button type="button" onClick="{{ pubPlay }}" style="display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,0.6); background: none; cursor: pointer; color: #fff; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; padding: 15px 32px;" style-hover="background: #fff; color: #0e0d0c;">
             <sc-if value="{{ pubPlaying }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" style="width: 11px; height: 11px; fill: currentColor;"><path d="M8.5 4C7.67157 4 7 4.67157 7 5.5V30.5C7 31.3284 7.67157 32 8.5 32H11.5C12.3284 32 13 31.3284 13 30.5V5.5C13 4.67157 12.3284 4 11.5 4H8.5ZM24.5 4C23.6716 4 23 4.67157 23 5.5V30.5C23 31.3284 23.6716 32 24.5 32H27.5C28.3284 32 29 31.3284 29 30.5V5.5C29 4.67157 28.3284 4 27.5 4H24.5Z"></path></svg></sc-if>
             <sc-if value="{{ pubNotPlaying }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 36 36" style="width: 11px; height: 11px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></sc-if>
             {{ pubPlayLabel }}
           </button>
-          <a href="{{ pubWatch }}" target="_blank" style="display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.3); border-radius: 9999px; color: rgba(255,255,255,0.8); font-size: 12px; font-weight: 700; letter-spacing: 0.16em; padding: 15px 30px; transition: border-color 0.25s, color 0.25s;" style-hover="border-color: #fff; color: #fff;">YOUTUBE ↗</a>
+          <a href="{{ pubWatch }}" target="_blank" style="display: flex; align-items: center; border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 700; letter-spacing: 0.3em; padding: 15px 32px;" style-hover="border-color: rgba(255,255,255,0.6); color: #fff;">YOUTUBE ↗</a>
         </div>
       </div>
     </section>
-    <div style="max-width: 880px; margin: 0 auto; padding: 56px 60px 24px;">
-      <a href="{{ pubWatch }}" target="_blank" style="position: relative; display: block; overflow: hidden; padding-top: 56.25%; background: #0b0a0e; border-radius: 8px;">
-        <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.32; filter: saturate(0.7); transition: opacity 0.3s;">
-        <span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;">
-          <span style="display: flex; width: 60px; height: 60px; align-items: center; justify-content: center; border-radius: 9999px; background: #fff; color: #0b0a0e;"><svg viewBox="0 0 36 36" style="width: 18px; height: 18px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></span>
-          <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: rgba(255,255,255,0.75);">WATCH THE REFERENCE ON YOUTUBE ↗</span>
-        </span>
-      </a>
-      <div style="margin-top: 46px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 22px; border-bottom: 1px solid var(--line,rgba(245,244,247,0.09));">
-        <p style="margin: 0; font-size: 12.5px; font-weight: 500; letter-spacing: 0.1em; color: var(--muted,rgba(245,244,247,0.52));">{{ pubMeta }}</p>
+    <div style="max-width: 860px; margin: 0 auto; padding: 56px 56px 24px;">
+      <a href="{{ pubWatch }}" target="_blank" style="position: relative; display: block; overflow: hidden; padding-top: 56.25%; background: #0a0908;"><img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: saturate(0.8);"><span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;"><span style="display: flex; width: 54px; height: 54px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.6); color: #fff;"><svg viewBox="0 0 36 36" style="width: 15px; height: 15px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></span><span style="font-size: 10px; font-weight: 700; letter-spacing: 0.24em; color: rgba(255,255,255,0.75);">WATCH THE REFERENCE ON YOUTUBE ↗</span></span></a>
+      <div style="margin-top: 44px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 22px; border-bottom: 1px solid var(--line,rgba(255,255,255,0.12));">
+        <p style="margin: 0; font-size: 12px; font-weight: 500; letter-spacing: 0.12em; color: var(--muted,rgba(255,255,255,0.55));">{{ pubMeta }}</p>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--muted,rgba(245,244,247,0.52));">TRANSPOSE</span>
-          <button type="button" onClick="{{ tDown }}" aria-label="Transpose down" style="width: 32px; height: 32px; border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f4f7); font-family: inherit; font-size: 14px; transition: background 0.25s, color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10);">−</button>
-          <span style="font-size: 12.5px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent,#e11d48); min-width: 78px; text-align: center;">{{ pubKeyLabel }}</span>
-          <button type="button" onClick="{{ tUp }}" aria-label="Transpose up" style="width: 32px; height: 32px; border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f4f7); font-family: inherit; font-size: 14px; transition: background 0.25s, color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10);">+</button>
+          <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.24em; color: var(--muted,rgba(255,255,255,0.55));">TRANSPOSE</span>
+          <button type="button" onClick="{{ tDown }}" aria-label="Transpose down" style="width: 30px; height: 30px; border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; color: var(--ink,#f5f3f0); font-family: inherit; font-size: 14px;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">−</button>
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent,#e11d48); min-width: 76px; text-align: center;">{{ pubKeyLabel }}</span>
+          <button type="button" onClick="{{ tUp }}" aria-label="Transpose up" style="width: 30px; height: 30px; border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; color: var(--ink,#f5f3f0); font-family: inherit; font-size: 14px;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">+</button>
         </div>
       </div>
-      <div style="margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--line,rgba(245,244,247,0.09));">
-        <span style="font-size: 12.5px; font-weight: 500; letter-spacing: 0.1em; color: var(--muted,rgba(245,244,247,0.52));">{{ pubTempo }}</span>
-        <span style="font-size: 12.5px; font-weight: 500; letter-spacing: 0.1em; color: var(--muted,rgba(245,244,247,0.52));">CHORDS&ensp;<span style="color: var(--accent,#e11d48); font-weight: 700;">{{ pubChords }}</span></span>
+      <div style="margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--line,rgba(255,255,255,0.12));">
+        <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.12em; color: var(--muted,rgba(255,255,255,0.55));">{{ pubTempo }}</span>
+        <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.12em; color: var(--muted,rgba(255,255,255,0.55));">CHORDS&ensp;<span style="color: var(--accent,#e11d48); font-weight: 700;">{{ pubChords }}</span></span>
       </div>
-      <div style="margin-top: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
-        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--muted,rgba(245,244,247,0.52)); margin-right: 6px;">PARTS</span>
+      <div style="margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.24em; color: var(--muted,rgba(255,255,255,0.55)); margin-right: 4px;">PARTS</span>
         <sc-for list="{{ pubTracks }}" as="trk" hint-placeholder-count="2">
-          <button type="button" onClick="{{ trk.onPlay }}" style="display: flex; align-items: center; gap: 9px; border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--ink,#f5f4f7); padding: 11px 20px; text-transform: uppercase; transition: background 0.25s, color 0.25s, border-color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10); border-color: var(--ink,#f5f4f7);">
+          <button type="button" onClick="{{ trk.onPlay }}" style="display: flex; align-items: center; gap: 9px; border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; color: var(--ink,#f5f3f0); padding: 10px 16px; text-transform: uppercase;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">
             <svg viewBox="0 0 36 36" style="width: 8px; height: 8px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg>
             {{ trk.label }}
           </button>
         </sc-for>
         <sc-if value="{{ pubChordify }}" hint-placeholder-val="{{ false }}">
-          <a href="{{ pubChordify }}" target="_blank" style="display: flex; align-items: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--accent,#e11d48); padding: 11px 6px;" style-hover="text-decoration: underline;">CHORDIFY ↗</a>
+          <a href="{{ pubChordify }}" target="_blank" style="display: flex; align-items: center; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent,#e11d48); padding: 10px 4px;" style-hover="text-decoration: underline;">CHORDIFY ↗</a>
         </sc-if>
       </div>
-      <div style="margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding-bottom: 18px; border-bottom: 1px solid var(--line,rgba(245,244,247,0.09));">
-        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--muted,rgba(245,244,247,0.52)); margin-right: 6px;">LYRICS</span>
-        <button type="button" onClick="{{ fontDown }}" aria-label="Smaller text" style="width: 32px; height: 32px; border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f4f7); font-family: inherit; font-size: 11px; font-weight: 700; transition: background 0.25s, color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10);">A−</button>
-        <button type="button" onClick="{{ fontUp }}" aria-label="Larger text" style="width: 32px; height: 32px; border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f4f7); font-family: inherit; font-size: 13px; font-weight: 700; transition: background 0.25s, color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10);">A+</button>
-        <button type="button" onClick="{{ copyLyrics }}" style="border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f4f7); font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; padding: 10px 18px; transition: background 0.25s, color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10);">{{ copyLabel }}</button>
-        <button type="button" onClick="{{ shareSong }}" style="border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f4f7); font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; padding: 10px 18px; transition: background 0.25s, color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10);">{{ shareLabel }}</button>
-        <button type="button" onClick="{{ openFullText }}" style="border: 1px solid var(--accent,#e11d48); border-radius: 9999px; background: none; cursor: pointer; color: var(--accent,#e11d48); font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; padding: 10px 18px; transition: background 0.25s, color 0.25s;" style-hover="background: var(--accent,#e11d48); color: #fff;">FULL TEXT</button>
-        <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.14em; color: var(--muted,rgba(245,244,247,0.52)); margin-left: auto;">TAP A LINE TO PLAY FROM THERE</span>
+      <div style="margin-top: 34px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding-bottom: 18px; border-bottom: 1px solid var(--line,rgba(255,255,255,0.12));">
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.24em; color: var(--muted,rgba(255,255,255,0.55)); margin-right: 4px;">LYRICS</span>
+        <button type="button" onClick="{{ fontDown }}" aria-label="Smaller text" style="width: 30px; height: 30px; border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; color: var(--ink,#f5f3f0); font-family: inherit; font-size: 11px; font-weight: 700;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">A−</button>
+        <button type="button" onClick="{{ fontUp }}" aria-label="Larger text" style="width: 30px; height: 30px; border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; color: var(--ink,#f5f3f0); font-family: inherit; font-size: 13px; font-weight: 700;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">A+</button>
+        <button type="button" onClick="{{ copyLyrics }}" style="border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; color: var(--ink,#f5f3f0); font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; padding: 9px 16px;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">{{ copyLabel }}</button>
+        <button type="button" onClick="{{ shareSong }}" style="border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; color: var(--ink,#f5f3f0); font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; padding: 9px 16px;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">{{ shareLabel }}</button>
+        <button type="button" onClick="{{ openFullText }}" style="border: 1px solid var(--accent,#e11d48); background: none; cursor: pointer; color: var(--accent,#e11d48); font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; padding: 9px 16px;" style-hover="background: var(--accent,#e11d48); color: #fff;">FULL TEXT</button>
+        <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.14em; color: var(--muted,rgba(255,255,255,0.55)); margin-left: auto;">FOLLOW-ALONG · TAP A LINE TO PLAY FROM THERE</span>
       </div>
       <div ref="{{ pubLyrRef }}" style="position: relative; margin-top: 30px; height: 54vh; overflow-y: auto; padding: 20vh 8px 24vh; box-sizing: border-box;">
         <sc-for list="{{ pubTimed }}" as="line" hint-placeholder-count="8">
           <p onClick="{{ line.onSeek }}" data-pactive="{{ line.active }}" style="{{ line.style }}">{{ line.text }} <span style="{{ line.tagStyle }}">{{ line.tag }}</span></p>
         </sc-for>
       </div>
-      <div style="margin-top: 56px; padding: 26px 0; border-top: 1px solid var(--line,rgba(245,244,247,0.09)); display: flex; align-items: center; justify-content: space-between; gap: 20px;">
-        <button type="button" onClick="{{ pubToPractice }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--muted,rgba(245,244,247,0.52)); transition: color 0.25s;" style-hover="color: var(--accent,#e11d48);">REHEARSE IT IN THE SONGBOOK →</button>
-        <div style="display: flex; align-items: baseline; gap: 16px;">
-          <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--muted,rgba(245,244,247,0.52));">UP NEXT</span>
-          <button type="button" onClick="{{ upNextOpen }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 17px; font-weight: 700; letter-spacing: -0.005em; color: var(--ink,#f5f4f7); transition: color 0.25s;" style-hover="color: var(--accent,#e11d48);">{{ upNextTitle }} →</button>
-        </div>
+      <div style="margin-top: 56px; padding: 26px 0; border-top: 1px solid var(--line,rgba(255,255,255,0.12)); display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.24em; color: var(--muted,rgba(255,255,255,0.55));">UP NEXT IN THE SET</span>
+        <button type="button" onClick="{{ upNextOpen }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 16px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink,#f5f3f0);" style-hover="color: var(--accent,#e11d48);">{{ upNextTitle }} →</button>
       </div>
     </div>
     <sc-if value="{{ lyricsModalOpen }}" hint-placeholder-val="{{ false }}">
-    <div data-screen-label="Full text" style="position: fixed; inset: 0; z-index: 60; background: rgba(11,10,14,0.97); overflow-y: auto; padding: 72px 24px;">
-      <div style="max-width: 620px; margin: 0 auto; color: #f5f4f7;">
-        <div style="display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.14); padding-bottom: 20px;">
+    <div data-screen-label="Full text modal" style="position: fixed; inset: 0; z-index: 60; background: rgba(10,9,8,0.96); overflow-y: auto; padding: 72px 24px;">
+      <div style="max-width: 640px; margin: 0 auto; color: #f5f3f0;">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 18px;">
           <div>
-            <p style="margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent,#e11d48);">Full text</p>
-            <h2 style="margin: 8px 0 0; font-size: 32px; font-weight: 800; letter-spacing: -0.01em;">{{ pubTitle }}</h2>
+            <p style="margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent,#e11d48);">Full text</p>
+            <h2 style="margin: 6px 0 0; font-size: 30px; font-weight: 700; letter-spacing: 0.04em;">{{ pubTitle }}</h2>
           </div>
-          <button type="button" onClick="{{ closeFullText }}" aria-label="Close" style="width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.25); border-radius: 9999px; background: none; color: #f5f4f7; cursor: pointer; font-size: 16px; font-family: inherit; flex: none; transition: background 0.25s;" style-hover="background: rgba(255,255,255,0.08);">✕</button>
+          <button type="button" onClick="{{ closeFullText }}" aria-label="Close" style="width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.25); border-radius: 9999px; background: none; color: #f5f3f0; cursor: pointer; font-size: 16px; font-family: inherit; flex: none;" style-hover="background: rgba(255,255,255,0.08);">✕</button>
         </div>
         <sc-for list="{{ pubSections }}" as="sec" hint-placeholder-count="4">
-          <div style="margin-top: 34px;">
+          <div style="margin-top: 32px;">
             <div style="display: flex; align-items: baseline; gap: 14px;">
-              <h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.005em;">{{ sec.name }}</h3>
-              <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: rgba(255,255,255,0.5); text-transform: uppercase;">{{ sec.texture }}</span>
+              <h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: 0.06em;">{{ sec.name }}</h3>
+              <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: rgba(255,255,255,0.55); text-transform: uppercase;">{{ sec.texture }}</span>
             </div>
             <div style="margin-top: 10px;">
               <sc-for list="{{ sec.lines }}" as="line" hint-placeholder-count="4">
@@ -238,53 +223,53 @@ window.__fbTimer = window.__fbTimer || setInterval(function () {
   </div>
   </sc-if>
   <sc-if value="{{ isGate }}" hint-placeholder-val="{{ false }}">
-  <div data-screen-label="Songbook gate" style="min-height: 78vh; display: flex; align-items: center; justify-content: center; padding: 150px 32px 64px; text-align: center;">
-    <div style="max-width: 420px;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width: 26px; height: 26px; color: var(--muted,rgba(245,244,247,0.52));"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
-      <h1 style="margin: 26px 0 0; font-size: 38px; font-weight: 800; letter-spacing: -0.01em;">The Songbook</h1>
-      <p style="margin: 16px 0 0; font-size: 15px; font-weight: 400; color: var(--muted,rgba(245,244,247,0.52)); line-height: 1.75;">Choir members only — lyrics, keys, voice parts and practice tracks for the Veneration set.</p>
-      <button type="button" onClick="{{ unlock }}" style="margin-top: 34px; border: none; border-radius: 9999px; background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10); cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; padding: 17px 40px; transition: background 0.25s, color 0.25s;" style-hover="background: var(--accent,#e11d48); color: #fff;">ENTER</button>
-      <p style="margin: 22px 0 0;"><button type="button" onClick="{{ goHome }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--muted,rgba(245,244,247,0.52)); transition: color 0.25s;" style-hover="color: var(--ink,#f5f4f7);">← BACK TO THE SITE</button></p>
+  <div data-screen-label="Practice room gate" style="min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 140px 32px 64px; text-align: center;">
+    <div style="max-width: 400px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width: 28px; height: 28px; color: var(--muted,rgba(255,255,255,0.55));"><rect x="5" y="11" width="14" height="9" rx="1"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+      <h1 style="margin: 24px 0 0; font-size: 30px; font-weight: 700; letter-spacing: 0.08em;">Practice Room</h1>
+      <p style="margin: 16px 0 0; font-size: 15px; font-weight: 400; color: var(--muted,rgba(255,255,255,0.55)); line-height: 1.7;">Choir members only — lyrics, keys, voice parts and practice tracks for the Veneration set.</p>
+      <button type="button" onClick="{{ unlock }}" style="margin-top: 32px; border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; color: var(--ink,#f5f3f0); font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; padding: 16px 36px;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">ENTER</button>
+      <p style="margin: 20px 0 0;"><button type="button" onClick="{{ goHome }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; color: var(--muted,rgba(255,255,255,0.55));" style-hover="color: var(--ink,#f5f3f0);">← BACK TO THE SITE</button></p>
     </div>
   </div>
   </sc-if>
   <sc-if value="{{ isPractice }}" hint-placeholder-val="{{ false }}">
-  <div data-screen-label="Songbook" style="max-width: 1000px; margin: 0 auto; padding: 150px 60px 64px;">
-    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;">
+  <div data-screen-label="Practice room" style="max-width: 860px; margin: 0 auto; padding: 130px 32px 48px;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between;">
       <div>
-        <p style="margin: 0 0 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent,#e11d48);">The Songbook</p>
-        <h1 style="margin: 0; font-size: 46px; font-weight: 800; letter-spacing: -0.01em;">Songs &amp; Lyrics</h1>
+        <p style="margin: 0 0 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent,#e11d48);">The songbook</p>
+        <h1 style="margin: 0; font-size: 40px; font-weight: 700; letter-spacing: 0.06em;">Songs &amp; Lyrics</h1>
       </div>
-      <p style="margin: 0 0 6px; font-size: 12.5px; font-weight: 500; letter-spacing: 0.1em; color: var(--muted,rgba(245,244,247,0.52));">LYRICS · KEYS · VOICE PARTS · PRACTICE TRACKS</p>
+      <p style="margin: 0; font-size: 12px; font-weight: 400; letter-spacing: 0.08em; color: var(--muted,rgba(255,255,255,0.55));">LYRICS · KEYS · VOICE PARTS · PRACTICE TRACKS</p>
     </div>
     <sc-for list="{{ sessions }}" as="sess" hint-placeholder-count="2">
-      <div style="margin-top: 48px;">
-        <h2 style="margin: 0 0 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted,rgba(245,244,247,0.52));">{{ sess.label }}</h2>
-        <div style="border-top: 1px solid var(--line,rgba(245,244,247,0.09));">
+      <div style="margin-top: 44px;">
+        <h2 style="margin: 0 0 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.34em; text-transform: uppercase; color: var(--muted,rgba(255,255,255,0.55));">{{ sess.label }}</h2>
+        <div style="border-top: 1px solid var(--line,rgba(255,255,255,0.12));">
           <sc-for list="{{ sess.songs }}" as="song" hint-placeholder-count="1">
-            <div style="display: flex; align-items: center; gap: 24px; padding: 24px 10px; border-bottom: 1px solid var(--line,rgba(245,244,247,0.09)); transition: background 0.25s; border-radius: 2px;" style-hover="background: var(--rowhov,rgba(245,244,247,0.03));">
-              <button type="button" onClick="{{ song.onPlay }}" aria-label="Play" style="display: flex; width: 46px; height: 46px; flex: none; align-items: center; justify-content: center; border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f4f7); transition: background 0.25s, color 0.25s, border-color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10); border-color: var(--ink,#f5f4f7);">
+            <div style="display: flex; align-items: center; gap: 22px; padding: 22px 6px; border-bottom: 1px solid var(--line,rgba(255,255,255,0.12));">
+              <button type="button" onClick="{{ song.onPlay }}" aria-label="Play" style="display: flex; width: 44px; height: 44px; flex: none; align-items: center; justify-content: center; border: 1px solid var(--line2,rgba(255,255,255,0.35)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f3f0);" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">
                 <svg viewBox="0 0 36 36" style="width: 12px; height: 12px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg>
               </button>
               <button type="button" onClick="{{ song.onOpen }}" style="flex: 1; min-width: 0; border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; text-align: left; color: inherit;">
-                <span style="display: block; font-size: 20px; font-weight: 600; letter-spacing: -0.005em;">{{ song.title }}</span>
-                <span style="display: block; margin-top: 4px; font-size: 13.5px; font-weight: 400; color: var(--muted,rgba(245,244,247,0.52));">{{ song.sub }}</span>
+                <span style="display: block; font-size: 20px; font-weight: 500;" style-hover="color: var(--accent,#e11d48);">{{ song.title }}</span>
+                <span style="display: block; margin-top: 3px; font-size: 13px; font-weight: 400; color: var(--muted,rgba(255,255,255,0.55));">{{ song.sub }}</span>
               </button>
-              <span style="font-size: 12.5px; font-weight: 500; color: var(--muted,rgba(245,244,247,0.52)); flex: none;">{{ song.meta }}</span>
-              <span style="font-size: 12.5px; font-weight: 500; color: var(--muted,rgba(245,244,247,0.52)); flex: none; font-variant-numeric: tabular-nums;">{{ song.dur }}</span>
-              <button type="button" onClick="{{ song.onOpen }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent,#e11d48); flex: none; transition: opacity 0.25s;" style-hover="opacity: 0.75;">NOTES →</button>
+              <span style="font-size: 12px; font-weight: 400; color: var(--muted,rgba(255,255,255,0.55)); flex: none;">{{ song.meta }}</span>
+              <span style="font-size: 13px; font-weight: 400; color: var(--muted,rgba(255,255,255,0.55)); flex: none;">{{ song.dur }}</span>
+              <button type="button" onClick="{{ song.onOpen }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: var(--accent,#e11d48); flex: none;" style-hover="text-decoration: underline;">NOTES →</button>
             </div>
           </sc-for>
         </div>
       </div>
     </sc-for>
-    <div style="margin-top: 56px;">
-      <h2 style="margin: 0 0 22px; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted,rgba(245,244,247,0.52));">Voices by part</h2>
-      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px;">
+    <div style="margin-top: 52px;">
+      <h2 style="margin: 0 0 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.34em; text-transform: uppercase; color: var(--muted,rgba(255,255,255,0.55));">Voices by part</h2>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
         <sc-for list="{{ vocalParts }}" as="vp" hint-placeholder-count="3">
-          <div style="border-top: 1px solid var(--line,rgba(245,244,247,0.09)); padding-top: 18px;">
-            <p style="margin: 0 0 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent,#e11d48);">{{ vp.part }}</p>
-            <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.9; color: var(--ink,#f5f4f7);">{{ vp.singers }}</p>
+          <div>
+            <p style="margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent,#e11d48);">{{ vp.part }}</p>
+            <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.9; color: var(--ink,#f5f3f0);">{{ vp.singers }}</p>
           </div>
         </sc-for>
       </div>
@@ -292,57 +277,51 @@ window.__fbTimer = window.__fbTimer || setInterval(function () {
   </div>
   </sc-if>
   <sc-if value="{{ isSong }}" hint-placeholder-val="{{ false }}">
-  <div data-screen-label="Songbook notes" style="max-width: 800px; margin: 0 auto; padding: 150px 60px 64px;">
-    <button type="button" onClick="{{ goPracticeBack }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--muted,rgba(245,244,247,0.52)); transition: color 0.25s;" style-hover="color: var(--ink,#f5f4f7);">← THE SONGBOOK</button>
-    <header style="margin-top: 36px; display: flex; align-items: center; gap: 28px;">
-      <button type="button" onClick="{{ detailPlay }}" aria-label="Play" style="display: flex; width: 72px; height: 72px; flex: none; align-items: center; justify-content: center; border: none; border-radius: 9999px; background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10); cursor: pointer; transition: background 0.25s, color 0.25s;" style-hover="background: var(--accent,#e11d48); color: #fff;">
+  <div data-screen-label="Practice song detail" style="max-width: 760px; margin: 0 auto; padding: 130px 32px 48px;">
+    <button type="button" onClick="{{ goPracticeBack }}" style="border: none; background: none; padding: 0; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 500; letter-spacing: 0.24em; color: var(--muted,rgba(255,255,255,0.55));" style-hover="color: var(--ink,#f5f3f0);">← THE SONGBOOK</button>
+    <header style="margin-top: 32px; display: flex; align-items: center; gap: 26px;">
+      <button type="button" onClick="{{ detailPlay }}" aria-label="Play" style="display: flex; width: 72px; height: 72px; flex: none; align-items: center; justify-content: center; border: 1px solid var(--line2,rgba(255,255,255,0.35)); border-radius: 9999px; background: none; cursor: pointer; color: var(--ink,#f5f3f0);" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">
         <sc-if value="{{ detailPlaying }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" style="width: 22px; height: 22px; fill: currentColor;"><path d="M8.5 4C7.67157 4 7 4.67157 7 5.5V30.5C7 31.3284 7.67157 32 8.5 32H11.5C12.3284 32 13 31.3284 13 30.5V5.5C13 4.67157 12.3284 4 11.5 4H8.5ZM24.5 4C23.6716 4 23 4.67157 23 5.5V30.5C23 31.3284 23.6716 32 24.5 32H27.5C28.3284 32 29 31.3284 29 30.5V5.5C29 4.67157 28.3284 4 27.5 4H24.5Z"></path></svg></sc-if>
         <sc-if value="{{ detailNotPlaying }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 36 36" style="width: 22px; height: 22px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></sc-if>
       </button>
       <div>
-        <p style="margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent,#e11d48);">{{ detailOverline }}</p>
-        <h1 style="margin: 8px 0 0; font-size: 44px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.05;">{{ detailTitle }}</h1>
+        <p style="margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent,#e11d48);">{{ detailOverline }}</p>
+        <h1 style="margin: 8px 0 0; font-size: 42px; font-weight: 700; letter-spacing: 0.04em; line-height: 1.1;">{{ detailTitle }}</h1>
       </div>
     </header>
-    <p style="margin: 24px 0 0; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--muted,rgba(245,244,247,0.52));">{{ detailMeta }}</p>
+    <p style="margin: 22px 0 0; font-size: 13px; font-weight: 400; letter-spacing: 0.06em; color: var(--muted,rgba(255,255,255,0.55));">{{ detailMeta }}</p>
     <sc-for list="{{ detailBlocks }}" as="blk" hint-placeholder-count="1">
       <div style="margin-top: 28px;">
         <sc-if value="{{ blk.showHead }}" hint-placeholder-val="{{ false }}">
-          <div style="margin: 48px 0 10px; padding-top: 40px; border-top: 1px solid var(--line,rgba(245,244,247,0.09));">
-            <p style="margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent,#e11d48);">{{ blk.overline }}</p>
-            <h2 style="margin: 8px 0 0; font-size: 30px; font-weight: 800; letter-spacing: -0.01em;">{{ blk.title }}</h2>
-            <p style="margin: 12px 0 0; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--muted,rgba(245,244,247,0.52));">{{ blk.meta }}</p>
+          <div style="margin: 44px 0 10px; padding-top: 36px; border-top: 1px solid var(--line,rgba(255,255,255,0.12));">
+            <p style="margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent,#e11d48);">{{ blk.overline }}</p>
+            <h2 style="margin: 8px 0 0; font-size: 28px; font-weight: 700; letter-spacing: 0.04em;">{{ blk.title }}</h2>
+            <p style="margin: 12px 0 0; font-size: 13px; font-weight: 400; letter-spacing: 0.06em; color: var(--muted,rgba(255,255,255,0.55));">{{ blk.meta }}</p>
           </div>
         </sc-if>
         <sc-if value="{{ blk.info }}" hint-placeholder-val="{{ false }}">
-          <p style="margin: 14px 0 0; font-size: 14px; font-weight: 400; color: var(--muted,rgba(245,244,247,0.52));">{{ blk.info }}</p>
+          <p style="margin: 14px 0 0; font-size: 14px; font-weight: 400; color: var(--muted,rgba(255,255,255,0.55));">{{ blk.info }}</p>
         </sc-if>
-        <div style="margin-top: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
+        <div style="margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;">
           <sc-for list="{{ blk.tracks }}" as="trk" hint-placeholder-count="2">
-            <button type="button" onClick="{{ trk.onPlay }}" style="display: flex; align-items: center; gap: 9px; border: 1px solid var(--line2,rgba(245,244,247,0.28)); border-radius: 9999px; background: none; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--ink,#f5f4f7); padding: 12px 22px; text-transform: uppercase; transition: background 0.25s, color 0.25s, border-color 0.25s;" style-hover="background: var(--ink,#f5f4f7); color: var(--bg,#0d0c10); border-color: var(--ink,#f5f4f7);">
+            <button type="button" onClick="{{ trk.onPlay }}" style="display: flex; align-items: center; gap: 9px; border: 1px solid var(--line2,rgba(255,255,255,0.35)); background: none; cursor: pointer; font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: var(--ink,#f5f3f0); padding: 11px 18px; text-transform: uppercase;" style-hover="background: var(--ink,#f5f3f0); color: var(--bg,#0e0d0c);">
               <svg viewBox="0 0 36 36" style="width: 9px; height: 9px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg>
               {{ trk.label }}
             </button>
           </sc-for>
           <sc-if value="{{ blk.chordify }}" hint-placeholder-val="{{ false }}">
-            <a href="{{ blk.chordify }}" target="_blank" style="display: flex; align-items: center; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--accent,#e11d48); padding: 12px 6px;" style-hover="text-decoration: underline;">CHORDIFY ↗</a>
+            <a href="{{ blk.chordify }}" target="_blank" style="display: flex; align-items: center; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent,#e11d48); padding: 11px 4px;" style-hover="text-decoration: underline;">CHORDIFY ↗</a>
           </sc-if>
         </div>
         <sc-if value="{{ blk.youtube }}" hint-placeholder-val="{{ false }}">
-          <a href="{{ blk.watch }}" target="_blank" style="margin-top: 26px; position: relative; display: block; overflow: hidden; padding-top: 56.25%; background: #0b0a0e; border-radius: 8px;">
-            <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.32; filter: saturate(0.7);">
-            <span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;">
-              <span style="display: flex; width: 56px; height: 56px; align-items: center; justify-content: center; border-radius: 9999px; background: #fff; color: #0b0a0e;"><svg viewBox="0 0 36 36" style="width: 17px; height: 17px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></span>
-              <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: rgba(255,255,255,0.75);">WATCH THE REFERENCE ON YOUTUBE ↗</span>
-            </span>
-          </a>
+          <a href="{{ blk.watch }}" target="_blank" style="position: relative; display: block; overflow: hidden; padding-top: 56.25%; background: #0a0908; margin-top: 24px;"><img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: saturate(0.8);"><span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;"><span style="display: flex; width: 54px; height: 54px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.6); color: #fff;"><svg viewBox="0 0 36 36" style="width: 15px; height: 15px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></span><span style="font-size: 10px; font-weight: 700; letter-spacing: 0.24em; color: rgba(255,255,255,0.75);">WATCH THE REFERENCE ON YOUTUBE ↗</span></span></a>
         </sc-if>
-        <div style="margin-top: 12px;">
+        <div style="margin-top: 10px;">
           <sc-for list="{{ blk.sections }}" as="sec" hint-placeholder-count="3">
-            <div style="margin-top: 36px;">
+            <div style="margin-top: 34px;">
               <div style="display: flex; align-items: baseline; gap: 14px;">
-                <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.005em;">{{ sec.name }}</h3>
-                <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--muted,rgba(245,244,247,0.52)); text-transform: uppercase;">{{ sec.texture }}</span>
+                <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 0.06em;">{{ sec.name }}</h3>
+                <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--muted,rgba(255,255,255,0.55)); text-transform: uppercase;">{{ sec.texture }}</span>
               </div>
               <div style="margin-top: 10px; font-size: 17px; font-weight: 400; line-height: 1.8;">
                 <sc-for list="{{ sec.lines }}" as="line" hint-placeholder-count="4">
@@ -359,57 +338,51 @@ window.__fbTimer = window.__fbTimer || setInterval(function () {
   </div>
   </sc-if>
   <sc-if value="{{ nowOpen }}" hint-placeholder-val="{{ false }}">
-  <div data-screen-label="Now playing" style="position: fixed; inset: 0; z-index: 40; background: #0b0a0e; color: #f5f4f7; display: flex; flex-direction: column; align-items: center; padding: 40px; overflow-y: auto; box-sizing: border-box;">
-    <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.12; filter: saturate(0.75) blur(8px);">
-    <button type="button" onClick="{{ closeNow }}" aria-label="Close" style="position: absolute; top: 28px; right: 36px; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.25); border-radius: 9999px; background: none; color: #f5f4f7; cursor: pointer; font-size: 16px; font-family: inherit; transition: background 0.25s;" style-hover="background: rgba(255,255,255,0.08);">✕</button>
+  <div data-screen-label="Now playing" style="position: fixed; inset: 0; z-index: 40; background: #0a0908; color: #f5f3f0; display: flex; flex-direction: column; align-items: center; padding: 40px; overflow-y: auto; box-sizing: border-box;">
+    <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.14; filter: saturate(0.8) blur(6px);">
+    <button type="button" onClick="{{ closeNow }}" aria-label="Close" style="position: absolute; top: 26px; right: 34px; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.25); border-radius: 9999px; background: none; color: #f5f3f0; cursor: pointer; font-size: 16px; font-family: inherit;" style-hover="background: rgba(255,255,255,0.08);">✕</button>
     <div style="position: relative; display: grid; grid-template-columns: auto minmax(320px, 420px); gap: 72px; align-items: center; max-width: 1140px; width: 100%; justify-content: center; margin: auto;">
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <div style="display: flex; gap: 8px; margin-bottom: 24px;">
+      <div style="display: flex; gap: 6px; margin-bottom: 22px;">
         <sc-for list="{{ visModes }}" as="vm" hint-placeholder-count="4">
-          <button type="button" onClick="{{ vm.pick }}" style="border: 1px solid {{ vm.border }}; border-radius: 9999px; background: {{ vm.bg }}; color: {{ vm.color }}; cursor: pointer; font-family: inherit; font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em; padding: 8px 15px; text-transform: uppercase; transition: border-color 0.25s, color 0.25s;">{{ vm.label }}</button>
+          <button type="button" onClick="{{ vm.pick }}" style="border: 1px solid {{ vm.border }}; background: {{ vm.bg }}; color: {{ vm.color }}; cursor: pointer; font-family: inherit; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; padding: 8px 13px; text-transform: uppercase;">{{ vm.label }}</button>
         </sc-for>
       </div>
       <sc-if value="{{ isVisArt }}" hint-placeholder-val="{{ true }}">
-        <img src="poster.png" alt="" style="width: 240px; border-radius: 10px; box-shadow: 0 40px 90px -26px rgba(0,0,0,0.9);">
+        <img src="poster.png" alt="" style="width: 230px; box-shadow: 0 36px 80px -24px rgba(0,0,0,0.9);">
       </sc-if>
       <sc-if value="{{ isVisVideo }}" hint-placeholder-val="{{ false }}">
-        <a href="{{ npWatch }}" target="_blank" style="position: relative; display: block; width: 410px; height: 231px; background: #000; border-radius: 10px; overflow: hidden; box-shadow: 0 40px 90px -26px rgba(0,0,0,0.9);">
-          <img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.32; filter: saturate(0.7);">
-          <span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;">
-            <span style="display: flex; width: 52px; height: 52px; align-items: center; justify-content: center; border-radius: 9999px; background: #fff; color: #0b0a0e;"><svg viewBox="0 0 36 36" style="width: 16px; height: 16px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></span>
-            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: rgba(255,255,255,0.75);">MUSIC VIDEO ON YOUTUBE ↗</span>
-          </span>
-        </a>
+        <a href="{{ npWatch }}" target="_blank" style="position: relative; display: block; overflow: hidden; padding-top: 56.25%; background: #0a0908; width: 410px; height: 231px; padding-top: 0; box-shadow: 0 36px 80px -24px rgba(0,0,0,0.9);"><img src="poster.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: saturate(0.8);"><span style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;"><span style="display: flex; width: 54px; height: 54px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.6); color: #fff;"><svg viewBox="0 0 36 36" style="width: 15px; height: 15px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></span><span style="font-size: 10px; font-weight: 700; letter-spacing: 0.24em; color: rgba(255,255,255,0.75);">MUSIC VIDEO ON YOUTUBE ↗</span></span></a>
       </sc-if>
       <sc-if value="{{ isVisLyrics }}" hint-placeholder-val="{{ false }}">
-        <div style="width: 440px; height: 231px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; background: {{ lyricsPaneBg }}; border-radius: 10px; padding: 0 26px; box-sizing: border-box;">
+        <div style="width: 440px; height: 231px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; background: linear-gradient(160deg, rgba(225,29,72,0.16), rgba(0,0,0,0.3)); padding: 0 26px; box-sizing: border-box;">
           <p style="margin: 0; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.4); line-height: 1.4;">{{ lvPrev }}</p>
           <p style="margin: 0; font-size: 24px; font-weight: 700; color: #fff; line-height: 1.35; text-wrap: balance;">{{ lvCur }}</p>
           <p style="margin: 0; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.4); line-height: 1.4;">{{ lvNext }}</p>
         </div>
       </sc-if>
       <sc-if value="{{ isVisVisual }}" hint-placeholder-val="{{ false }}">
-        <div style="position: relative; width: 410px; height: 231px; overflow: hidden; background: {{ visualPaneBg }}; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-          <div style="width: 130px; height: 130px; border-radius: 9999px; border: 1.5px solid {{ ringColorA }}; animation: fb-pulse 2.2s ease-in-out infinite;"></div>
-          <div style="position: absolute; width: 200px; height: 200px; border-radius: 9999px; border: 1px solid {{ ringColorB }}; animation: fb-pulse 2.2s ease-in-out 0.35s infinite;"></div>
-          <div style="position: absolute; width: 280px; height: 280px; border-radius: 9999px; border: 1px solid {{ ringColorC }}; animation: fb-pulse 2.2s ease-in-out 0.7s infinite;"></div>
+        <div style="position: relative; width: 410px; height: 231px; overflow: hidden; background: radial-gradient(70% 90% at 50% 50%, rgba(225,29,72,0.35), #0a0908 75%); display: flex; align-items: center; justify-content: center;">
+          <div style="width: 130px; height: 130px; border-radius: 9999px; border: 1.5px solid rgba(225,29,72,0.8); animation: fb-pulse 2.2s ease-in-out infinite;"></div>
+          <div style="position: absolute; width: 200px; height: 200px; border-radius: 9999px; border: 1px solid rgba(225,29,72,0.35); animation: fb-pulse 2.2s ease-in-out 0.35s infinite;"></div>
+          <div style="position: absolute; width: 280px; height: 280px; border-radius: 9999px; border: 1px solid rgba(225,29,72,0.15); animation: fb-pulse 2.2s ease-in-out 0.7s infinite;"></div>
         </div>
       </sc-if>
-      <p style="margin: 30px 0 0; font-size: 11px; font-weight: 600; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(255,255,255,0.55);">{{ npOverline }}</p>
-      <h2 style="margin: 8px 0 0; font-size: 34px; font-weight: 800; letter-spacing: -0.01em; text-align: center;">{{ npTitle }}</h2>
-      <p style="margin: 22px 0 0; font-size: 9.5px; font-weight: 700; letter-spacing: 0.28em; color: rgba(255,255,255,0.38);">REHEARSAL MIX — LAYER &amp; BALANCE PARTS</p>
+      <p style="margin: 30px 0 0; font-size: 11px; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(255,255,255,0.6);">{{ npOverline }}</p>
+      <h2 style="margin: 8px 0 0; font-size: 36px; font-weight: 700; letter-spacing: 0.08em; text-align: center;">{{ npTitle }}</h2>
+      <p style="margin: 20px 0 0; font-size: 9px; font-weight: 700; letter-spacing: 0.32em; color: rgba(255,255,255,0.4);">REHEARSAL MIX — LAYER &amp; BALANCE PARTS</p>
       <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px; width: 340px;">
         <sc-for list="{{ mixer }}" as="pt" hint-placeholder-count="2">
           <div style="display: flex; align-items: center; gap: 12px;">
             <button type="button" onClick="{{ pt.onToggle }}" style="width: 92px; flex: none; text-align: left; border: none; background: none; cursor: pointer; font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: {{ pt.color }};">{{ pt.label }}</button>
-            <input type="range" min="0" max="100" value="{{ pt.volPct }}" onChange="{{ pt.onVol }}" style="flex: 1; accent-color: {{ accent }}; height: 3px;">
+            <input type="range" min="0" max="100" value="{{ pt.volPct }}" onChange="{{ pt.onVol }}" style="flex: 1; accent-color: #e11d48; height: 3px;">
             <span style="width: 34px; flex: none; font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.5); text-align: right;">{{ pt.pctLabel }}</span>
           </div>
         </sc-for>
       </div>
-      <button type="button" onClick="{{ toggleStems }}" style="margin-top: 16px; border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; background: none; cursor: pointer; color: rgba(255,255,255,0.65); font-family: inherit; font-size: 9.5px; font-weight: 700; letter-spacing: 0.2em; padding: 9px 18px; transition: border-color 0.25s, color 0.25s;" style-hover="color: #fff; border-color: rgba(255,255,255,0.55);">{{ stemsLabel }}</button>
+      <button type="button" onClick="{{ toggleStems }}" style="margin-top: 14px; border: 1px solid rgba(255,255,255,0.25); background: none; cursor: pointer; color: rgba(255,255,255,0.7); font-family: inherit; font-size: 9px; font-weight: 700; letter-spacing: 0.24em; padding: 8px 16px;" style-hover="color: #fff; border-color: rgba(255,255,255,0.6);">{{ stemsLabel }}</button>
       <sc-if value="{{ stemsOpen }}" hint-placeholder-val="{{ false }}">
-        <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px; width: 480px; max-width: 84vw;">
+        <div style="margin-top: 14px; display: flex; flex-direction: column; gap: 10px; width: 480px; max-width: 84vw;">
           <sc-for list="{{ stemLanes }}" as="ln" hint-placeholder-count="2">
             <div style="opacity: {{ ln.opacity }}; transition: opacity 0.3s;">
               <p style="margin: 0 0 4px; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: {{ ln.labelColor }};">{{ ln.label }}</p>
@@ -420,7 +393,7 @@ window.__fbTimer = window.__fbTimer || setInterval(function () {
                   </sc-for>
                 </div>
                 <div style="position: absolute; inset: 0; overflow: hidden; width: {{ progressPct }}%;">
-                  <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 2000px; display: flex; align-items: center; gap: 2px;">
+                  <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 480px; display: flex; align-items: center; gap: 2px;">
                     <sc-for list="{{ ln.bars }}" as="bar" hint-placeholder-count="0">
                       <div style="{{ bar.lit }}"></div>
                     </sc-for>
@@ -438,34 +411,34 @@ window.__fbTimer = window.__fbTimer || setInterval(function () {
           </sc-for>
         </div>
         <div style="position: absolute; inset: 0; overflow: hidden; width: {{ progressPct }}%;">
-          <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 2000px; display: flex; align-items: center; gap: 2px;">
+          <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 640px; display: flex; align-items: center; gap: 2px;">
             <sc-for list="{{ npBars }}" as="bar" hint-placeholder-count="0">
               <div style="{{ bar.lit }}"></div>
             </sc-for>
           </div>
         </div>
       </div>
-      <div style="display: flex; justify-content: space-between; width: min(84vw, 640px); margin-top: 8px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.5); font-variant-numeric: tabular-nums;">
+      <div style="display: flex; justify-content: space-between; width: min(84vw, 640px); margin-top: 8px; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.55);">
         <span>{{ timeLabel }}</span><span>{{ durLabel }}</span>
       </div>
       <div style="margin-top: 26px; display: flex; align-items: center; gap: 30px;">
-        <button type="button" onClick="{{ prevSong }}" aria-label="Previous song" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.72); display: flex; transition: color 0.25s;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 24px; height: 24px;"><path d="M19 6v12L9 12zM7 5h-2v14h2z"></path></svg></button>
-        <button type="button" onClick="{{ rewind }}" aria-label="Rewind 10 seconds" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.55); display: flex; transition: color 0.25s;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><path d="M8 5L5 8M5 8L8 11M5 8H13.5C16.5376 8 19 10.4624 19 13.5C19 15.4826 18.148 17.2202 17 18.188"></path><path d="M5 15V19"></path><path d="M8 18V16C8 15.4477 8.44772 15 9 15H10C10.5523 15 11 15.4477 11 16V18C11 18.5523 10.5523 19 10 19H9C8.44772 19 8 18.5523 8 18Z"></path></svg></button>
-        <button type="button" onClick="{{ togglePlay }}" aria-label="Play or pause" style="display: flex; width: 76px; height: 76px; align-items: center; justify-content: center; border: none; border-radius: 9999px; background: #fff; cursor: pointer; color: #0b0a0e; transition: background 0.25s, color 0.25s;" style-hover="background: var(--accent,#e11d48); color: #fff;">
+        <button type="button" onClick="{{ prevSong }}" aria-label="Previous song" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.75); display: flex;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 24px; height: 24px;"><path d="M19 6v12L9 12zM7 5h-2v14h2z"></path></svg></button>
+        <button type="button" onClick="{{ rewind }}" aria-label="Rewind 10 seconds" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.6); display: flex;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><path d="M8 5L5 8M5 8L8 11M5 8H13.5C16.5376 8 19 10.4624 19 13.5C19 15.4826 18.148 17.2202 17 18.188"></path><path d="M5 15V19"></path><path d="M8 18V16C8 15.4477 8.44772 15 9 15H10C10.5523 15 11 15.4477 11 16V18C11 18.5523 10.5523 19 10 19H9C8.44772 19 8 18.5523 8 18Z"></path></svg></button>
+        <button type="button" onClick="{{ togglePlay }}" aria-label="Play or pause" style="display: flex; width: 72px; height: 72px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.6); border-radius: 9999px; background: none; cursor: pointer; color: #fff;" style-hover="background: #fff; color: #0a0908;">
           <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" style="width: 24px; height: 24px; fill: currentColor;"><path d="M8.5 4C7.67157 4 7 4.67157 7 5.5V30.5C7 31.3284 7.67157 32 8.5 32H11.5C12.3284 32 13 31.3284 13 30.5V5.5C13 4.67157 12.3284 4 11.5 4H8.5ZM24.5 4C23.6716 4 23 4.67157 23 5.5V30.5C23 31.3284 23.6716 32 24.5 32H27.5C28.3284 32 29 31.3284 29 30.5V5.5C29 4.67157 28.3284 4 27.5 4H24.5Z"></path></svg></sc-if>
           <sc-if value="{{ notPlaying }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 36 36" style="width: 24px; height: 24px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></sc-if>
         </button>
-        <button type="button" onClick="{{ forward }}" aria-label="Fast-forward 10 seconds" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.55); display: flex; transition: color 0.25s;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><path d="M16 5L19 8M19 8L16 11M19 8H10.5C7.46243 8 5 10.4624 5 13.5C5 15.4826 5.85204 17.2202 7 18.188"></path><path d="M13 15V19"></path><path d="M16 18V16C16 15.4477 16.4477 15 17 15H18C18.5523 15 19 15.4477 19 16V18C19 18.5523 18.5523 19 18 19H17C16.4477 19 16 18.5523 16 18Z"></path></svg></button>
-        <button type="button" onClick="{{ nextSong }}" aria-label="Next song" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.72); display: flex; transition: color 0.25s;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 24px; height: 24px;"><path d="M5 6l10 6-10 6zM17 5h2v14h-2z"></path></svg></button>
+        <button type="button" onClick="{{ forward }}" aria-label="Fast-forward 10 seconds" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.6); display: flex;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;"><path d="M16 5L19 8M19 8L16 11M19 8H10.5C7.46243 8 5 10.4624 5 13.5C5 15.4826 5.85204 17.2202 7 18.188"></path><path d="M13 15V19"></path><path d="M16 18V16C16 15.4477 16.4477 15 17 15H18C18.5523 15 19 15.4477 19 16V18C19 18.5523 18.5523 19 18 19H17C16.4477 19 16 18.5523 16 18Z"></path></svg></button>
+        <button type="button" onClick="{{ nextSong }}" aria-label="Next song" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.75); display: flex;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 24px; height: 24px;"><path d="M5 6l10 6-10 6zM17 5h2v14h-2z"></path></svg></button>
       </div>
       <div style="margin-top: 22px; display: flex; align-items: center; gap: 18px;">
-        <button type="button" onClick="{{ cycleRate }}" aria-label="Playback rate" style="border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; background: none; cursor: pointer; color: rgba(255,255,255,0.65); font-family: inherit; font-size: 11px; font-weight: 700; padding: 6px 13px; min-width: 42px; transition: border-color 0.25s, color 0.25s;" style-hover="color: #fff; border-color: rgba(255,255,255,0.55);">{{ rateLabel }}</button>
-        <button type="button" onClick="{{ toggleMute }}" aria-label="Mute" style="border: none; background: none; padding: 0; cursor: pointer; color: rgba(255,255,255,0.65); display: flex; transition: color 0.25s;" style-hover="color: #fff;">
+        <button type="button" onClick="{{ cycleRate }}" aria-label="Playback rate" style="border: 1px solid rgba(255,255,255,0.25); background: none; cursor: pointer; color: rgba(255,255,255,0.7); font-family: inherit; font-size: 11px; font-weight: 700; padding: 5px 10px; min-width: 40px;" style-hover="color: #fff; border-color: rgba(255,255,255,0.6);">{{ rateLabel }}</button>
+        <button type="button" onClick="{{ toggleMute }}" aria-label="Mute" style="border: none; background: none; padding: 0; cursor: pointer; color: rgba(255,255,255,0.7); display: flex;" style-hover="color: #fff;">
           <sc-if value="{{ muted }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 19px; height: 19px; fill: currentColor; stroke: currentColor;"><path d="M12 6L8 10H6C5.44772 10 5 10.4477 5 11V13C5 13.5523 5.44772 14 6 14H8L12 18V6Z"></path><path d="M16 10L19 13" fill="none"></path><path d="M19 10L16 13" fill="none"></path></svg></sc-if>
           <sc-if value="{{ notMuted }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 19px; height: 19px; fill: currentColor; stroke: currentColor;"><path d="M12 6L8 10H6C5.44772 10 5 10.4477 5 11V13C5 13.5523 5.44772 14 6 14H8L12 18V6Z"></path><path d="M17 7C17 7 19 9 19 12C19 15 17 17 17 17" fill="none"></path><path d="M15.5 10.5C15.5 10.5 16 10.9998 16 11.9999C16 13 15.5 13.5 15.5 13.5" fill="none"></path></svg></sc-if>
         </button>
       </div>
-      <p style="margin: 24px 0 0; font-size: 11px; font-weight: 500; letter-spacing: 0.22em; color: rgba(255,255,255,0.45);">UP NEXT&ensp;·&ensp;{{ upNext }}</p>
+      <p style="margin: 24px 0 0; font-size: 11px; font-weight: 500; letter-spacing: 0.24em; color: rgba(255,255,255,0.5);">UP NEXT&ensp;·&ensp;{{ upNext }}</p>
     </div>
     <div ref="{{ lyricsRef }}" style="position: relative; height: 66vh; overflow-y: auto; padding: 30vh 20px 34vh 0; box-sizing: border-box;">
       <sc-for list="{{ timedLines }}" as="line" hint-placeholder-count="8">
@@ -475,24 +448,24 @@ window.__fbTimer = window.__fbTimer || setInterval(function () {
     </div>
   </div>
   </sc-if>
-  <div data-screen-label="Player bar" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: rgba(15,13,19,0.92); backdrop-filter: blur(14px); color: #f5f4f7; border-top: 1px solid rgba(255,255,255,0.1);">
-    <div style="display: flex; align-items: center; gap: 24px; padding: 13px 32px;">
+  <div data-screen-label="Player bar" style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: rgba(12,11,10,0.92); backdrop-filter: blur(12px); color: #f5f3f0; border-top: 1px solid rgba(255,255,255,0.12);">
+    <div style="display: flex; align-items: center; gap: 24px; padding: 12px 32px;">
       <button type="button" onClick="{{ openNow }}" style="display: flex; align-items: center; gap: 14px; border: none; background: none; padding: 0; cursor: pointer; color: inherit; font-family: inherit; text-align: left; min-width: 0; width: 250px; flex: none;">
-        <img src="poster.png" alt="" style="width: 44px; height: 44px; object-fit: cover; flex: none; border-radius: 6px;">
+        <img src="poster.png" alt="" style="width: 42px; height: 42px; object-fit: cover; flex: none;">
         <span style="min-width: 0;">
-          <span style="display: block; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ npTitle }}</span>
-          <span style="display: block; margin-top: 2px; font-size: 11.5px; font-weight: 400; letter-spacing: 0.04em; color: rgba(255,255,255,0.48); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ npSub }}</span>
+          <span style="display: block; font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ npTitle }}</span>
+          <span style="display: block; margin-top: 1px; font-size: 11px; font-weight: 400; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ npSub }}</span>
         </span>
       </button>
       <div style="display: flex; align-items: center; gap: 16px; flex: none;">
-        <button type="button" onClick="{{ prevSong }}" aria-label="Previous song" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.65); display: flex; transition: color 0.25s;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px;"><path d="M19 6v12L9 12zM7 5h-2v14h2z"></path></svg></button>
-        <button type="button" onClick="{{ togglePlay }}" aria-label="Play or pause" style="display: flex; width: 42px; height: 42px; align-items: center; justify-content: center; border: none; border-radius: 9999px; background: #fff; cursor: pointer; color: #0b0a0e; transition: background 0.25s, color 0.25s;" style-hover="background: var(--accent,#e11d48); color: #fff;">
+        <button type="button" onClick="{{ prevSong }}" aria-label="Previous song" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.7); display: flex;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px;"><path d="M19 6v12L9 12zM7 5h-2v14h2z"></path></svg></button>
+        <button type="button" onClick="{{ togglePlay }}" aria-label="Play or pause" style="display: flex; width: 42px; height: 42px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.5); border-radius: 9999px; background: none; cursor: pointer; color: #fff;" style-hover="background: #fff; color: #0e0d0c;">
           <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 36 36" style="width: 14px; height: 14px; fill: currentColor;"><path d="M8.5 4C7.67157 4 7 4.67157 7 5.5V30.5C7 31.3284 7.67157 32 8.5 32H11.5C12.3284 32 13 31.3284 13 30.5V5.5C13 4.67157 12.3284 4 11.5 4H8.5ZM24.5 4C23.6716 4 23 4.67157 23 5.5V30.5C23 31.3284 23.6716 32 24.5 32H27.5C28.3284 32 29 31.3284 29 30.5V5.5C29 4.67157 28.3284 4 27.5 4H24.5Z"></path></svg></sc-if>
           <sc-if value="{{ notPlaying }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 36 36" style="width: 14px; height: 14px; fill: currentColor;"><path d="M33.75 16.701C34.75 17.2783 34.75 18.7217 33.75 19.299L11.25 32.2894C10.25 32.8668 9 32.1451 9 30.9904L9 5.00962C9 3.85491 10.25 3.13323 11.25 3.71058L33.75 16.701Z"></path></svg></sc-if>
         </button>
-        <button type="button" onClick="{{ nextSong }}" aria-label="Next song" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.65); display: flex; transition: color 0.25s;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px;"><path d="M5 6l10 6-10 6zM17 5h2v14h-2z"></path></svg></button>
+        <button type="button" onClick="{{ nextSong }}" aria-label="Next song" style="border: none; background: none; cursor: pointer; color: rgba(255,255,255,0.7); display: flex;" style-hover="color: #fff;"><svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px;"><path d="M5 6l10 6-10 6zM17 5h2v14h-2z"></path></svg></button>
       </div>
-      <span style="font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.48); flex: none; font-variant-numeric: tabular-nums;">{{ timeLabel }}</span>
+      <span style="font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.5); flex: none;">{{ timeLabel }}</span>
       <div onClick="{{ seekWave }}" style="position: relative; flex: 1; height: 32px; cursor: pointer; overflow: hidden;">
         <div style="position: absolute; inset: 0; display: flex; align-items: center; gap: 2px;">
           <sc-for list="{{ barBars }}" as="bar" hint-placeholder-count="0">
@@ -500,23 +473,23 @@ window.__fbTimer = window.__fbTimer || setInterval(function () {
           </sc-for>
         </div>
         <div style="position: absolute; inset: 0; overflow: hidden; width: {{ progressPct }}%;">
-          <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 2000px; display: flex; align-items: center; gap: 2px;">
+          <div style="position: absolute; top: 0; bottom: 0; left: 0; width: 1400px; display: flex; align-items: center; gap: 2px;">
             <sc-for list="{{ barBars }}" as="bar" hint-placeholder-count="0">
               <div style="{{ bar.lit }}"></div>
             </sc-for>
           </div>
         </div>
       </div>
-      <span style="font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.48); flex: none; font-variant-numeric: tabular-nums;">{{ durLabel }}</span>
+      <span style="font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.5); flex: none;">{{ durLabel }}</span>
       <div style="display: flex; align-items: center; gap: 8px; flex: none;">
         <sc-for list="{{ npTracks }}" as="trk" hint-placeholder-count="2">
-          <button type="button" onClick="{{ trk.onPick }}" style="border: 1px solid {{ trk.border }}; border-radius: 9999px; background: {{ trk.bg }}; color: {{ trk.color }}; cursor: pointer; font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; padding: 6px 14px; text-transform: uppercase; transition: border-color 0.25s, color 0.25s;">{{ trk.label }}</button>
+          <button type="button" onClick="{{ trk.onPick }}" style="border: 1px solid {{ trk.border }}; background: {{ trk.bg }}; color: {{ trk.color }}; cursor: pointer; font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; padding: 5px 12px; text-transform: uppercase;">{{ trk.label }}</button>
         </sc-for>
       </div>
       <div style="display: flex; align-items: center; gap: 14px; flex: none;">
-        <button type="button" onClick="{{ openLyrics }}" style="border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; background: none; cursor: pointer; color: rgba(255,255,255,0.75); font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; padding: 6px 13px; transition: border-color 0.25s, color 0.25s;" style-hover="color: #fff; border-color: rgba(255,255,255,0.55);">LYRICS</button>
-        <button type="button" onClick="{{ cycleRate }}" aria-label="Playback rate" style="border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; background: none; cursor: pointer; color: rgba(255,255,255,0.65); font-family: inherit; font-size: 10px; font-weight: 700; padding: 5px 10px; min-width: 36px; transition: border-color 0.25s, color 0.25s;" style-hover="color: #fff; border-color: rgba(255,255,255,0.55);">{{ rateLabel }}</button>
-        <button type="button" onClick="{{ toggleMute }}" aria-label="Mute" style="border: none; background: none; padding: 0; cursor: pointer; color: rgba(255,255,255,0.65); display: flex; transition: color 0.25s;" style-hover="color: #fff;">
+        <button type="button" onClick="{{ openLyrics }}" style="border: 1px solid rgba(255,255,255,0.25); background: none; cursor: pointer; color: rgba(255,255,255,0.8); font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; padding: 5px 10px;" style-hover="color: #fff; border-color: rgba(255,255,255,0.6);">LYRICS</button>
+        <button type="button" onClick="{{ cycleRate }}" aria-label="Playback rate" style="border: 1px solid rgba(255,255,255,0.25); background: none; cursor: pointer; color: rgba(255,255,255,0.7); font-family: inherit; font-size: 10px; font-weight: 700; padding: 4px 8px; min-width: 36px;" style-hover="color: #fff; border-color: rgba(255,255,255,0.6);">{{ rateLabel }}</button>
+        <button type="button" onClick="{{ toggleMute }}" aria-label="Mute" style="border: none; background: none; padding: 0; cursor: pointer; color: rgba(255,255,255,0.7); display: flex;" style-hover="color: #fff;">
           <sc-if value="{{ muted }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; fill: currentColor; stroke: currentColor;"><path d="M12 6L8 10H6C5.44772 10 5 10.4477 5 11V13C5 13.5523 5.44772 14 6 14H8L12 18V6Z"></path><path d="M16 10L19 13" fill="none"></path><path d="M19 10L16 13" fill="none"></path></svg></sc-if>
           <sc-if value="{{ notMuted }}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; fill: currentColor; stroke: currentColor;"><path d="M12 6L8 10H6C5.44772 10 5 10.4477 5 11V13C5 13.5523 5.44772 14 6 14H8L12 18V6Z"></path><path d="M17 7C17 7 19 9 19 12C19 15 17 17 17 17" fill="none"></path><path d="M15.5 10.5C15.5 10.5 16 10.9998 16 11.9999C16 13 15.5 13.5 15.5 13.5" fill="none"></path></svg></sc-if>
         </button>
@@ -526,9 +499,9 @@ window.__fbTimer = window.__fbTimer || setInterval(function () {
 </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"accent": {"editor": "color", "default": "#e11d48", "tsType": "string", "options": ["#e11d48", "#7c3aed", "#d97706", "#0d9488"], "section": "Theme"}, "startDark": {"editor": "boolean", "default": true, "tsType": "boolean", "section": "Theme"}, "startUnlocked": {"editor": "boolean", "default": false, "tsType": "boolean", "section": "Songbook"}}'>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#e11d48&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#e11d48&quot;, &quot;#7c3aed&quot;, &quot;#d97706&quot;, &quot;#0d9488&quot;], &quot;section&quot;: &quot;Theme&quot;}, &quot;startDark&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Theme&quot;}, &quot;startUnlocked&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Practice room&quot;}}">
 class Component extends DCLogic {
-  state = { dark: true, view: "home", unlocked: false, detailId: "goodness-of-god", pubId: "goodness-of-god", nowOpen: false, cur: { entIdx: 0, on: null }, playing: false, off: 0, t0: 0, muted: false, rateIdx: 0, transpose: 0, fontScale: 1, copied: "", visMode: "art", lyricsModal: false, stemsOpen: false };
+  state = { dark: true, view: "home", unlocked: false, detailId: "goodness-of-god", pubId: "goodness-of-god", nowOpen: false, cur: { entIdx: 0, on: null }, playing: false, off: 0, t0: 0, muted: false, rateIdx: 0, transpose: 0, fontScale: 1, copied: "", menuOpen: false, visMode: "art", lyricsModal: false, stemsOpen: false };
   componentDidMount() {
     if (!this._init) { this._init = true; const u = {}; if ((this.props.startDark ?? true) === false) u.dark = false; if (this.props.startUnlocked ?? false) u.unlocked = true; if (Object.keys(u).length) this.setState(u); }
     this._own();
@@ -605,17 +578,16 @@ class Component extends DCLogic {
     return this._data;
   }
   bars(count, seedStart) {
-    const accent = this.props.accent ?? "#e11d48";
     this._barsCache = this._barsCache || {};
-    const key = accent + ":" + (seedStart || 11) + ":" + count;
+    const key = (seedStart || 11) + ":" + count;
     if (this._barsCache[key]) return this._barsCache[key];
     let seed = seedStart || 11;
     const rnd = () => { let r = Math.sin(seed++) * 10000; return r - Math.floor(r); };
     this._barsCache[key] = Array.from({ length: count }, () => {
       const h = (16 + rnd() * 84).toFixed(1) + "%";
       return {
-        base: { width: "2px", flex: "none", height: h, background: "rgba(255,255,255,0.2)", borderRadius: "2px" },
-        lit: { width: "2px", flex: "none", height: h, background: accent, borderRadius: "2px" },
+        base: { width: "2px", flex: "none", height: h, background: "rgba(255,255,255,0.22)" },
+        lit: { width: "2px", flex: "none", height: h, background: "#e11d48" },
       };
     });
     return this._barsCache[key];
@@ -702,8 +674,8 @@ class Component extends DCLogic {
   scrollToId(id) { setTimeout(() => { const el = document.getElementById(id); if (el) window.scrollTo({ top: el.offsetTop - 60, behavior: "smooth" }); }, 60); }
   renderVals() {
     const d = this.data(), st = this.state, accent = this.props.accent ?? "#e11d48";
-    const darkV = { "--bg": "#0d0c10", "--ink": "#f5f4f7", "--muted": "rgba(245,244,247,0.52)", "--line": "rgba(245,244,247,0.09)", "--line2": "rgba(245,244,247,0.28)", "--navbg": "rgba(13,12,16,0.55)", "--rowhov": "rgba(245,244,247,0.03)", "--accent": accent };
-    const lightV = { "--bg": "#f6f5f2", "--ink": "#17151c", "--muted": "rgba(23,21,28,0.55)", "--line": "rgba(23,21,28,0.1)", "--line2": "rgba(23,21,28,0.3)", "--navbg": "rgba(246,245,242,0.72)", "--rowhov": "rgba(23,21,28,0.03)", "--accent": accent };
+    const darkV = { "--bg": "#0e0d0c", "--ink": "#f5f3f0", "--muted": "rgba(255,255,255,0.55)", "--line": "rgba(255,255,255,0.12)", "--line2": "rgba(255,255,255,0.35)", "--accent": accent };
+    const lightV = { "--bg": "#faf8f5", "--ink": "#171512", "--muted": "rgba(23,21,18,0.55)", "--line": "rgba(23,21,18,0.14)", "--line2": "rgba(23,21,18,0.4)", "--accent": accent };
     const ent = this.curEntity();
     const progress = this.prog();
     const doToggle = () => { if (this.state.playing) this.setState({ playing: false, off: this.prog() * this.curDur() }); else this.setState({ playing: true, t0: Date.now() }); };
@@ -726,24 +698,20 @@ class Component extends DCLogic {
     const trackNames = (ent.tracks || ["Song"]).filter((_, i) => onArr[i]);
     const npTracks = (ent.tracks || ["Song"]).map((t, i) => {
       const on = onArr[i];
-      return { label: t, border: on ? accent : "rgba(255,255,255,0.25)", bg: on ? accent : "transparent", color: on ? "#fff" : "rgba(255,255,255,0.7)", onPick: () => this.toggleTrack(i) };
+      return { label: t, border: on ? accent : "rgba(255,255,255,0.3)", bg: on ? accent : "transparent", color: on ? "#fff" : "rgba(255,255,255,0.75)", onPick: () => this.toggleTrack(i) };
     });
     const tl = this.timeline(ent);
     const curLine = Math.min(tl.length - 1, Math.floor(progress * tl.length));
     const vols = this.activeVols();
     const nextIdx = (st.cur.entIdx + 1) % d.entities.length;
     const rates = ["1×", "1.5×", "2×"];
-    const hex = accent.replace("#", "");
-    const rgb = hex.length === 6 ? [parseInt(hex.slice(0, 2), 16), parseInt(hex.slice(2, 4), 16), parseInt(hex.slice(4, 6), 16)] : [225, 29, 72];
-    const aRgba = (a) => "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + a + ")";
     return {
       themeVars: st.dark ? darkV : lightV,
-      accent,
       dark: st.dark, light: !st.dark,
       isHome: st.view === "home",
       isPublicSong: st.view === "song",
-      isGate: st.view === "practice" && !st.unlocked,
-      isPractice: st.view === "practice" && st.unlocked,
+      isGate: false,
+      isPractice: st.view === "practice",
       isSong: st.view === "psong",
       nowOpen: st.nowOpen,
       playing: st.playing, notPlaying: !st.playing,
@@ -753,13 +721,10 @@ class Component extends DCLogic {
       timeLabel: this.fmt(progress * this.curDur()),
       durLabel: this.fmt(this.curDur()),
       npTitle: ent.title + (trackNames.length === 1 && trackNames[0] === "Song" ? "" : " — " + trackNames.join(" + ")),
-      lyricsPaneBg: "linear-gradient(160deg, " + aRgba(0.18) + ", rgba(0,0,0,0.35))",
-      visualPaneBg: "radial-gradient(70% 90% at 50% 50%, " + aRgba(0.32) + ", #0b0a0e 75%)",
-      ringColorA: aRgba(0.8), ringColorB: aRgba(0.35), ringColorC: aRgba(0.15),
       timedLines: tl.map((l, i) => ({
         text: l.text, tag: l.tag || "",
         active: i === curLine,
-        style: { margin: "0 0 16px", cursor: "pointer", fontSize: "22px", fontWeight: 700, lineHeight: 1.45, transition: "color 0.3s", color: i === curLine ? "#fff" : i < curLine ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.28)" },
+        style: { margin: "0 0 16px", cursor: "pointer", fontSize: "22px", fontWeight: 700, lineHeight: 1.45, transition: "color 0.3s", color: i === curLine ? "#fff" : i < curLine ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.3)" },
         tagStyle: l.tag ? { color: accent, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", marginLeft: "8px", textTransform: "uppercase" } : { display: "none" },
         onSeek: () => this.setPos((i + 0.01) / tl.length),
       })),
@@ -767,16 +732,16 @@ class Component extends DCLogic {
       lvPrev: curLine > 0 ? tl[curLine - 1].text : "", lvCur: tl[curLine].text, lvNext: curLine < tl.length - 1 ? tl[curLine + 1].text : "",
       stemsOpen: st.stemsOpen,
       toggleStems: () => this.setState(s => ({ stemsOpen: !s.stemsOpen })),
-      stemsLabel: st.stemsOpen ? "HIDE PART WAVEFORMS" : "SHOW PART WAVEFORMS",
+      stemsLabel: st.stemsOpen ? "▲ HIDE PART WAVEFORMS" : "▼ SHOW PART WAVEFORMS",
       stemLanes: (ent.tracks || ["Song"]).map((t, i) => ({
         label: t,
         opacity: onArr[i] ? 1 : 0.3,
-        labelColor: onArr[i] ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.38)",
+        labelColor: onArr[i] ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.4)",
         bars: this.bars(120, 23 + i * 13),
       })),
       mixer: (ent.tracks || ["Song"]).map((t, i) => ({
         label: t,
-        color: onArr[i] ? "#fff" : "rgba(255,255,255,0.38)",
+        color: onArr[i] ? "#fff" : "rgba(255,255,255,0.4)",
         volPct: onArr[i] ? Math.round(vols[i] * 100) : 0,
         pctLabel: (onArr[i] ? Math.round(vols[i] * 100) : 0) + "%",
         onToggle: () => this.toggleTrack(i),
@@ -788,12 +753,17 @@ class Component extends DCLogic {
       upNext: d.entities[nextIdx].title.toUpperCase(),
       npBars: this.bars(160),
       barBars: this.bars(460),
+      tiles: [
+        { title: "LISTEN THE SET", sub: "THREE SONGS", pos: "center 20%", onOpen: () => this.scrollToId("listen") },
+        { title: "VENERATION LIVE", sub: "THE WORSHIP EVENING", pos: "center 45%", onOpen: () => this.scrollToId("event") },
+        { title: "THE COLLECTIVE", sub: "TWELVE VOICES", pos: "center 70%", onOpen: () => this.scrollToId("collective") },
+        { title: "SONGBOOK", sub: "LYRICS, KEYS & PARTS", pos: "center 95%", onOpen: () => { this.setState({ view: "practice" }); window.scrollTo(0, 0); } },
+      ],
       listenCards: d.entities.map((s, i) => ({
-        num: ("0" + (i + 1)).slice(-2),
         title: s.title, dur: s.dur,
         sub: s.artist + (s.original ? " · " + s.original : ""),
         onPlay: () => this.playEntity(i, 0),
-        onOpen: () => { this.setState({ view: "song", pubId: s.id, transpose: 0 }); window.scrollTo(0, 0); },
+        onOpen: () => { this.setState({ view: "song", pubId: s.id }); window.scrollTo(0, 0); },
       })),
       pubTitle: pub.title,
       pubOverline: pub.artist + " · " + pub.dur,
@@ -801,12 +771,22 @@ class Component extends DCLogic {
       pubYoutube: pub.youtube, pubWatch: pub.watch,
       pubTempo: "≈ " + pub.bpm + " BPM  ·  " + pub.meter + "  ·  " + pub.dur,
       pubChords: (pub.chords || []).map(c => this.transChord(c, st.transpose)).join("  ·  "),
+      menuOpen: st.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      menuLinks: [
+        { label: "HOME", go: () => { this.setState({ menuOpen: false, view: "home" }); window.scrollTo(0, 0); } },
+        { label: "LISTEN", go: () => { this.setState({ menuOpen: false, view: "home" }); this.scrollToId("listen"); } },
+        { label: "LIVE", go: () => { this.setState({ menuOpen: false, view: "home" }); this.scrollToId("event"); } },
+        { label: "THE COLLECTIVE", go: () => { this.setState({ menuOpen: false, view: "home" }); this.scrollToId("collective"); } },
+        { label: "SONGBOOK", go: () => { this.setState({ menuOpen: false, view: "practice" }); window.scrollTo(0, 0); } },
+      ],
       openLyrics: () => this.setState({ nowOpen: true, visMode: "lyrics" }),
       visModes: [["art", "COVER"], ["video", "MUSIC VIDEO"], ["lyrics", "LYRIC VIDEO"], ["visual", "VISUAL"]].map(([k, label]) => ({
         label,
-        border: st.visMode === k ? accent : "rgba(255,255,255,0.25)",
+        border: st.visMode === k ? accent : "rgba(255,255,255,0.3)",
         bg: st.visMode === k ? accent : "transparent",
-        color: st.visMode === k ? "#fff" : "rgba(255,255,255,0.65)",
+        color: st.visMode === k ? "#fff" : "rgba(255,255,255,0.7)",
         pick: () => this.setState({ visMode: k }),
       })),
       isVisArt: st.visMode === "art", isVisVideo: st.visMode === "video", isVisLyrics: st.visMode === "lyrics", isVisVisual: st.visMode === "visual",
@@ -844,7 +824,7 @@ class Component extends DCLogic {
         return ptl.map((l, i) => ({
           text: l.text, tag: l.tag || "",
           active: i === pc,
-          style: { margin: "0 0 " + Math.round(12 * st.fontScale) + "px", cursor: "pointer", fontSize: Math.round(19 * st.fontScale) + "px", fontWeight: 700, lineHeight: 1.5, transition: "opacity 0.3s", color: "var(--ink,#f5f4f7)", opacity: pc === -1 ? 0.75 : i === pc ? 1 : i < pc ? 0.5 : 0.3 },
+          style: { margin: "0 0 " + Math.round(12 * st.fontScale) + "px", cursor: "pointer", fontSize: Math.round(19 * st.fontScale) + "px", fontWeight: 700, lineHeight: 1.5, transition: "opacity 0.3s", color: "var(--ink,#f5f3f0)", opacity: pc === -1 ? 0.75 : i === pc ? 1 : i < pc ? 0.5 : 0.3 },
           tagStyle: l.tag ? { color: accent, fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", marginLeft: "8px", textTransform: "uppercase" } : { display: "none" },
           onSeek: () => {
             const nTr = (pub.tracks || ["Song"]).length;
@@ -867,9 +847,9 @@ class Component extends DCLogic {
         { label: "Second Session", songs: [{ title: "Praise Medley", dur: "10'00\"", sub: "Big God (The Epoch House) · Praise (Elevation Worship)", meta: "A♭ · Alto", onPlay: () => this.playEntity(1, 0), onOpen: () => { this.setState({ view: "psong", detailId: "praise-medley" }); window.scrollTo(0, 0); } }] },
       ],
       vocalParts: [
-        { part: "Soprano", singers: "Pollet, Sharon, Ordelie, Elodie", singerList: "Pollet\nSharon\nOrdelie\nElodie" },
-        { part: "Alto", singers: "Yvonne, Raissa, Lynn, Sheilah", singerList: "Yvonne\nRaissa\nLynn\nSheilah" },
-        { part: "Tenor", singers: "Hervé, Onesmus, Steven, Margaret", singerList: "Hervé\nOnesmus\nSteven\nMargaret" },
+        { part: "Soprano", singers: "Pollet, Sharon, Ordelie, Elodie", singersLines: "Pollet · Sharon · Ordelie · Elodie" },
+        { part: "Alto", singers: "Yvonne, Raissa, Lynn, Sheilah", singersLines: "Yvonne · Raissa · Lynn · Sheilah" },
+        { part: "Tenor", singers: "Hervé, Onesmus, Steven, Margaret", singersLines: "Hervé · Onesmus · Steven · Margaret" },
       ],
       detailTitle: isMedleyDetail ? "Praise Medley" : "Goodness of God",
       detailOverline: isMedleyDetail ? "Big God · Praise · 10'00\"" : "CeCe Winans · 5'00\"",
@@ -885,6 +865,7 @@ class Component extends DCLogic {
       goEvent: () => { this.setState({ view: "home" }); this.scrollToId("event"); },
       goCollective: () => { this.setState({ view: "home" }); this.scrollToId("collective"); },
       unlock: () => this.setState({ unlocked: true }),
+      lock: () => this.setState({ unlocked: false, view: "home" }),
       toggleDark: () => this.setState(s => ({ dark: !s.dark })),
       playAll: () => this.playEntity(0, 0),
       togglePlay: doToggle,
