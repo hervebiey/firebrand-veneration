@@ -80,6 +80,9 @@ export interface SingleSong extends BaseSong {
 	language: string[];
 	keys: Key[];
 	melody: MelodyType[];
+	bpm?: number;
+	meter?: string;
+	chords?: string[];
 	structureNotes?: string;
 	performanceNotes?: string;
 	sections?: SongSection[];

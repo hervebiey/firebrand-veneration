@@ -1,3 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme tokens — light values on :root, dark overrides on .dark (site starts dark). */
+:root {
+	--fb-bg: #faf8f5;
+	--fb-ink: #171512;
+	--fb-muted: rgb(23 21 18 / 0.55);
+	--fb-line: rgb(23 21 18 / 0.14);
+	--fb-line2: rgb(23 21 18 / 0.4);
+	--fb-accent: #e11d48;
+}
+
+.dark {
+	--fb-bg: #0e0d0c;
+	--fb-ink: #f5f3f0;
+	--fb-muted: rgb(255 255 255 / 0.55);
+	--fb-line: rgb(255 255 255 / 0.12);
+	--fb-line2: rgb(255 255 255 / 0.35);
+}
+
+@theme inline {
+	--font-sans: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+	--color-surface: var(--fb-bg);
+	--color-ink: var(--fb-ink);
+	--color-soft: var(--fb-muted);
+	--color-hairline: var(--fb-line);
+	--color-strong: var(--fb-line2);
+	--color-accent: var(--fb-accent);
+	/* Always-dark surfaces: heroes, tiles, the player, the now-playing screen. */
+	--color-stage: #0a0908;
+	--color-stage-ink: #f5f3f0;
+}
+
+@keyframes fb-pulse {
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 0.65;
+	}
+	50% {
+		transform: scale(1.18);
+		opacity: 1;
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+}

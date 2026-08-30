@@ -1,218 +1,260 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useMemo, useReducer, useRef } from "react";
+import React, {
+	createContext,
+	useContext,
+	useEffect,
+	useMemo,
+	useReducer,
+	useRef,
+	useState,
+} from "react";
 import WaveSurfer from "wavesurfer.js";
 import { type Song } from "@/components/Songs";
+import { adjacentPlayable, primaryTrackIndex } from "@/lib/publicSongs";
 
-// PlayerState interface
 interface PlayerState {
 	song: Song | null;
 	trackIndex: number | null;
 	isPlaying: boolean;
 	isMuted: boolean;
+	playbackRate: number;
 }
 
-// PublicPlayerActions interface
 interface PublicPlayerActions {
-	play: (song?: Song, trackIndex?: number) => void;
+	// Raw actions — always take explicit targets.
+	playSong: (song: Song, trackIndex?: number, fraction?: number) => void;
+	toggleSong: (song: Song, trackIndex?: number) => void;
+	isSongPlaying: (song: Song, trackIndex?: number) => boolean;
+	next: () => void;
+	previous: () => void;
 	pause: () => void;
-	toggle: (song?: Song, trackIndex?: number) => void;
 	skip: (amount: number) => void;
 	seek: (time: number) => void;
-	setPlaybackRate: (rate: number) => void;
+	seekFraction: (fraction: number) => void;
+	cycleRate: () => void;
 	mute: () => void;
-	playing: (song?: Song, trackIndex?: number) => boolean;
 	setPlaying: () => void;
-	muted: () => boolean;
 	getCurrentTime: () => number;
 	getDuration: () => number;
+	// The player bar creates the WaveSurfer instance and registers it here.
+	attachWavesurfer: (instance: WaveSurfer | null) => void;
 }
 
-// Combine PlayerState, PublicPlayerActions, and the Wavesurfer ref
-export type PlayerAPI = PlayerState & PublicPlayerActions & {
-	wavesurferRef: React.MutableRefObject<any>;
-};
+export type PlayerAPI = PlayerState & PublicPlayerActions;
 
-// Actions enum
 const enum ActionKind {
 	SET_META = "SET_META",
 	SET_PLAYING = "SET_PLAYING",
 	SET_PAUSING = "SET_PAUSING",
 	SET_MUTED = "SET_MUTED",
+	SET_RATE = "SET_RATE",
 }
 
-// Action type
 type Action =
-	| { type: ActionKind.SET_META; payload: { song: Song, trackIndex: number } }
+	| { type: ActionKind.SET_META; payload: { song: Song; trackIndex: number } }
 	| { type: ActionKind.SET_PLAYING }
 	| { type: ActionKind.SET_PAUSING }
-	| { type: ActionKind.SET_MUTED };
+	| { type: ActionKind.SET_MUTED }
+	| { type: ActionKind.SET_RATE; payload: number };
 
-// Create contexts
 export const AudioContext = createContext<PlayerAPI | null>(null);
 
-// Reducer function
 function audioReducer(state: PlayerState, action: Action): PlayerState {
 	switch (action.type) {
 		case ActionKind.SET_META:
-			return { ...state, song: action.payload.song, trackIndex: action.payload.trackIndex };
+			return {
+				...state,
+				song: action.payload.song,
+				trackIndex: action.payload.trackIndex,
+			};
 		case ActionKind.SET_PLAYING:
 			return { ...state, isPlaying: true };
 		case ActionKind.SET_PAUSING:
 			return { ...state, isPlaying: false };
 		case ActionKind.SET_MUTED:
 			return { ...state, isMuted: !state.isMuted };
+		case ActionKind.SET_RATE:
+			return { ...state, playbackRate: action.payload };
 		default:
 			return state;
 	}
 }
 
-// Initialize WaveSurfer function
-const initializeWaveSurfer = (waveSurferRef: React.MutableRefObject<WaveSurfer | null>) => {
-	if (!waveSurferRef.current) {
-		const container = document.createElement("div");
-		container.style.display = "none"; // Hidden container
-		waveSurferRef.current = WaveSurfer.create({ container: container });
-	}
-	
-	// Clean up the container on unmount
-	return () => {
-		waveSurferRef.current?.destroy();
-		waveSurferRef.current = null;
-	};
-};
-
-// Initial state
 const initialState: PlayerState = {
 	song: null,
 	trackIndex: null,
 	isPlaying: false,
 	isMuted: false,
+	playbackRate: 1,
 };
 
-// AudioProvider component
+const PLAYBACK_RATES = [1, 1.5, 2];
+
 export function AudioProvider({ children }: { children: React.ReactNode }) {
 	const [state, dispatch] = useReducer(audioReducer, initialState);
 	const waveSurferRef = useRef<WaveSurfer | null>(null);
-	
-	// Initialize WaveSurfer when AudioProvider mounts
-	useEffect(() => initializeWaveSurfer(waveSurferRef), []);
-	
-	const actions = useMemo<PublicPlayerActions>(() => ({
-		play(song, trackIndex) {
-			if (!song || trackIndex === null || trackIndex === undefined) return;
-			
-			const track = song.audioTracks?.[trackIndex];
-			const src = track ? track.src : undefined;
-			
-			if (src && waveSurferRef.current) {
-				// Only update the state if the song or trackIndex has changed
-				if (state.song !== song || state.trackIndex !== trackIndex) {
-					// If a different song or track is played, set the meta and reset the player
-					dispatch({ type: ActionKind.SET_META, payload: { song, trackIndex } });
-					
-					// Load new track in Wavesurfer and play it once it's decoded
-					waveSurferRef.current.load(src).then(() => {
-						waveSurferRef.current?.play().then(() => {
-							dispatch({ type: ActionKind.SET_PLAYING });
-						}).catch(console.error);
-					}).catch(console.error);
-				} else {
-					// Play the current track
-					waveSurferRef.current?.play().then(() => {
-						dispatch({ type: ActionKind.SET_PLAYING });
-					}).catch(console.error);
-				}
-			}
-		},
-		pause() {
-			// Pause via Wavesurfer
-			waveSurferRef.current?.pause();
-			dispatch({ type: ActionKind.SET_PAUSING });
-		},
-		toggle(song, trackIndex) {
-			// Toggle play/pause
-			if (state.song !== song || state.trackIndex !== trackIndex) {
-				this.play(song, trackIndex);
+
+	// The single WaveSurfer instance is created by the player bar (which is
+	// always mounted) and shared through this ref.
+
+	const actions = useMemo<PublicPlayerActions>(() => {
+		const startCurrent = () => {
+			waveSurferRef.current
+				?.play()
+				.then(() => dispatch({ type: ActionKind.SET_PLAYING }))
+				.catch(console.error);
+		};
+
+		const load = (song: Song, trackIndex: number, fraction?: number) => {
+			const src = song.audioTracks?.[trackIndex]?.src;
+			if (!src || !waveSurferRef.current) return;
+			dispatch({ type: ActionKind.SET_META, payload: { song, trackIndex } });
+			waveSurferRef.current
+				.load(src)
+				.then(() => {
+					// Loading resets the media element — re-apply the session settings.
+					waveSurferRef.current?.setPlaybackRate(state.playbackRate);
+					waveSurferRef.current?.setMuted(state.isMuted);
+					if (fraction && fraction > 0)
+						waveSurferRef.current?.seekTo(Math.min(1, fraction));
+					startCurrent();
+				})
+				.catch((error) => {
+					// load() rejects with AbortError when another track interrupts it.
+					if ((error as Error)?.name !== "AbortError") console.error(error);
+				});
+		};
+
+		const playSong = (song: Song, trackIndex?: number, fraction?: number) => {
+			const index = trackIndex ?? primaryTrackIndex(song);
+			if (state.song?.id === song.id && state.trackIndex === index) {
+				if (fraction !== undefined)
+					waveSurferRef.current?.seekTo(Math.min(1, Math.max(0, fraction)));
+				startCurrent();
 			} else {
-				waveSurferRef.current?.playPause();
-				
-				if (waveSurferRef.current?.isPlaying()) {
-					dispatch({ type: ActionKind.SET_PLAYING });
+				// Keep the position when switching between tracks of the same song.
+				const keepFraction =
+					fraction ??
+					(state.song?.id === song.id &&
+					(waveSurferRef.current?.getDuration() ?? 0) > 0
+						? (waveSurferRef.current!.getCurrentTime() ?? 0) /
+							waveSurferRef.current!.getDuration()
+						: undefined);
+				load(song, index, keepFraction);
+			}
+		};
+
+		const setPlaying = () => {
+			if (!state.isPlaying) startCurrent();
+		};
+
+		return {
+			playSong,
+			toggleSong(song, trackIndex) {
+				const index = trackIndex ?? primaryTrackIndex(song);
+				if (state.song?.id === song.id && state.trackIndex === index) {
+					if (state.isPlaying) {
+						waveSurferRef.current?.pause();
+						dispatch({ type: ActionKind.SET_PAUSING });
+					} else {
+						startCurrent();
+					}
 				} else {
-					dispatch({ type: ActionKind.SET_PAUSING });
+					playSong(song, index);
 				}
-			}
-		},
-		skip(amount) {
-			waveSurferRef.current?.skip(amount);
-			this.setPlaying();
-		},
-		seek(time) {
-			waveSurferRef.current?.seekTo(time / waveSurferRef.current.getDuration());
-			this.setPlaying();
-		},
-		setPlaybackRate(rate) {
-			waveSurferRef.current?.setPlaybackRate(rate);
-		},
-		mute() {
-			waveSurferRef.current?.setMuted(!state.isMuted);
-			dispatch({ type: ActionKind.SET_MUTED });
-		},
-		playing(song, trackIndex) {
-			return state.song === song && state.trackIndex === trackIndex && state.isPlaying;
-		},
-		setPlaying() {
-			// If not playing, start playing
-			if (!state.isPlaying) {
-				waveSurferRef.current?.play().then(() => {
-					dispatch({ type: ActionKind.SET_PLAYING });
-				}).catch(console.error);
-			}
-		},
-		muted() {
-			return state.isMuted;
-		},
-		getCurrentTime() {
-			return waveSurferRef.current?.getCurrentTime() ?? 0;
-		},
-		getDuration() {
-			return waveSurferRef.current?.getDuration() ?? 0;
-		},
-	}), [state.song, state.trackIndex, state.isPlaying, state.isMuted]);
-	
+			},
+			isSongPlaying(song, trackIndex) {
+				if (!state.isPlaying || state.song?.id !== song.id) return false;
+				return trackIndex === undefined || state.trackIndex === trackIndex;
+			},
+			next() {
+				if (!state.song) return;
+				const nextSong = adjacentPlayable(state.song, 1);
+				playSong(nextSong, primaryTrackIndex(nextSong), 0);
+			},
+			previous() {
+				if (!state.song) return;
+				const previousSong = adjacentPlayable(state.song, -1);
+				playSong(previousSong, primaryTrackIndex(previousSong), 0);
+			},
+			pause() {
+				waveSurferRef.current?.pause();
+				dispatch({ type: ActionKind.SET_PAUSING });
+			},
+			skip(amount) {
+				waveSurferRef.current?.skip(amount);
+				setPlaying();
+			},
+			seek(time) {
+				const duration = waveSurferRef.current?.getDuration() ?? 0;
+				if (duration > 0) {
+					waveSurferRef.current?.seekTo(Math.min(1, Math.max(0, time / duration)));
+					setPlaying();
+				}
+			},
+			seekFraction(fraction) {
+				waveSurferRef.current?.seekTo(Math.min(1, Math.max(0, fraction)));
+				setPlaying();
+			},
+			cycleRate() {
+				const index = PLAYBACK_RATES.indexOf(state.playbackRate);
+				const nextRate = PLAYBACK_RATES[(index + 1) % PLAYBACK_RATES.length];
+				waveSurferRef.current?.setPlaybackRate(nextRate);
+				dispatch({ type: ActionKind.SET_RATE, payload: nextRate });
+			},
+			mute() {
+				waveSurferRef.current?.setMuted(!state.isMuted);
+				dispatch({ type: ActionKind.SET_MUTED });
+			},
+			setPlaying,
+			getCurrentTime() {
+				return waveSurferRef.current?.getCurrentTime() ?? 0;
+			},
+			getDuration() {
+				return waveSurferRef.current?.getDuration() ?? 0;
+			},
+			attachWavesurfer(instance) {
+				waveSurferRef.current = instance;
+			},
+		};
+	}, [state.song, state.trackIndex, state.isPlaying, state.isMuted, state.playbackRate]);
+
 	const api = useMemo<PlayerAPI>(
-		() => ({ ...state, ...actions, wavesurferRef: waveSurferRef }),
+		() => ({ ...state, ...actions }),
 		[state, actions],
 	);
-	
-	return (
-		<AudioContext.Provider value={api}>
-			{children}
-		</AudioContext.Provider>
-	);
+
+	return <AudioContext.Provider value={api}>{children}</AudioContext.Provider>;
 }
 
-// Custom hook for using audio player
-export function useAudioPlayer(song?: Song, trackIndex?: number) {
+export function useAudioPlayer(): PlayerAPI {
 	const audioPlayer = useContext(AudioContext);
-	
-	if (!audioPlayer) throw new Error("useAudioPlayer must be used within an AudioProvider");
-	
-	// Use memoized result for player actions
-	return useMemo<PlayerAPI>(() => ({
-		...audioPlayer!,
-		play() {
-			audioPlayer.play(song, trackIndex);
-		},
-		toggle() {
-			audioPlayer.toggle(song, trackIndex);
-		},
-		playing() {
-			return audioPlayer.playing(song, trackIndex);
-		},
-		muted() {
-			return audioPlayer.muted();
-		},
-	}), [audioPlayer, song, trackIndex]);
+	if (!audioPlayer)
+		throw new Error("useAudioPlayer must be used within an AudioProvider");
+	return audioPlayer;
+}
+
+// Polls the playhead while something is playing (or once when paused).
+export function usePlayerProgress(intervalMs = 400) {
+	const player = useAudioPlayer();
+	const [progress, setProgress] = useState({ time: 0, duration: 0, fraction: 0 });
+
+	useEffect(() => {
+		const read = () => {
+			const time = player.getCurrentTime();
+			const duration = player.getDuration();
+			setProgress({
+				time,
+				duration,
+				fraction: duration > 0 ? time / duration : 0,
+			});
+		};
+		read();
+		if (!player.isPlaying) return;
+		const id = setInterval(read, intervalMs);
+		return () => clearInterval(id);
+	}, [player, intervalMs]);
+
+	return progress;
 }
